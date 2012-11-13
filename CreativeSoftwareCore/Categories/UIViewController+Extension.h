@@ -4,7 +4,6 @@
 
 
 #import <Foundation/Foundation.h>
-#import "RcherzIOS-Prefix.pch"
 
 @interface UIViewController (Extension) <UITextFieldDelegate>
 
