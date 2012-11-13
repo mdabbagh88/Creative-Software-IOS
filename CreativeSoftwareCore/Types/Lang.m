@@ -1,33 +1,14 @@
 //
 //  SettingsController.m
 
-
-#import "MBProgressHUD.h"
-#import "iToast.h"
-#import "Lang.h"
-#import "DDLog.h"
-
 @implementation Lang
 
-void showProgress(UIView *view) {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
-    hud.margin = 17;
+void run (void (^block) ()) {
+		if (block)block();
 }
 
-void hideProgress(UIView *view) {
-    [MBProgressHUD hideHUDForView:view animated:YES];
-}
-
-void showMessage(NSString *string) {
-    [[iToast makeText:string] show];
-}
-
-void run(void (^block)()) {
-    if (block)block();
-}
-
-void runWith(void (^block)(id), id value) {
-    if (block)block(value);
+void runWith (void (^block) (id), id value) {
+		if (block)block(value);
 }
 
 @end

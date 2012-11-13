@@ -4,6 +4,7 @@
 
 
 #import "Response.h"
+#import "MBProgressHUD.h"
 
 @implementation UIView (Extension)
 
@@ -163,26 +164,51 @@
 		return self;
 }
 
+- (void)showProgress {
+		MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+		hud.margin = 17;
+}
+
+- (void)hideProgress {
+		[MBProgressHUD hideHUDForView:self animated:YES];
+}
+
+- (void)showMessage :(NSString *)string {
+		MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+		hud.mode = MBProgressHUDModeText;
+		hud.labelText = string;
+		[hud hide:YES afterDelay:5];
+}
 
 - (Response *)showRequest:(Response *)request {
-		showProgress(self);
+		[self showProgress];
 		Response *response = [Response wrap:request];
 		request.onFailed = ^(NSString *message) {
-				if (message)showMessage(message);
+				if (message)[self showMessage:message];
 				runWith(response.onFailed, message);
 		};
 		request.onDone = ^{
-				hideProgress(self);
+				[self hideProgress];
 				run(response.onDone);
 		};
 		return response;
 }
 
+- (Response *)showFailed:(Response *)request {
+		Response *response = [Response wrap:request];
+		request.onFailed = ^(NSString *message) {
+				if (message)[self showMessage:message];
+				runWith(response.onFailed, message);
+		};
+		return response;
+}
+
+
 - (Response *)showProgress:(Response *)request {
-		showProgress(self);
+		[self showProgress];
 		Response *response = [Response wrap:request];
 		request.onDone = ^{
-				hideProgress(self);
+				[self hideProgress];
 				run(response.onDone);
 		};
 		return response;

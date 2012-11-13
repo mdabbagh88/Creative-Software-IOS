@@ -29,58 +29,51 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *SBJSONErrorDomain;
+#pragma mark JSON Writing
 
-
-enum {
-    EUNSUPPORTED = 1,
-    EPARSENUM,
-    EPARSE,
-    EFRAGMENT,
-    ECTRL,
-    EUNICODE,
-    EDEPTH,
-    EESCAPE,
-    ETRAILCOMMA,
-    ETRAILGARBAGE,
-    EEOF,
-    EINPUT
-};
+/// Adds JSON generation to NSObject
+@interface NSObject (NSObject_SBJsonWriting)
 
 /**
- @brief Common base class for parsing & writing.
-
- This class contains the common error-handling code and option between the parser/writer.
- */
-@interface SBJsonBase : NSObject {
-    NSMutableArray *errorTrace;
-
-@protected
-    NSUInteger depth, maxDepth;
-}
-
-/**
- @brief The maximum recursing depth.
+ @brief Encodes the receiver into a JSON string
  
- Defaults to 512. If the input is nested deeper than this the input will be deemed to be
- malicious and the parser returns nil, signalling an error. ("Nested too deep".) You can
- turn off this security feature by setting the maxDepth value to 0.
+ Although defined as a category on NSObject it is only defined for NSArray and NSDictionary.
+ 
+ @return the receiver encoded in JSON, or nil on error.
+ 
+ @see @ref objc2json
  */
-@property NSUInteger maxDepth;
+- (NSString *)JSONRepresentation;
+
+@end
+
+
+#pragma mark JSON Parsing
+
+/// Adds JSON parsing methods to NSString
+@interface NSString (NSString_SBJsonParsing)
 
 /**
- @brief Return an error trace, or nil if there was no errors.
+ @brief Decodes the receiver's JSON text
  
- Note that this method returns the trace of the last method that failed.
- You need to check the return value of the call you're making to figure out
- if the call actually failed, before you know call this method.
+ @return the NSDictionary or NSArray represented by the receiver, or nil on error.
+ 
+ @see @ref json2objc
  */
-@property(copy, readonly) NSArray *errorTrace;
+- (id)JSONValue;
 
-/// @internal for use in subclasses to add errors to the stack trace
-- (void)addErrorWithCode:(NSUInteger)code description:(NSString *)str;
+@end
 
-/// @internal for use in subclasess to clear the error before a new parsing attempt
-- (void)clearErrorTrace;
+/// Adds JSON parsing methods to NSData
+@interface NSData (NSData_SBJsonParsing)
+
+/**
+ @brief Decodes the receiver's JSON data
+ 
+ @return the NSDictionary or NSArray represented by the receiver, or nil on error.
+ 
+ @see @ref json2objc
+ */
+- (id)JSONValue;
 
 @end

@@ -12,17 +12,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 #define error(NSObject)    DDLogError(@"%@",NSObject)
 #define infoEmpty()    DDLogInfo(@"")
 
-@interface Lang : NSObject {
-}
+@interface Lang : NSObject
 
-void showMessage(NSString *string);
+void run (void (^block) ());
 
-void showProgress(UIView *view);
-
-void hideProgress(UIView *view);
-
-void run(void (^block)());
-
-void runWith(void (^block)(id), id value);
+void runWith (void (^block) (id), id value);
 
 @end

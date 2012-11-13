@@ -14,6 +14,9 @@
 
 - (Response *)showRequest:(Response *)request;
 
+- (Response *)showFailed:(Response *)request;
+
 - (Response *)showProgress:(Response *)request;
 
+- (void)showMessage :(NSString *)string;
 @end
