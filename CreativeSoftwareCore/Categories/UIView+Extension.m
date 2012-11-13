@@ -164,9 +164,10 @@
 		return self;
 }
 
-- (void)showProgress {
+- (MBProgressHUD *)showProgress {
 		MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
 		hud.margin = 17;
+		return hud;
 }
 
 - (void)hideProgress {
@@ -175,20 +176,27 @@
 
 - (void)showMessage :(NSString *)string {
 		MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+		UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+				initWithTarget:self action:@selector(onShowMessageTap:)];
+		[hud addGestureRecognizer:tap];
 		hud.mode = MBProgressHUDModeText;
 		hud.labelText = string;
-		[hud hide:YES afterDelay:5];
+		[hud hide:YES afterDelay:4];
+}
+
+- (void)onShowMessageTap:(UITapGestureRecognizer *)tapped {
+		[((MBProgressHUD *) tapped.view) hide:YES];
 }
 
 - (Response *)showRequest:(Response *)request {
-		[self showProgress];
+		MBProgressHUD *hud = [self showProgress];
 		Response *response = [Response wrap:request];
 		request.onFailed = ^(NSString *message) {
 				if (message)[self showMessage:message];
 				runWith(response.onFailed, message);
 		};
 		request.onDone = ^{
-				[self hideProgress];
+				[hud hide:YES];
 				run(response.onDone);
 		};
 		return response;

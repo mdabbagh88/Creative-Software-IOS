@@ -8,6 +8,7 @@
 @class UIView;
 @class UIViewController;
 @class Response;
+@class MBProgressHUD;
 
 @interface UIView (Extension)
 
@@ -46,7 +47,7 @@
 
 - (void)clearSubViews;
 
-- (void)showProgress;
+- (MBProgressHUD *)showProgress;
 
 - (void)hideProgress;
 
