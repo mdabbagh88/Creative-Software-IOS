@@ -44,11 +44,11 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 - (void)deviceOrientationDidChange:(NSNotification *)notification;
 - (void)hideDelayed:(NSNumber *)animated;
 
-@property (MB_STRONG) UIView *indicator;
-@property (MB_STRONG) NSTimer *graceTimer;
-@property (MB_STRONG) NSTimer *minShowTimer;
-@property (MB_STRONG) NSDate *showStarted;
-@property (assign) CGSize size;
+@property (atomic, MB_STRONG) UIView *indicator;
+@property (atomic, MB_STRONG) NSTimer *graceTimer;
+@property (atomic, MB_STRONG) NSTimer *minShowTimer;
+@property (atomic, MB_STRONG) NSDate *showStarted;
+@property (atomic, assign) CGSize size;
 
 @end
 
@@ -284,7 +284,9 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 
 - (void)showUsingAnimation:(BOOL)animated {
 	self.alpha = 0.0f;
-	if (animated && animationType == MBProgressHUDAnimationZoom) {
+	if (animated && animationType == MBProgressHUDAnimationZoomIn) {
+		self.transform = CGAffineTransformConcat(rotationTransform, CGAffineTransformMakeScale(0.5f, 0.5f));
+	} else if (animated && animationType == MBProgressHUDAnimationZoomOut) {
 		self.transform = CGAffineTransformConcat(rotationTransform, CGAffineTransformMakeScale(1.5f, 1.5f));
 	}
 	self.showStarted = [NSDate date];
@@ -293,7 +295,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.30];
 		self.alpha = 1.0f;
-		if (animationType == MBProgressHUDAnimationZoom) {
+		if (animationType == MBProgressHUDAnimationZoomIn || animationType == MBProgressHUDAnimationZoomOut) {
 			self.transform = rotationTransform;
 		}
 		[UIView commitAnimations];
@@ -312,9 +314,12 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		[UIView setAnimationDidStopSelector:@selector(animationFinished:finished:context:)];
 		// 0.02 prevents the hud from passing through touches during the animation the hud will get completely hidden
 		// in the done method
-		if (animationType == MBProgressHUDAnimationZoom) {
+		if (animationType == MBProgressHUDAnimationZoomIn) {
+			self.transform = CGAffineTransformConcat(rotationTransform, CGAffineTransformMakeScale(1.5f, 1.5f));
+		} else if (animationType == MBProgressHUDAnimationZoomOut) {
 			self.transform = CGAffineTransformConcat(rotationTransform, CGAffineTransformMakeScale(0.5f, 0.5f));
 		}
+
 		self.alpha = 0.02f;
 		[UIView commitAnimations];
 	}
@@ -377,7 +382,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 
 - (void)showAnimated:(BOOL)animated whileExecutingBlock:(dispatch_block_t)block onQueue:(dispatch_queue_t)queue
 	 completionBlock:(MBProgressHUDCompletionBlock)completion {
-	
+	self.taskInProgress = YES;
 	self.completionBlock = completion;
 	dispatch_async(queue, ^(void) {
         block();
@@ -385,7 +390,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
             [self cleanUp];
         });
     });
-    [self show:animated];
+  [self show:animated];
 }
 
 #endif
@@ -409,6 +414,9 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 #if !__has_feature(objc_arc)
 	[targetForExecution release];
 	[objectForExecution release];
+#else
+	targetForExecution = nil;
+	objectForExecution = nil;
 #endif
 	[self hide:useAnimation];
 }
@@ -694,14 +702,14 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	}
 	
 	UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-	float radians = 0;
+	CGFloat radians = 0;
 	if (UIInterfaceOrientationIsLandscape(orientation)) {
-		if (orientation == UIInterfaceOrientationLandscapeLeft) { radians = -M_PI_2; } 
-		else { radians = M_PI_2; }
+		if (orientation == UIInterfaceOrientationLandscapeLeft) { radians = -(CGFloat)M_PI_2; } 
+		else { radians = (CGFloat)M_PI_2; }
 		// Window coordinates differ!
 		self.bounds = CGRectMake(0, 0, self.bounds.size.height, self.bounds.size.width);
 	} else {
-		if (orientation == UIInterfaceOrientationPortraitUpsideDown) { radians = M_PI; } 
+		if (orientation == UIInterfaceOrientationPortraitUpsideDown) { radians = (CGFloat)M_PI; } 
 		else { radians = 0; }
 	}
 	rotationTransform = CGAffineTransformMakeRotation(radians);
@@ -779,7 +787,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		CGFloat startAngle = - ((float)M_PI / 2); // 90 degrees
 		CGFloat endAngle = (2 * (float)M_PI) + startAngle;
 		[processBackgroundPath addArcWithCenter:center radius:radius startAngle:startAngle endAngle:endAngle clockwise:YES];
-		[[UIColor colorWithRed:1 green:1 blue:1 alpha:0.1] set];
+		[[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1f] set];
 		[processBackgroundPath stroke];
 		// Draw progress
 		UIBezierPath *processPath = [UIBezierPath bezierPath];

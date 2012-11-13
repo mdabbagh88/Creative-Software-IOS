@@ -46,10 +46,17 @@
 
 - (void)clearSubViews;
 
+- (void)showProgress;
+
+- (void)hideProgress;
+
+- (void)showMessage :(NSString *)string;
 
 - (Response *)showRequest:(Response *)request;
 
 - (Response *)showProgress:(Response *)request;
+
+- (Response *)showFailed:(Response *)request;
 
 //Layout
 - (UIView *)addSubviewUnder:(UIView *)view;

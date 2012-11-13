@@ -1,28 +1,24 @@
 //
-//  TPKeyboardAvoidingScrollView.m
+//  TPKeyboardAvoidingTableView.m
 //
 //  Created by Michael Tyson on 11/04/2011.
 //  Copyright 2011 A Tasty Pixel. All rights reserved.
 //
 
-#import "TPKeyboardAvoidingScrollView.h"
+#import "TPKeyboardAvoidingTableView.h"
 
 #define _UIKeyboardFrameEndUserInfoKey (&UIKeyboardFrameEndUserInfoKey != NULL ? UIKeyboardFrameEndUserInfoKey : @"UIKeyboardBoundsUserInfoKey")
 
-@interface TPKeyboardAvoidingScrollView ()
+@interface TPKeyboardAvoidingTableView ()
 - (UIView*)findFirstResponderBeneathView:(UIView*)view;
 - (UIEdgeInsets)contentInsetForKeyboard;
 - (CGFloat)idealOffsetForView:(UIView *)view withSpace:(CGFloat)space;
 - (CGRect)keyboardRect;
 @end
 
-@implementation TPKeyboardAvoidingScrollView
+@implementation TPKeyboardAvoidingTableView
 
 - (void)setup {
-    _priorInsetSaved = NO;
-    if ( CGSizeEqualToSize(self.contentSize, CGSizeZero) ) {
-        self.contentSize = self.bounds.size;
-    }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
@@ -33,8 +29,16 @@
     return self;
 }
 
--(void)awakeFromNib {
+-(id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
+    if ( !(self = [super initWithFrame:frame style:style]) ) return nil;
     [self setup];
+    return self;
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    if ( !(self = [super initWithCoder:aDecoder]) ) return nil;
+    [self setup];
+    return self;
 }
 
 -(void)dealloc {
@@ -46,24 +50,13 @@
 
 -(void)setFrame:(CGRect)frame {
     [super setFrame:frame];
-
-    CGSize contentSize = _originalContentSize;
-    contentSize.width = MAX(contentSize.width, self.frame.size.width);
-    contentSize.height = MAX(contentSize.height, self.frame.size.height);
-    [super setContentSize:contentSize];
-    
     if ( _keyboardVisible ) {
         self.contentInset = [self contentInsetForKeyboard];
     }
 }
 
 -(void)setContentSize:(CGSize)contentSize {
-    _originalContentSize = contentSize;
-    
-    contentSize.width = MAX(contentSize.width, self.frame.size.width);
-    contentSize.height = MAX(contentSize.height, self.frame.size.height);
     [super setContentSize:contentSize];
-    
     if ( _keyboardVisible ) {
         self.contentInset = [self contentInsetForKeyboard];
     }
@@ -93,7 +86,7 @@
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationCurve:[[[notification userInfo] objectForKey:UIKeyboardAnimationCurveUserInfoKey] intValue]];
     [UIView setAnimationDuration:[[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue]];
-
+    
     self.contentInset = [self contentInsetForKeyboard];
     [self setContentOffset:CGPointMake(self.contentOffset.x, 
                                        [self idealOffsetForView:firstResponder withSpace:[self keyboardRect].origin.y - self.bounds.origin.y]) 
@@ -106,13 +99,12 @@
 - (void)keyboardWillHide:(NSNotification*)notification {
     _keyboardRect = CGRectZero;
     _keyboardVisible = NO;
-
+    
     // Restore dimensions to prior size
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationCurve:[[[notification userInfo] objectForKey:UIKeyboardAnimationCurveUserInfoKey] intValue]];
     [UIView setAnimationDuration:[[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue]];
     self.contentInset = _priorInset;
-    self.contentOffset = CGPointZero;
     [self setScrollIndicatorInsets:self.contentInset];
     _priorInsetSaved = NO;
     [UIView commitAnimations];
