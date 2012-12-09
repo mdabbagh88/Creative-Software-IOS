@@ -12,4 +12,15 @@
 		[self addTarget:target action:action forControlEvents:UIControlEventTouchDown];
 }
 
+- (void)addTouchEffect {
+		[self addTouchDown:self :@selector(onTouchEffect)];
+}
+
+- (void)onTouchEffect {
+		self.backgroundColor = [UIColor darkGrayColor];
+		[self doLater:^{
+				self.backgroundColor = UIColor.clearColor;
+		}       after:0.1];
+}
+
 @end

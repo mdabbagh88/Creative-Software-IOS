@@ -32,6 +32,8 @@
 
 - (void)fadeToggle;
 
+- (void)setVisible:(BOOL)visible;
+
 - (BOOL)visible;
 
 - (UIViewController *)viewDelegate;

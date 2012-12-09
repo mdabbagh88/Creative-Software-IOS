@@ -59,6 +59,10 @@
 		return !self.hidden;
 }
 
+- (void)setVisible:(BOOL)visible {
+		self.hidden = !visible;
+}
+
 - (UIViewController *)viewDelegate {
 		return (UIViewController *) [self traverseResponderChainForUIViewController];
 }

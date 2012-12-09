@@ -9,4 +9,6 @@
 
 - (void)addTouchDown:(id)target:(SEL)action;
 
+- (void)addTouchEffect;
+
 @end
