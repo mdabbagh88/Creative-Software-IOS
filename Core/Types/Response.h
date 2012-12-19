@@ -3,7 +3,7 @@
 //
 
 
-@class Request;
+@class LoginData;
 
 @interface Response : NSObject
 
@@ -13,4 +13,7 @@
 
 + (Response *)wrap:(Response *)response;
 
+- (void)success:(id)data;
+
+- (void)failed:(id)o;
 @end

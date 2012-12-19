@@ -6,7 +6,7 @@
 @implementation NSMutableArray (Extension)
 
 - (void)setObject:(id)thing atIndexedSubscript:(NSInteger)index {
-    [self replaceObjectAtIndex:index withObject:thing];
+		[self replaceObjectAtIndex:index withObject:thing];
 }
 
 @end

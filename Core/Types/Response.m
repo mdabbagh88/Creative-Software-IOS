@@ -22,4 +22,13 @@
 		return responseWrapper;
 }
 
+- (void)success:(id)data {
+		runWith(_onSuccess, data);
+		run(_onDone);
+}
+
+- (void)failed:(NSString *)message {
+		runWith(_onFailed, message);
+		run(_onDone);
+}
 @end
