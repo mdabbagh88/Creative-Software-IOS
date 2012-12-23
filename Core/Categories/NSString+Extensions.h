@@ -22,4 +22,7 @@
 - (BOOL)isSet;
 
 - (BOOL)empty;
+
+- (NSString *)trim;
+
 @end
