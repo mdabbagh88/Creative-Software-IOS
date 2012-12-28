@@ -25,4 +25,7 @@
 
 - (NSString *)trim;
 
+- (BOOL)contains:(NSString *)string;
+
+- (NSString *)replace:(NSString *)string :(NSString *)replacement;
 @end

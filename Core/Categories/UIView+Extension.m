@@ -87,12 +87,18 @@
 }
 
 - (void)fadeOut:(NSTimeInterval)time {
+		[self fadeOut:time :nil];
+}
+
+
+- (void)fadeOut:(NSTimeInterval)time :(void (^)())method {
 		CGFloat alpha = self.alpha;
 		[UIView animateWithDuration:time animations:^{
 				[self setAlpha:0.0];
 		}                completion:^(BOOL finished) {
 				[self setHidden:YES];
 				[self setAlpha:alpha];
+				run(method);
 		}];
 }
 
@@ -124,12 +130,26 @@
 		self.frame = frame;
 }
 
+- (void)setRight:(float)value {
+		CGRect frame = self.frame;
+		frame.origin.x = value - self.width;
+		self.frame = frame;
+}
+
 - (float)height {
 		return self.bounds.size.height;
 }
 
 - (float)top {
 		return self.frame.origin.y;
+}
+
+- (float)abstop {
+		return [self convertPoint:CGPointMake(0, self.top) toView:nil].y;
+}
+
+- (void)setAbstop:(float)value {
+		self.top = [self convertPoint:CGPointMake(0, value) fromView:nil].y;
 }
 
 - (float)left {
@@ -144,13 +164,14 @@
 		return self.top + self.height;
 }
 
+- (float)absbottom {
+		return [self convertPoint:CGPointMake(0, self.bottom) toView:nil].y;
+}
+
 - (float)width {
 		return self.frame.size.width;
 }
 
-+ (BOOL)iphone {
-		return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
-}
 
 - (void)clearSubViews {
 		for (UIView *view in self.subviews) [view removeFromSuperview];

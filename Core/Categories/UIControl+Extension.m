@@ -17,9 +17,10 @@
 }
 
 - (void)onTouchEffect {
+		UIColor *previousColor = self.backgroundColor;
 		self.backgroundColor = [UIColor darkGrayColor];
 		[self doLater:^{
-				self.backgroundColor = UIColor.clearColor;
+				self.backgroundColor = previousColor;
 		}       after:0.1];
 }
 

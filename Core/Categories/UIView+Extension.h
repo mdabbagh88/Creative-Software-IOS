@@ -28,6 +28,8 @@
 
 - (void)fadeOut:(NSTimeInterval)time;
 
+- (void)fadeOut:(NSTimeInterval)time:(void (^)())method;
+
 - (void)fadeOut;
 
 - (void)fadeToggle;
@@ -41,11 +43,11 @@
 @property float height;
 @property float width;
 @property float top;
+@property float abstop;
 @property float bottom;
+@property(readonly) float absbottom;
 @property float left;
-@property(readonly) float right;
-
-+ (BOOL)iphone;
+@property float right;
 
 - (void)clearSubViews;
 

@@ -14,6 +14,10 @@
 		return self;
 }
 
+- (NSString *)replace:(NSString *)string :(NSString *)replacement {
+		return [self stringByReplacingOccurrencesOfString:string withString:replacement];
+}
+
 - (NSString *)add:(NSString *)first :(NSString *)second {
 		return [[self add:first] add:second];
 }
@@ -36,6 +40,10 @@
 
 + (NSString *)fromBool:(BOOL)value {
 		return [NSString stringWithFormat:@" %s", value ? "true" : "false"];
+}
+
+- (BOOL)contains:(NSString *)string {
+		return [self rangeOfString:string].location != NSNotFound;
 }
 
 - (BOOL)isSet {
