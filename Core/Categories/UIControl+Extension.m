@@ -4,6 +4,7 @@
 
 
 #import "UIControl+Extension.h"
+#import "NSObject+Extension.h"
 
 
 @implementation UIControl (Extension)

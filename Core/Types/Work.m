@@ -4,6 +4,7 @@
 
 #import "Work.h"
 #import "DoLaterProcess.h"
+#import "NSObject+Extension.h"
 
 @implementation Work {
 		BOOL stop;

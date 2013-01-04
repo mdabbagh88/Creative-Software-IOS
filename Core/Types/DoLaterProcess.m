@@ -4,7 +4,7 @@
 
 
 #import "DoLaterProcess.h"
-
+#import "NSObject+Extension.h"
 
 @implementation DoLaterProcess {
 		id _method;
@@ -12,7 +12,6 @@
 }
 
 - (void)methodToPerform:(void (^)())methodToInvoke {
-		info(self);
 		if (!_stop) methodToInvoke();
 }
 
@@ -23,7 +22,6 @@
 }
 
 - (void)stop {
-		info(self);
 		_stop = YES;
 		[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(methodToPerform:) object:_method];
 }
