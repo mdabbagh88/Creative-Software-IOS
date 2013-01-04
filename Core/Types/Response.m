@@ -5,30 +5,51 @@
 
 
 #import "Response.h"
+#import "ArgEvent.h"
+#import "Event.h"
 
-@implementation Response
+@implementation Response {
+		BOOL _canceled;
+		ArgEvent *_onFailedEvent;
+		ArgEvent *_onSuccessEvent;
+		Event *_onDoneEvent;
+}
 
-+ (Response *)wrap:(Response *)response {
-		Response *responseWrapper = [Response new];
-		response.onSuccess = ^(id data) {
-				runWith(responseWrapper.onSuccess, data);
-		};
-		response.onFailed = ^(NSString *message) {
-				runWith(responseWrapper.onFailed, message);
-		};
-		response.onDone = ^{
-				run(responseWrapper.onDone);
-		};
-		return responseWrapper;
+- (id)init {
+		if (self = [super init]) {
+				_onFailedEvent = [ArgEvent new];
+				_onSuccessEvent = [ArgEvent new];
+				_onDoneEvent = [Event new];
+		}
+		return self;
 }
 
 - (void)success:(id)data {
-		runWith(_onSuccess, data);
-		run(_onDone);
+		if (_canceled)return;
+		[_onSuccessEvent run:data];
+		[_onDoneEvent run];
 }
 
 - (void)failed:(NSString *)message {
-		runWith(_onFailed, message);
-		run(_onDone);
+		if (_canceled)return;
+		[_onFailedEvent run:message];
+		[_onDoneEvent run];
 }
+
+- (void)cancel {
+		_canceled = YES;
+}
+
+- (void)setOnSuccess:(void (^)(id))block {
+		[_onSuccessEvent add:block];
+}
+
+- (void)setOnFailed:(void (^)(NSString *))block {
+		[_onFailedEvent add:block];
+}
+
+- (void)setOnDone:(void (^)(void))block {
+		[_onDoneEvent add:block];
+}
+
 @end

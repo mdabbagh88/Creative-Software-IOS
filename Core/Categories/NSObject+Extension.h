@@ -6,12 +6,13 @@
 #import <Foundation/Foundation.h>
 
 @class Work;
+@class DoLaterProcess;
 
 @interface NSObject (Extension)
 
-- (void)doLater:(void (^)())method;
+- (DoLaterProcess *)doLater:(void (^)())method;
 
-- (void)doLater:(void (^)())method after:(double)delay;
+- (DoLaterProcess *)doLater:(void (^)())method :(double)delay;
 
 - (Work *)schedule:(void (^)())method :(double)delay;
 
@@ -21,5 +22,6 @@
 
 - (void)removeNotificationObserver;
 
-+(NSString *)className;
++ (NSString *)className;
+
 @end

@@ -12,7 +12,5 @@
 
 - (void)stop;
 
-@property(copy) void (^method)(void);
-@property(nonatomic, assign) double delay;
-
+- (Work *)with:(void (^)())method :(double)delay;
 @end

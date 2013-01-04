@@ -3,39 +3,46 @@
 //
 
 #import "Work.h"
-#import "NSObject+Extension.h"
-#import "Lang.h"
+#import "DoLaterProcess.h"
 
 @implementation Work {
-    BOOL stop;
+		BOOL stop;
+		void (^_method) ();
+		double _delay;
+		DoLaterProcess *_doLater;
 }
-@synthesize method,delay;
 
 - (id)init {
-    if ((self = super.init)) {
-        stop = YES;
-    }
-    return self;
+		if ((self = super.init))
+				stop = YES;
+		return self;
 }
 
 - (void)process {
-    [self doLater:^{
-        if (!stop) {
-            run(self.method);
-            [self process];
-        }
-    }       after:self.delay];
+		_doLater = [self doLater:^{
+				if (!stop) {
+						run(_method);
+						[self process];
+				}
+		} :_delay];
+}
+
+- (Work *)with:(void (^)())method :(double)delay {
+		_method = method;
+		_delay = delay;
+		return self;
 }
 
 - (void)start {
-    if (stop) {
-        stop = NO;
-        [self process];
-    }
+		if (stop) {
+				stop = NO;
+				[self process];
+		}
 }
 
 - (void)stop {
-    stop = YES;
+		stop = YES;
+		[_doLater stop];
 }
 
 @end

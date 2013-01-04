@@ -21,7 +21,7 @@
 		self.backgroundColor = [UIColor darkGrayColor];
 		[self doLater:^{
 				self.backgroundColor = previousColor;
-		}       after:0.1];
+		} :0.1];
 }
 
 @end

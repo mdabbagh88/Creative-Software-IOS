@@ -11,6 +11,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 #define info(NSObject)    DDLogInfo(@"%@",NSObject)
 #define error(NSObject)    DDLogError(@"%@",NSObject)
 #define infoEmpty()    DDLogInfo(@"")
+static int const MINUTE = 60;
 
 @interface Lang : NSObject
 

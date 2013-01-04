@@ -215,21 +215,17 @@
 
 - (Response *)showRequest:(Response *)request {
 		MBProgressHUD *hud = [self showProgress];
-		Response *response = [Response wrap:request];
 		request.onFailed = ^(NSString *message) {
 				if (message)[self showMessage:message];
-				runWith(response.onFailed, message);
 		};
 		request.onDone = ^{
 				[hud hide:YES];
-				run(response.onDone);
 		};
-		return response;
+		return request;
 }
 
-- (Response *)showFailed:(Response *)request {
-		Response *response = [Response wrap:request];
-		request.onFailed = ^(NSString *message) {
+- (Response *)showFailed:(Response *)response {
+		response.onFailed = ^(NSString *message) {
 				if (message)[self showMessage:message];
 				runWith(response.onFailed, message);
 		};
@@ -237,10 +233,9 @@
 }
 
 
-- (Response *)showProgress:(Response *)request {
+- (Response *)showProgress:(Response *)response {
 		[self showProgress];
-		Response *response = [Response wrap:request];
-		request.onDone = ^{
+		response.onDone = ^{
 				[self hideProgress];
 				run(response.onDone);
 		};
