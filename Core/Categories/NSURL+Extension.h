@@ -9,5 +9,7 @@
 
 - (BOOL)validate;
 
+- (NSURL *)URLByAppending :(NSString *)path;
+
 - (NSString *)parseBaseURL;
 @end

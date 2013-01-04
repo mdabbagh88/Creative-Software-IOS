@@ -4,9 +4,14 @@
 
 
 #import "NSURL+Extension.h"
+#import "NSString+Extensions.h"
 
 
 @implementation NSURL (Extension)
+
+- (NSURL *)URLByAppending :(NSString *)path {
+		return [NSURL URLWithString:[self.description add:path]];
+}
 
 - (BOOL)validate {
 		return self.scheme && self.host;
