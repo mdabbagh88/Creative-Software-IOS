@@ -6,11 +6,13 @@
 #import "MultiRequest.h"
 
 
-@implementation MultiRequest
+@implementation MultiRequest {
+		Response *_addedRequest;
+}
 
 - (Response *)add:(Response *)request {
 		_addedRequest = request;
-		request.onFailed =^(NSString *message) {
+		request.onFailed = ^(NSString *message) {
 				[self failed:message];
 		};
 		return request;
@@ -22,8 +24,7 @@
 }
 
 - (Response *)addLast:(Response *)request {
-		_addedRequest = request;
-		[self add:request].onSuccess =^(id id) {
+		[self add:request].onSuccess = ^(id id) {
 				[self success:id];
 		};
 		return request;

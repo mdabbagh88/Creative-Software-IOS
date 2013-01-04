@@ -10,8 +10,10 @@
 
 
 @interface MultiRequest : Response {
-		Response *_addedRequest;
+
 }
+
+@property(nonatomic, readonly) Response *addedRequest;
 
 - (Response *)add:(Response *)response;
 
