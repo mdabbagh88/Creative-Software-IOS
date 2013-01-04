@@ -4,6 +4,7 @@
 
 
 #import "MultiRequest.h"
+#import "NSObject+Extension.h"
 
 
 @implementation MultiRequest
