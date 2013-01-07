@@ -6,8 +6,6 @@
 #import <Foundation/Foundation.h>
 #import "Response.h"
 
-@class Request;
-
 
 @interface MultiRequest : Response {
 

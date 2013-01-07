@@ -9,6 +9,8 @@
 
 + (void)save:(NSString *)key :(id)object;
 
++ (void)clear:(NSString *)key;
+
 + (id)load:(NSString *)key;
 
 @end

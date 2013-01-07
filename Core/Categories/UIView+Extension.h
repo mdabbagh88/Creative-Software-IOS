@@ -7,8 +7,8 @@
 
 @class UIView;
 @class UIViewController;
-@class Response;
 @class MBProgressHUD;
+@class Response;
 
 @interface UIView (Extension)
 
