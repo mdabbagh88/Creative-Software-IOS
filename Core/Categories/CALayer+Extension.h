@@ -8,6 +8,6 @@
 
 @interface CALayer (Extension)
 
-- (void)setBorder:(int)width:(UIColor *)color:(int)radius;
+- (void)setBorder:(CGFloat)width:(UIColor *)color:(int)radius;
 
 @end

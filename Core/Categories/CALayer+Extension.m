@@ -8,7 +8,7 @@
 
 @implementation CALayer (Extension)
 
-- (void)setBorder:(int)width :(UIColor *)color :(int)radius {
+- (void)setBorder:(CGFloat)width :(UIColor *)color :(int)radius {
     self.borderWidth = width;
     self.borderColor = color.CGColor;
     self.cornerRadius = radius;
