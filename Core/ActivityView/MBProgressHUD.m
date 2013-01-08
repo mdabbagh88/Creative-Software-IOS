@@ -442,8 +442,8 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 
 - (void)setupLabels {
 		label = [[UILabel alloc] initWithFrame:self.bounds];
-		label.adjustsFontSizeToFitWidth = NO;
 		label.textAlignment = UITextAlignmentCenter;
+		label.adjustsFontSizeToFitWidth = YES;
 		label.opaque = NO;
 		label.backgroundColor = [UIColor clearColor];
 		label.textColor = [UIColor whiteColor];
