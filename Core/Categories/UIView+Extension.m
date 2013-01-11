@@ -217,7 +217,7 @@
 		[((MBProgressHUD *) tapped.view) hide:YES];
 }
 
-- (Response *)showRequest:(Response *)request {
+- (Response *)showResponse:(Response *)request {
 		MBProgressHUD *hud = [self showProgress];
 		request.onFailed = ^(NSString *message) {
 				if (message)[self showMessage:message];

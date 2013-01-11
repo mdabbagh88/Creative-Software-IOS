@@ -7,7 +7,7 @@
 @implementation UIViewController (Extension)
 
 - (Response *)showResponse:(Response *)request {
-		return [self.view showRequest:request];
+		return [self.view showResponse:request];
 }
 
 - (Response *)showFailed:(Response *)request {

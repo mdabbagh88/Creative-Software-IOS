@@ -59,7 +59,7 @@
 
 - (void)showMessage :(NSString *)string;
 
-- (Response *)showRequest:(Response *)request;
+- (Response *)showResponse:(Response *)request;
 
 - (Response *)showProgress:(Response *)request;
 
