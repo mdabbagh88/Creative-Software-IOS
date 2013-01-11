@@ -38,7 +38,9 @@
 
 - (BOOL)visible;
 
-- (UIViewController *)viewDelegate;
+- (UIViewController *)controller;
+
+- (id)getView:(int)tag;
 
 @property float height;
 @property float width;

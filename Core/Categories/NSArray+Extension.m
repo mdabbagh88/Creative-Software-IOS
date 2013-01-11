@@ -19,4 +19,8 @@
 		return self.count == 0;
 }
 
+- (id)last {
+		return [self at:self.count - 1];
+}
+
 @end

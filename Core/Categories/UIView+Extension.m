@@ -63,7 +63,7 @@
 		self.hidden = !visible;
 }
 
-- (UIViewController *)viewDelegate {
+- (UIViewController *)controller {
 		return (UIViewController *) [self traverseResponderChainForUIViewController];
 }
 
@@ -84,6 +84,10 @@
 		[UIView animateWithDuration:time animations:^{
 				[self setAlpha:1.0];
 		}];
+}
+
+- (id)getView:(int)tag {
+		return [self viewWithTag:tag];
 }
 
 - (void)fadeOut:(NSTimeInterval)time {

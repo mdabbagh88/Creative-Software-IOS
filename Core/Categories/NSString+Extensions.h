@@ -11,6 +11,14 @@
 
 - (NSString *)add:(NSString *)first :(NSString *)second;
 
+- (NSString *)add:(NSString *)first :(NSString *)second :(NSString *)third;
+
+- (NSString *)add:(NSString *)first :(NSString *)second :(NSString *)third :(NSString *)fourth;
+
+- (NSString *)add:(NSString *)first :(NSString *)second :(NSString *)third :(NSString *)fourth :(NSString *)fifth;
+
+- (NSString *)add:(NSString *)first :(NSString *)second :(NSString *)third :(NSString *)fourth :(NSString *)fifth :(NSString *)sixth;
+
 + (NSString *)from:(NSObject *)value;
 
 + (NSString *)fromInt:(int)value;

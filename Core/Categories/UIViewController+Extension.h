@@ -11,7 +11,7 @@
 
 + (id)create:(NSString *)nib;
 
-- (Response *)showRequest:(Response *)request;
+- (Response *)showResponse:(Response *)request;
 
 - (Response *)showFailed:(Response *)request;
 

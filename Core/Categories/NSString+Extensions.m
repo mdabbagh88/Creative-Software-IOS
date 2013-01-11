@@ -22,8 +22,20 @@
 		return [[self add:first] add:second];
 }
 
-- (NSString *)append:(NSString *)first :(NSString *)second :(NSString *)third {
+- (NSString *)add:(NSString *)first :(NSString *)second :(NSString *)third {
 		return [[[self add:first] add:second] add:third];
+}
+
+- (NSString *)add:(NSString *)first :(NSString *)second :(NSString *)third :(NSString *)fourth {
+		return [[[[self add:first] add:second] add:third] add:fourth];
+}
+
+- (NSString *)add:(NSString *)first :(NSString *)second :(NSString *)third :(NSString *)fourth :(NSString *)fifth {
+		return [[[[[self add:first] add:second] add:third] add:fourth] add:fifth];
+}
+
+- (NSString *)add:(NSString *)first :(NSString *)second :(NSString *)third :(NSString *)fourth :(NSString *)fifth :(NSString *)sixth {
+		return [[[[[[self add:first] add:second] add:third] add:fourth] add:fifth] add:sixth];
 }
 
 + (NSString *)from:(NSObject *)value {

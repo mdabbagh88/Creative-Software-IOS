@@ -12,4 +12,6 @@
 - (id)at:(NSInteger)index;
 
 - (BOOL)empty;
+
+- (id)last;
 @end
