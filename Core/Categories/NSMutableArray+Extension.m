@@ -9,4 +9,9 @@
 		[self replaceObjectAtIndex:index withObject:thing];
 }
 
+- (void)replaceFromArray:(NSArray *)array {
+		[self removeAllObjects];
+		[self addObjectsFromArray:array];
+}
+
 @end
