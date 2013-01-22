@@ -52,4 +52,21 @@
 		[_onDoneEvent add:block];
 }
 
+- (Response*)failIfFail:(Response *)response {
+		response.onFailed = ^(NSString *message) {
+				[self failed:message];
+		};
+		return response;
+}- (Response*)successIfSuccesss:(Response *)response {
+		response.onSuccess = ^(id value) {
+				[self success:value];
+		};
+		return response;
+}
+
+- (Response*)connect:(Response *)response {
+		[self failIfFail:response];
+		[self successIfSuccesss:response];
+		return response;
+}
 @end

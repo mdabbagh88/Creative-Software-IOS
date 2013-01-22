@@ -209,7 +209,7 @@
 				initWithTarget:self action:@selector(onShowMessageTap:)];
 		[hud addGestureRecognizer:tap];
 		hud.mode = MBProgressHUDModeText;
-		hud.labelText = string;
+		hud.detailsLabelText = string;
 		[hud hide:YES afterDelay:4];
 }
 

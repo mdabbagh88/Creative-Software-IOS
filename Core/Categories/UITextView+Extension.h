@@ -7,6 +7,5 @@
 
 @interface UITextView (Extension)
 
-- (void)sizeHeightToFit;
 
 @end

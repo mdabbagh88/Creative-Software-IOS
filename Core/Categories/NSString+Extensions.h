@@ -27,7 +27,9 @@
 
 + (NSString *)fromDbl:(double)value;
 
-- (BOOL)isSet;
+- (NSString *)clearLast:(NSInteger)count;
+
+- (BOOL)set;
 
 - (BOOL)empty;
 

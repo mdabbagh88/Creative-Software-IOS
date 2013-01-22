@@ -443,12 +443,12 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 - (void)setupLabels {
 		label = [[UILabel alloc] initWithFrame:self.bounds];
 		label.textAlignment = UITextAlignmentCenter;
-		label.adjustsFontSizeToFitWidth = YES;
+		label.adjustsFontSizeToFitWidth = NO;
 		label.opaque = NO;
 		label.backgroundColor = [UIColor clearColor];
 		label.textColor = [UIColor whiteColor];
 		label.font = self.labelFont;
-		label.numberOfLines = 2;
+		label.numberOfLines = 1;
 		label.text = self.labelText;
 		[self addSubview:label];
 

@@ -8,9 +8,6 @@
 
 @implementation UITextView (Extension)
 
-- (void)sizeHeightToFit {
-		UIEdgeInsets inset = self.contentInset;
-		self.height = self.contentSize.height + inset.top + inset.bottom;
-}
+
 
 @end

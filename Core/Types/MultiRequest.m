@@ -13,9 +13,7 @@
 
 - (Response *)add:(Response *)request {
 		_addedRequest = request;
-		request.onFailed = ^(NSString *message) {
-				[self failed:message];
-		};
+		[self failIfFail:request];
 		return request;
 }
 

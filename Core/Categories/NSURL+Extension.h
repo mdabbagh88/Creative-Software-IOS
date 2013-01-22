@@ -7,6 +7,8 @@
 
 @interface NSURL (Extension)
 
++(NSString *)createParamsString:(NSDictionary *)dictionary;
+
 - (BOOL)validate;
 
 - (NSURL *)URLByAppending :(NSString *)path;

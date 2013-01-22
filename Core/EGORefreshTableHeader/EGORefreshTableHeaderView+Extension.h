@@ -8,8 +8,8 @@
 
 @interface EGORefreshTableHeaderView (Extension)
 
-+ (EGORefreshTableHeaderView *)from:(UITableView *)tableView:(id <EGORefreshTableHeaderDelegate>)delegate;
++ (EGORefreshTableHeaderView *)from:(UIScrollView *)tableView:(id <EGORefreshTableHeaderDelegate>)delegate;
 
-+ (EGORefreshTableHeaderView *)from:(UITableView *)tableView:(UIColor *)color :(id <EGORefreshTableHeaderDelegate>)delegate;
++ (EGORefreshTableHeaderView *)from:(UIScrollView *)tableView:(UIColor *)color :(id <EGORefreshTableHeaderDelegate>)delegate;
 
 @end

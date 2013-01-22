@@ -7,4 +7,17 @@
 
 
 @implementation UITableView (Extension)
+
+- (void)scrollToTop {
+		[self scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+}
+
+- (id)dequeueReusableCell:(NSString *)identifier {
+		return [self dequeueReusableCellWithIdentifier:identifier];
+}
+
+- (void)hideEmptyCellSplitterBySettingEmptyFooter {
+		[self setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+}
+
 @end

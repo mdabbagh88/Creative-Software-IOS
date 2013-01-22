@@ -23,7 +23,7 @@
 
 - (id)last;
 
-- (id)objectForKeyedSubscript:(NSString *)key;
+//- (id)objectForKeyedSubscript:(NSString *)key;
 
 - (id)objectAtIndexedSubscript:(NSInteger)index;
 

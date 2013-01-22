@@ -14,6 +14,10 @@
 		return self;
 }
 
+- (NSString *)clearLast:(NSInteger)count {
+		return [self substringToIndex:self.length - count];
+}
+
 - (NSString *)replace:(NSString *)string :(NSString *)replacement {
 		return [self stringByReplacingOccurrencesOfString:string withString:replacement];
 }
@@ -58,7 +62,7 @@
 		return [self rangeOfString:string].location != NSNotFound;
 }
 
-- (BOOL)isSet {
+- (BOOL)set {
 		return self.length != 0;
 }
 

@@ -21,4 +21,9 @@
 
 @property(nonatomic, readonly) BOOL canceled;
 
+- (Response *)failIfFail:(Response *)request;
+
+- (Response*)connect:(Response *)response;
+
+- (Response*)successIfSuccesss:(Response *)response;
 @end

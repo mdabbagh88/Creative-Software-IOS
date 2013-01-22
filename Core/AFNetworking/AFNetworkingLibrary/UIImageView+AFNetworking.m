@@ -20,17 +20,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
 #import "UIImageView+AFNetworking.h"
-
-@interface AFImageCache : NSCache
-- (UIImage *)cachedImageForRequest:(NSURLRequest *)request;
-- (void)cacheImage:(UIImage *)image
-        forRequest:(NSURLRequest *)request;
-@end
+#import "AFImageCache.h"
 
 #pragma mark -
 
@@ -143,36 +137,6 @@ static char kAFImageRequestOperationObjectKey;
 - (void)cancelImageRequestOperation {
     [self.af_imageRequestOperation cancel];
     self.af_imageRequestOperation = nil;
-}
-
-@end
-
-#pragma mark -
-
-static inline NSString * AFImageCacheKeyFromURLRequest(NSURLRequest *request) {
-    return [[request URL] absoluteString];
-}
-
-@implementation AFImageCache
-
-- (UIImage *)cachedImageForRequest:(NSURLRequest *)request {
-    switch ([request cachePolicy]) {
-        case NSURLRequestReloadIgnoringCacheData:
-        case NSURLRequestReloadIgnoringLocalAndRemoteCacheData:
-            return nil;
-        default:
-            break;
-    }
-    
-	return [self objectForKey:AFImageCacheKeyFromURLRequest(request)];
-}
-
-- (void)cacheImage:(UIImage *)image
-        forRequest:(NSURLRequest *)request
-{
-    if (image && request) {
-        [self setObject:image forKey:AFImageCacheKeyFromURLRequest(request)];
-    }
 }
 
 @end

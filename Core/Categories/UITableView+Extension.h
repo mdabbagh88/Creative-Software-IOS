@@ -7,4 +7,9 @@
 
 @interface UITableView (Extension)
 
+- (void)scrollToTop;
+
+- (id)dequeueReusableCell:(NSString *)identifier;
+
+- (void)hideEmptyCellSplitterBySettingEmptyFooter;
 @end

@@ -11,12 +11,13 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 #define info(NSObject)    DDLogInfo(@"%@",NSObject)
 #define error(NSObject)    DDLogError(@"%@",NSObject)
 #define infoEmpty()    DDLogInfo(@"")
+#define L(key) NSLocalizedString(key, nil)
 static int const MINUTE = 60;
 
 @interface Lang : NSObject
 
-void run (void (^block) ());
+void run(void (^block)());
 
-void runWith (void (^block) (id), id value);
+void runWith(void (^block)(id), id value);
 
 @end

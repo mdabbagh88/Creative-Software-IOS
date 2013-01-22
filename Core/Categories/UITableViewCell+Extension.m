@@ -13,5 +13,4 @@
     [bgColorView setBackgroundColor:color];
     self.selectedBackgroundView = bgColorView;
 }
-
 @end
