@@ -31,7 +31,7 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)view {
 		if (!_pageControlUsed)
-				_pageControl.currentPage = lround(_scrollView.contentOffset.x / (_scrollView.contentSize.width / 2));
+				_pageControl.currentPage = lround(_scrollView.contentOffset.x / (_scrollView.contentSize.width / _pageControl.numberOfPages));
 }
 
 - (void)showPage:(NSInteger)index {
