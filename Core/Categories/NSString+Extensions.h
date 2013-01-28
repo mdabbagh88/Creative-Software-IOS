@@ -7,17 +7,17 @@
 
 @interface NSString (Extensions)
 
-- (NSString *)add:(NSString *)first;
+- (NSString *)add:(NSObject *)first;
 
-- (NSString *)add:(NSString *)first :(NSString *)second;
+- (NSString *)add:(NSObject *)first :(NSObject *)second;
 
-- (NSString *)add:(NSString *)first :(NSString *)second :(NSString *)third;
+- (NSString *)add:(NSObject *)first :(NSObject *)second :(NSObject *)third;
 
-- (NSString *)add:(NSString *)first :(NSString *)second :(NSString *)third :(NSString *)fourth;
+- (NSString *)add:(NSObject *)first :(NSObject *)second :(NSObject *)third :(NSObject *)fourth;
 
-- (NSString *)add:(NSString *)first :(NSString *)second :(NSString *)third :(NSString *)fourth :(NSString *)fifth;
+- (NSString *)add:(NSObject *)first :(NSObject *)second :(NSObject *)third :(NSObject *)fourth :(NSObject *)fifth;
 
-- (NSString *)add:(NSString *)first :(NSString *)second :(NSString *)third :(NSString *)fourth :(NSString *)fifth :(NSString *)sixth;
+- (NSString *)add:(NSObject *)first :(NSObject *)second :(NSObject *)third :(NSObject *)fourth :(NSObject *)fifth :(NSObject *)sixth;
 
 + (NSString *)from:(NSObject *)value;
 

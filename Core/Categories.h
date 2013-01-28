@@ -5,3 +5,5 @@
 #import "NSMutableDictionary+Extension.h"
 #import "NSObject+Extension.h"
 #import "UIViewController+Extension.h"
+#import "UIImageView+Extension.h"
+#import "NSIndexPath+Extension.h"

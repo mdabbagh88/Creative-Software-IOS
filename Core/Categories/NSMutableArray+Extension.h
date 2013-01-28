@@ -9,6 +9,8 @@
 
 - (void)setObject:(id)thing atIndexedSubscript:(NSInteger)index;
 
+-(NSMutableArray *)add:(id)anObject;
+
 - (void)replaceFromArray:(NSArray *)array;
 
 @end

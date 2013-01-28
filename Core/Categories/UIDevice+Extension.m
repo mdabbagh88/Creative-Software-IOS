@@ -18,4 +18,8 @@
 		return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
 }
 
++ (BOOL)ipad {
+		return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
+}
+
 @end

@@ -10,7 +10,13 @@
 
 - (void)pushViewController:(UIViewController *)controller;
 
+-(void)pushViewController:(UIViewController *)controller :(NSUInteger)index1;
+
+-(void)pushViewControllerAsSecondOfItsKind:(UIViewController *)controller;
+
 - (UIViewController *)popViewController;
+
+-(void)pushViewControllerAsFirstOfItsKind:(UIViewController *)newcontroller;
 
 - (void)replaceLast:(UIViewController *)controller;
 

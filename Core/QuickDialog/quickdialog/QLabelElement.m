@@ -14,6 +14,7 @@
 
 
 #import "QLabelElement.h"
+#import "UIImageView+AFNetworking.h"
 
 @implementation QLabelElement {
 @private
@@ -52,7 +53,7 @@
     cell.textLabel.text = _title;
     cell.detailTextLabel.text = [_value description];
     cell.detailTextLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-    cell.imageView.image = _image;
+    [cell.imageView setImageWithURL:_imageURL placeholderImage:_image];
     cell.accessoryType = _accessoryType != UITableViewCellAccessoryNone ? _accessoryType : ( self.sections!= nil || self.controllerAction!=nil ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone);
     cell.selectionStyle = self.sections!= nil || self.controllerAction!=nil ? UITableViewCellSelectionStyleBlue: UITableViewCellSelectionStyleNone;
 

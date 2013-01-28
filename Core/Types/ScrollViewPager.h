@@ -6,7 +6,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface ScrollViewPager : NSObject {
+@interface ScrollViewPager : NSObject <UIScrollViewDelegate> {
 
 }
 

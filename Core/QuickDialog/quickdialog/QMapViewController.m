@@ -58,8 +58,6 @@
     return pin;
 }
 
-- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState {
-    if (newState == MKAnnotationViewDragStateEnding) runWith(self.onAnnotationDragEnd, view);
-}
+
 
 @end

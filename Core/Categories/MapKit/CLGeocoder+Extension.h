@@ -11,4 +11,5 @@
 
 - (CLGeocoder *)addressFromLocation:(CLLocation *)location:(BOOL)addCountryName :(void (^)(NSString *))onAddressReady;
 
+-(CLGeocoder *)addressFromCoordinate:(CLLocationCoordinate2D)coordinate :(BOOL)addCountryName :(void (^)(NSString *))onAddressReady;
 @end

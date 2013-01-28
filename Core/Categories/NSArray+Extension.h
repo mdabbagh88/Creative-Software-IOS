@@ -9,9 +9,9 @@
 
 - (id)objectAtIndexedSubscript:(NSInteger)index;
 
--(id)objectIdenticalTo:(id)anObject;
+-(id)objectAs:(id)anObject;
 
--(BOOL)hasIdenticalTo:(id)anObject;
+-(BOOL)hasAs:(id)anObject;
 
 - (id)at:(NSInteger)index;
 

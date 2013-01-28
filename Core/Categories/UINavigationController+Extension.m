@@ -3,7 +3,6 @@
 //
 
 #import "UINavigationController+Extension.h"
-#import "NSArray+Extension.h"
 
 
 @implementation UINavigationController (Extension)
@@ -14,6 +13,41 @@
 
 - (void)pushViewController:(UIViewController *)controller {
     [self pushViewController:controller animated:YES];
+}
+
+- (void)pushViewController:(UIViewController *)controller:(NSUInteger)index {
+    NSArray *range = [self.viewControllers subarrayWithRange:NSMakeRange(0, index - 1)];
+    NSMutableArray *array = [NSMutableArray arrayWithArray:range];
+    [array addObject:controller];
+    [self setViewControllers:array animated:YES];
+}
+
+- (void)pushViewControllerAsSecondOfItsKind:(UIViewController *)newcontroller {
+    int index = 0;
+    BOOL firstFoundIndex = NO;
+    for (UIViewController *controller in self.viewControllers) {
+        index++;
+        if ([controller isKindOfClass:newcontroller.class]) {
+            if (firstFoundIndex) {
+                [self pushViewController:newcontroller :index];
+                return;
+            }
+            else firstFoundIndex = YES;
+        }
+    }
+    [self pushViewController:newcontroller];
+}
+
+- (void)pushViewControllerAsFirstOfItsKind:(UIViewController *)newcontroller {
+    int index = 0;
+    for (UIViewController *controller in self.viewControllers) {
+        index++;
+        if ([controller isKindOfClass:newcontroller.class]) {
+            [self pushViewController:newcontroller :index];
+            return;
+        }
+    }
+    [self pushViewController:newcontroller];
 }
 
 - (void)replaceLast:(UIViewController *)controller {

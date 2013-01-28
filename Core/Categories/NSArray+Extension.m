@@ -9,14 +9,14 @@
     return [self at:index];
 }
 
-- (id)objectIdenticalTo:(id)anObject {
-    NSUInteger index = [self indexOfObjectIdenticalTo:anObject];
+- (id)objectAs:(id)anObject {
+    NSUInteger index = [self indexOfObject:anObject];
     if (index != NSNotFound) return self[index];
     return nil;
 }
 
-- (BOOL)hasIdenticalTo:(id)anObject {
-    return [self indexOfObjectIdenticalTo:anObject] != NSNotFound;
+- (BOOL)hasAs:(id)anObject {
+    return [self indexOfObject:anObject] != NSNotFound;
 }
 
 - (id)at:(NSInteger)index {

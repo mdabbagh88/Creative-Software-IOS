@@ -12,11 +12,9 @@
 // permissions and limitations under the License.
 //
 
-#import "QEntryTableViewCell.h"
-#import "QuickDialog.h"
-
 @interface QEntryTableViewCell ()
 - (void)handleActionBarPreviousNext:(UISegmentedControl *)control;
+
 - (QEntryElement *)findNextElementToFocusOn;
 @end
 
@@ -25,14 +23,13 @@
 }
 @synthesize textField = _textField;
 
--(UIToolbar *)createActionBar {
+- (UIToolbar *)createActionBar {
     UIToolbar *actionBar = [[UIToolbar alloc] init];
     actionBar.translucent = YES;
     [actionBar sizeToFit];
     actionBar.barStyle = UIBarStyleBlackTranslucent;
 
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", @"")
-                                                                   style:UIBarButtonItemStyleDone target:self
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", @"") style:UIBarButtonItemStyleDone target:self
                                                                   action:@selector(handleActionBarDone:)];
 
     _prevNext = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:NSLocalizedString(@"Previous", @""), NSLocalizedString(@"Next", @""), nil]];
@@ -44,7 +41,7 @@
     UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     [actionBar setItems:[NSArray arrayWithObjects:prevNextWrapper, flexible, doneButton, nil]];
 
-	return actionBar;
+    return actionBar;
 }
 
 - (void)createSubviews {
@@ -53,7 +50,7 @@
     _textField.borderStyle = UITextBorderStyleNone;
     _textField.delegate = self;
     _textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    _textField.autoresizingMask = ( UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+    _textField.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     [_textField addTarget:self action:@selector(textFieldEditingChanged:) forControlEvents:UIControlEventEditingChanged];
     [self.contentView addSubview:_textField];
     [self setNeedsLayout];
@@ -61,7 +58,7 @@
 
 - (QEntryTableViewCell *)init {
     self = [self initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"QuickformEntryElement"];
-    if (self!=nil){
+    if (self != nil) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
         [self createSubviews];
@@ -71,40 +68,40 @@
 
 - (CGRect)calculateFrameForEntryElement {
 
-    int extra = (self.textField.clearButtonMode == UITextFieldViewModeNever) ? 15 :10;
-    if (_entryElement.title == NULL && _entryElement.image==NULL) {
-        return CGRectMake(10,10,self.contentView.frame.size.width-10-extra, self.frame.size.height-20);
+    int extra = (self.textField.clearButtonMode == UITextFieldViewModeNever) ? 15 : 10;
+    if (_entryElement.title == NULL && _entryElement.image == NULL) {
+        return CGRectMake(10, 10, self.contentView.frame.size.width - 10 - extra, self.frame.size.height - 20);
     }
-    if (_entryElement.title == NULL && _entryElement.image!=NULL){
-        return CGRectMake( self.imageView.frame.size.width, 10, self.contentView.frame.size.width-10-self.imageView.frame.size.width-extra , self.frame.size.height-20);
+    if (_entryElement.title == NULL && _entryElement.image != NULL) {
+        return CGRectMake(self.imageView.frame.size.width, 10, self.contentView.frame.size.width - 10 - self.imageView.frame.size.width - extra, self.frame.size.height - 20);
     }
     CGFloat totalWidth = self.contentView.frame.size.width;
     CGFloat titleWidth = 0;
 
     if (CGRectEqualToRect(CGRectZero, _entryElement.parentSection.entryPosition)) {
-        for (QElement *el in _entryElement.parentSection.elements){
-            if ([el isKindOfClass:[QEntryElement class]]){
-                QEntryElement *q = (QEntryElement*)el; 
+        for (QElement *el in _entryElement.parentSection.elements) {
+            if ([el isKindOfClass:[QEntryElement class]]) {
+                QEntryElement *q = (QEntryElement *) el;
                 CGFloat imageWidth = q.image == NULL ? 0 : self.imageView.frame.size.width;
-                CGFloat fontSize = self.textLabel.font.pointSize == 0? 17 : self.textLabel.font.pointSize;
-                CGSize size = [((QEntryElement *)el).title sizeWithFont:[self.textLabel.font fontWithSize:fontSize] forWidth:CGFLOAT_MAX lineBreakMode:UILineBreakModeWordWrap] ;
+                CGFloat fontSize = self.textLabel.font.pointSize == 0 ? 17 : self.textLabel.font.pointSize;
+                CGSize size = [((QEntryElement *) el).title sizeWithFont:[self.textLabel.font fontWithSize:fontSize] forWidth:CGFLOAT_MAX lineBreakMode:UILineBreakModeWordWrap];
                 CGFloat width = size.width + imageWidth;
-                if (width>titleWidth)
+                if (width > titleWidth)
                     titleWidth = width;
             }
         }
-        _entryElement.parentSection.entryPosition = CGRectMake(titleWidth+20,10,totalWidth-titleWidth-20-extra, self.frame.size.height-20);
+        _entryElement.parentSection.entryPosition = CGRectMake(titleWidth + 20, 10, totalWidth - titleWidth - 20 - extra, self.frame.size.height - 20);
     }
 
     return _entryElement.parentSection.entryPosition;
 }
 
 - (void)updatePrevNextStatus {
-    [_prevNext setEnabled:[self findPreviousElementToFocusOn]!=nil forSegmentAtIndex:0];
-    [_prevNext setEnabled:[self findNextElementToFocusOn]!=nil forSegmentAtIndex:1];
+    [_prevNext setEnabled:[self findPreviousElementToFocusOn] != nil forSegmentAtIndex:0];
+    [_prevNext setEnabled:[self findNextElementToFocusOn] != nil forSegmentAtIndex:1];
 }
 
-- (void)prepareForElement:(QEntryElement *)element inTableView:(QuickDialogTableView *)tableView{
+- (void)prepareForElement:(QEntryElement *)element inTableView:(QuickDialogTableView *)tableView {
     [self applyAppearanceForElement:element];
 
     self.textLabel.text = element.title;
@@ -112,7 +109,7 @@
     _quickformTableView = tableView;
     _entryElement = element;
     _textField.text = _entryElement.textValue;
-    _textField.placeholder = _entryElement.placeholder;
+    if (_entryElement.enabled) _textField.placeholder = _entryElement.placeholder;
     _textField.prefix = _entryElement.prefix;
     _textField.suffix = _entryElement.suffix;
 
@@ -130,7 +127,7 @@
 
     self.accessoryType = _entryElement.accessoryType;
 
-    if (_entryElement.hiddenToolbar){
+    if (_entryElement.hiddenToolbar) {
         _textField.inputAccessoryView = nil;
     } else {
         _textField.inputAccessoryView = [self createActionBar];
@@ -146,13 +143,13 @@
 }
 
 
--(void)recalculateEntryFieldPosition {
+- (void)recalculateEntryFieldPosition {
     _entryElement.parentSection.entryPosition = CGRectZero;
     _textField.frame = [self calculateFrameForEntryElement];
     CGRect labelFrame = self.textLabel.frame;
     self.textLabel.frame = CGRectMake(labelFrame.origin.x, labelFrame.origin.y,
-            _entryElement.parentSection.entryPosition.origin.x-20, labelFrame.size.height);
-    
+            _entryElement.parentSection.entryPosition.origin.x - 20, labelFrame.size.height);
+
 }
 
 - (void)prepareForReuse {
@@ -161,18 +158,17 @@
 }
 
 - (void)textFieldEditingChanged:(UITextField *)textFieldEditingChanged {
-   _entryElement.textValue = _textField.text;
-    
+    _entryElement.textValue = _textField.text;
+
     [self handleEditingChanged];
 }
 
-- (void)handleEditingChanged
-{
-    if(_entryElement && _entryElement.delegate && [_entryElement.delegate respondsToSelector:@selector(QEntryEditingChangedForElement:andCell:)]){
+- (void)handleEditingChanged {
+    if (_entryElement && _entryElement.delegate && [_entryElement.delegate respondsToSelector:@selector(QEntryEditingChangedForElement:andCell:)]) {
         [_entryElement.delegate QEntryEditingChangedForElement:_entryElement andCell:self];
     }
-    
-    if(_entryElement.onValueChanged) {
+
+    if (_entryElement.onValueChanged) {
         _entryElement.onValueChanged(_entryElement);
     }
 }
@@ -180,33 +176,33 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 50 * USEC_PER_SEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
         [_quickformTableView scrollToRowAtIndexPath:[_quickformTableView indexForElement:_entryElement] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     });
 
 
     if (_textField.returnKeyType == UIReturnKeyDefault) {
-        UIReturnKeyType returnType = ([self findNextElementToFocusOn]!=nil) ? UIReturnKeyNext : UIReturnKeyDone;
+        UIReturnKeyType returnType = ([self findNextElementToFocusOn] != nil) ? UIReturnKeyNext : UIReturnKeyDone;
         _textField.returnKeyType = returnType;
     }
 
-    if(_entryElement && _entryElement.delegate && [_entryElement.delegate respondsToSelector:@selector(QEntryDidBeginEditingElement:andCell:)]){
+    if (_entryElement && _entryElement.delegate && [_entryElement.delegate respondsToSelector:@selector(QEntryDidBeginEditingElement:andCell:)]) {
         [_entryElement.delegate QEntryDidBeginEditingElement:_entryElement andCell:self];
     }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     _entryElement.textValue = _textField.text;
-    
-    if(_entryElement && _entryElement.delegate && [_entryElement.delegate respondsToSelector:@selector(QEntryDidEndEditingElement:andCell:)]){
+
+    if (_entryElement && _entryElement.delegate && [_entryElement.delegate respondsToSelector:@selector(QEntryDidEndEditingElement:andCell:)]) {
         [_entryElement.delegate QEntryDidEndEditingElement:_entryElement andCell:self];
     }
-    
+
     [_entryElement performSelector:@selector(fieldDidEndEditing)];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    if(_entryElement && _entryElement.delegate && [_entryElement.delegate respondsToSelector:@selector(QEntryShouldChangeCharactersInRange:withString:forElement:andCell:)]){
+    if (_entryElement && _entryElement.delegate && [_entryElement.delegate respondsToSelector:@selector(QEntryShouldChangeCharactersInRange:withString:forElement:andCell:)]) {
         return [_entryElement.delegate QEntryShouldChangeCharactersInRange:range withString:string forElement:_entryElement andCell:self];
     }
     return YES;
@@ -216,39 +212,39 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 
     QEntryElement *element = [self findNextElementToFocusOn];
-    if (element!=nil){
+    if (element != nil) {
         UITableViewCell *cell = [_quickformTableView cellForElement:element];
-        if (cell!=nil){
+        if (cell != nil) {
             [cell becomeFirstResponder];
         }
-    }  else {
+    } else {
         [_textField resignFirstResponder];
     }
-    
-    if(_entryElement && _entryElement.delegate && [_entryElement.delegate respondsToSelector:@selector(QEntryShouldReturnForElement:andCell:)]){
+
+    if (_entryElement && _entryElement.delegate && [_entryElement.delegate respondsToSelector:@selector(QEntryShouldReturnForElement:andCell:)]) {
         return [_entryElement.delegate QEntryShouldReturnForElement:_entryElement andCell:self];
     }
-    
+
     return YES;
 }
 
 - (void)handleActionBarPreviousNext:(UISegmentedControl *)control {
 
-	QEntryElement *element;
+    QEntryElement *element;
 
     const BOOL isNext = control.selectedSegmentIndex == 1;
     if (isNext) {
-		element = [self findNextElementToFocusOn];
-	} else {
-		element = [self findPreviousElementToFocusOn];
-	}
+        element = [self findNextElementToFocusOn];
+    } else {
+        element = [self findPreviousElementToFocusOn];
+    }
 
-	if (element != nil) {
+    if (element != nil) {
 
         UITableViewCell *cell = [_quickformTableView cellForElement:element];
-		if (cell != nil) {
-			[cell becomeFirstResponder];
-		}
+        if (cell != nil) {
+            [cell becomeFirstResponder];
+        }
         else {
 
             [_quickformTableView scrollToRowAtIndexPath:[_quickformTableView indexForElement:element]
@@ -263,7 +259,7 @@
                 }
             });
         }
-	}
+    }
 }
 
 - (BOOL)handleActionBarDone:(UIBarButtonItem *)doneButton {
@@ -273,7 +269,7 @@
 
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 
-    if(_entryElement && _entryElement.delegate && [_entryElement.delegate respondsToSelector:@selector(QEntryMustReturnForElement:andCell:)]){
+    if (_entryElement && _entryElement.delegate && [_entryElement.delegate respondsToSelector:@selector(QEntryMustReturnForElement:andCell:)]) {
         [_entryElement.delegate QEntryMustReturnForElement:_entryElement andCell:self];
     }
 
@@ -282,11 +278,11 @@
 
 - (BOOL)becomeFirstResponder {
     [_textField becomeFirstResponder];
-     return YES;
+    return YES;
 }
 
 - (BOOL)resignFirstResponder {
-	return YES;
+    return YES;
 }
 
 - (QEntryElement *)findPreviousElementToFocusOn {
@@ -297,8 +293,8 @@
             if (e == _entryElement) {
                 return previousElement;
             }
-            else if ([e isKindOfClass:[QEntryElement class]] && [(QEntryElement *)e canTakeFocus]) {
-                previousElement = (QEntryElement *)e;
+            else if ([e isKindOfClass:[QEntryElement class]] && [(QEntryElement *) e canTakeFocus]) {
+                previousElement = (QEntryElement *) e;
             }
         }
     }
@@ -313,7 +309,7 @@
             if (e == _entryElement) {
                 foundSelf = YES;
             }
-            else if (foundSelf && [e isKindOfClass:[QEntryElement class]] && [(QEntryElement *)e canTakeFocus]) {
+            else if (foundSelf && [e isKindOfClass:[QEntryElement class]] && [(QEntryElement *) e canTakeFocus]) {
                 return (QEntryElement *) e;
             }
         }

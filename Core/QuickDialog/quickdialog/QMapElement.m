@@ -44,7 +44,6 @@
 
 - (void)selected:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller indexPath:(NSIndexPath *)path {
     QMapViewController *mapController = [[QMapViewController alloc] initWithTitle:_title coordinate:_coordinate];
-    mapController.onAnnotationDragEnd = self.onAnnotationDragEnd;
     [controller displayViewController:mapController];
 
 }

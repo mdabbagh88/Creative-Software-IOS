@@ -10,6 +10,8 @@
 @class MBProgressHUD;
 @class Response;
 
+static float const CS_FADE_TIME = 0.5;
+
 @interface UIView (Extension)
 
 + (UIView *)findFirstResponder:(UIView *)view;

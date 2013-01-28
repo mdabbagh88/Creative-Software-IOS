@@ -11,4 +11,5 @@
 
 + (BOOL)iphone;
 
++(BOOL)ipad;
 @end

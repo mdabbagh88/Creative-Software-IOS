@@ -18,7 +18,9 @@
 
 @property(nonatomic, copy) Response *(^onLoadNext)();
 
-- (TableLoader *)from:(UITableView *)table:(UIView *)loadIndicator :(NSMutableArray *)data;
+@property(nonatomic, strong) UILabel *emptyLabel;
+
+- (TableLoader *)from:(UITableView *)table:(UIView *)loadNextIndicator :(NSMutableArray *)data;
 
 - (void)onReloadSuccess:(NSArray *)array;
 
@@ -28,9 +30,17 @@
 
 - (void)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 
+-(void)updateEmpty;
+
 - (void)scrollViewDidScroll:(UIScrollView *)view;
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)view willDecelerate:(BOOL)decelerate;
 
 - (void)viewWillAppear;
+
+- (void)addItem:(id)dog;
+
+-(void)insertItem:(id)item :(int)index;
+
+-(void)removeItem:(id)item;
 @end

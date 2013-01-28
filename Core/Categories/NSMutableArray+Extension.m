@@ -6,12 +6,17 @@
 @implementation NSMutableArray (Extension)
 
 - (void)setObject:(id)thing atIndexedSubscript:(NSInteger)index {
-		[self replaceObjectAtIndex:index withObject:thing];
+    [self replaceObjectAtIndex:index withObject:thing];
+}
+
+- (NSMutableArray *)add:(id)anObject {
+    [self addObject:anObject];
+    return self;
 }
 
 - (void)replaceFromArray:(NSArray *)array {
-		[self removeAllObjects];
-		[self addObjectsFromArray:array];
+    [self removeAllObjects];
+    [self addObjectsFromArray:array];
 }
 
 @end

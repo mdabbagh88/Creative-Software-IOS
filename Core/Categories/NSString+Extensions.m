@@ -8,9 +8,9 @@
 
 @implementation NSString (Extensions)
 
-- (NSString *)add:(NSString *)first {
+- (NSString *)add:(NSObject *)first {
 		if (first)
-				return [self stringByAppendingString:first];
+				return [self stringByAppendingString:first.description];
 		return self;
 }
 
@@ -22,23 +22,23 @@
 		return [self stringByReplacingOccurrencesOfString:string withString:replacement];
 }
 
-- (NSString *)add:(NSString *)first :(NSString *)second {
+- (NSString *)add:(NSObject *)first :(NSObject *)second {
 		return [[self add:first] add:second];
 }
 
-- (NSString *)add:(NSString *)first :(NSString *)second :(NSString *)third {
+- (NSString *)add:(NSObject *)first :(NSObject *)second :(NSObject *)third {
 		return [[[self add:first] add:second] add:third];
 }
 
-- (NSString *)add:(NSString *)first :(NSString *)second :(NSString *)third :(NSString *)fourth {
+- (NSString *)add:(NSObject *)first :(NSObject *)second :(NSObject *)third :(NSObject *)fourth {
 		return [[[[self add:first] add:second] add:third] add:fourth];
 }
 
-- (NSString *)add:(NSString *)first :(NSString *)second :(NSString *)third :(NSString *)fourth :(NSString *)fifth {
+- (NSString *)add:(NSObject *)first :(NSObject *)second :(NSObject *)third :(NSObject *)fourth :(NSObject *)fifth {
 		return [[[[[self add:first] add:second] add:third] add:fourth] add:fifth];
 }
 
-- (NSString *)add:(NSString *)first :(NSString *)second :(NSString *)third :(NSString *)fourth :(NSString *)fifth :(NSString *)sixth {
+- (NSString *)add:(NSObject *)first :(NSObject *)second :(NSObject *)third :(NSObject *)fourth :(NSObject *)fifth :(NSObject *)sixth {
 		return [[[[[[self add:first] add:second] add:third] add:fourth] add:fifth] add:sixth];
 }
 

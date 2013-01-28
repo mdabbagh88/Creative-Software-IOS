@@ -112,4 +112,30 @@
 		return imageCopy;
 }
 
+-(UIImage*)scaleToWidth: (float)width
+{
+    float oldWidth = self.size.width;
+    float scaleFactor = width / oldWidth;
+    float newHeight = self.size.height * scaleFactor;
+    float newWidth = oldWidth * scaleFactor;
+    return [self getImage:newHeight newWidth:newWidth];
+}
+
+- (UIImage *)getImage:(float)newHeight newWidth:(float)newWidth {
+    UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
+    [self drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+-(UIImage*)scaleToHeight: (float)height
+{
+    float oldHeight = self.size.height;
+    float scaleFactor = height / oldHeight;
+    float newWidth = self.size.width * scaleFactor;
+    float newHeight = oldHeight * scaleFactor;
+    return [self getImage:newHeight newWidth:newWidth];
+}
+
 @end

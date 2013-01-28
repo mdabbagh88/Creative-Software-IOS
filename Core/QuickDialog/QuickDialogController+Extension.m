@@ -4,6 +4,7 @@
 
 
 #import "QuickDialogController+Extension.h"
+#import "CSQButtonElement.h"
 
 
 @implementation QuickDialogController (Extension)
@@ -19,6 +20,8 @@
     QEntryElement *entry = [[QEntryElement alloc] initWithTitle:title Value:value Placeholder:placeholder];
     return [self initializeEntry:section onValueChange:onValueChange entry:entry];
 }
+
+
 
 - (QEntryElement *)initializeEntry:(QSection *)section onValueChange:(void (^)(QEntryElement *))onValueChange entry:(QEntryElement *)entry {
     [section addElement:entry];

@@ -24,8 +24,6 @@
     NSString *_mapTitle;
 }
 
-@property (nonatomic,copy)void (^onAnnotationDragEnd)(MKAnnotationView *);
-
 - (QMapViewController *)initWithCoordinate:(CLLocationCoordinate2D)d;
 
 - (QMapViewController *)initWithTitle:(NSString *)string coordinate:(CLLocationCoordinate2D)d;

@@ -36,11 +36,11 @@
 }
 
 - (void)fadeIn {
-		if (self.hidden) [self fadeIn:0.5];
+		if (self.hidden) [self fadeIn:CS_FADE_TIME];
 }
 
 - (void)fadeOut {
-		if (!self.hidden) [self fadeOut:0.5];
+		if (!self.hidden) [self fadeOut:CS_FADE_TIME];
 }
 
 + (void)animationFromCurrentState:(NSTimeInterval)time :(UIViewAnimationCurve)curve {

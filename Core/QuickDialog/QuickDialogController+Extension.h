@@ -5,6 +5,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class CSQButtonElement;
+
 @interface QuickDialogController (Extension)
 
 - (UIViewController *)createUI;

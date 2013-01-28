@@ -9,4 +9,7 @@
 
 - (UIImage *)scaleAndRotateFromCamera:(int)maxResolution;
 
+-(UIImage *)scaleToWidth:(float)width;
+
+-(UIImage *)scaleToHeight:(float)height;
 @end
