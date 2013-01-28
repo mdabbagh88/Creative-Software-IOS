@@ -9,15 +9,19 @@
 @implementation NSUserDefaults (Extension)
 
 + (void)save:(NSString *)key :(id)object {
-		[[NSUserDefaults standardUserDefaults] setObject:object forKey:key];
+    [[NSUserDefaults standardUserDefaults] setObject:object forKey:key];
 }
 
 + (void)clear:(NSString *)key {
-		[[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
 }
 
 + (id)load:(NSString *)key {
-		return [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    return [[NSUserDefaults standardUserDefaults] objectForKey:key];
+}
+
++ (BOOL)synchronize {
+    return [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

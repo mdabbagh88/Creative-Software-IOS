@@ -9,4 +9,6 @@
 
 - (void)setImageURL:(NSURL *)url;
 
+- (void)resizableImageWithCapInsets:(UIEdgeInsets)insets;
+
 @end

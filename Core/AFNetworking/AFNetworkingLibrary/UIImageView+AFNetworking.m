@@ -132,8 +132,6 @@ static char kAFImageRequestOperationObjectKey;
                     success(operation.request, operation.response, responseObject);
                 } else {
                     self.image = responseObject;
-                    infoDbl(self.frame.size.width);
-                    infoDbl(self.frame.size.height);
                 }
 
                 self.af_imageRequestOperation = nil;

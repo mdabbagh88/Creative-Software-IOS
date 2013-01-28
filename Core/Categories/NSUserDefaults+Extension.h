@@ -13,4 +13,5 @@
 
 + (id)load:(NSString *)key;
 
++(BOOL)synchronize;
 @end
