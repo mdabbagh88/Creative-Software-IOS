@@ -1,6 +1,6 @@
 #import <objc/runtime.h>
 #import "MKAnnotationView+AFNetworking.h"
-#import "AFImageCache.h"
+#import "MKAnnotationViewAFImageCache.h"
 #import "UIImage+Extension.h"
 
 #pragma mark -
@@ -38,11 +38,11 @@ static char kAFImageRequestOperationObjectKey;
     return _af_imageRequestOperationQueue;
 }
 
-+ (AFImageCache *)af_sharedImageCache {
-    static AFImageCache *_af_imageCache = nil;
++ (MKAnnotationViewAFImageCache *)af_sharedImageCache {
+    static MKAnnotationViewAFImageCache *_af_imageCache = nil;
     static dispatch_once_t oncePredicate;
     dispatch_once(&oncePredicate, ^{
-        _af_imageCache = [[AFImageCache alloc] init];
+        _af_imageCache = [[MKAnnotationViewAFImageCache alloc] init];
     });
 
     return _af_imageCache;

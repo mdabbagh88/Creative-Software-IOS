@@ -11,4 +11,5 @@
 
 - (void)resizableImageWithCapInsets:(UIEdgeInsets)insets;
 
+-(void)stretchableImageWithLeftCapWidth:(NSInteger)leftCapWidth topCapHeight:(NSInteger)topCapHeight;
 @end

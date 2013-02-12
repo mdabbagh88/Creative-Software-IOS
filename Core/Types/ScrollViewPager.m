@@ -4,8 +4,6 @@
 
 
 #import "ScrollViewPager.h"
-#import "UIScrollView+Extension.h"
-
 
 @implementation ScrollViewPager {
 		UIPageControl *_pageControl;

@@ -9,7 +9,11 @@
 @implementation QPickerElement (Extension)
 
 - (id)selectedItem {
-		return self.items[0][[self.selectedIndexes[0] unsignedIntValue]];
+    return self.items[0][self.selectedIndex];
+}
+
+- (uint)selectedIndex {
+    return [self.selectedIndexes[0] unsignedIntValue];
 }
 
 @end

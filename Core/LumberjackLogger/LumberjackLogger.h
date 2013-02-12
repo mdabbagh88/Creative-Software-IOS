@@ -6,6 +6,6 @@
 #import <Foundation/Foundation.h>
 #import "DDLog.h"
 
-@interface LuberjackLogger : NSObject <DDLogFormatter>
-- (void)initDefaults;
+@interface LumberjackLogger : NSObject
++ (void)initDefaults;
 @end

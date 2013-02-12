@@ -13,7 +13,7 @@
 
 @synthesize number;
 
-+ (Bool *)new:(BOOL)value {
++ (Bool *)newBool:(BOOL)value {
     Bool *this = [self new];
     this.number = [NSNumber numberWithBool:value];
     return this;

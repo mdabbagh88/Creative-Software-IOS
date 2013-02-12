@@ -6,6 +6,7 @@
 
 
 #import <Foundation/Foundation.h>
+#import "QButtonElement.h"
 
 
 @interface CSQButtonElement : QButtonElement

@@ -14,4 +14,12 @@
     return YES;
 }
 
+- (void)setOnReachable:(NetworkReachable)onReachable {
+    if (onReachable)
+        self.reachableBlock = ^(Reachability *reachability) {
+            invokeWith(onReachable, reachability);
+        };
+    else self.reachableBlock = nil;
+}
+
 @end

@@ -17,4 +17,12 @@
     [self setBackgroundImage:[[self backgroundImageForState:UIControlStateHighlighted] stretchableImageWithLeftCapWidth:leftCapWidth topCapHeight:topCapHeight] forState:UIControlStateHighlighted];
 }
 
+- (void)setText:(NSString *)text {
+    [self setTitle:text forState:UIControlStateNormal];
+}
+
+- (NSString *)text {
+    return [self titleForState:UIControlStateNormal];
+}
+
 @end

@@ -4,6 +4,7 @@
 
 
 #import <Foundation/Foundation.h>
+#import "QuickDialogController.h"
 
 @class CSQButtonElement;
 
@@ -13,9 +14,7 @@
 
 - (QEntryElement *)addEntry:(QSection *)section :(NSString *)title :(NSString *)value :(NSString *)placeholder :(void (^)(QEntryElement *))onChange;
 
-- (QEntryElement *)addMultilineEntry:(QSection *)section :(NSString *)title :(NSString *)value :(NSString *)placeholder :(void (^)(QEntryElement *))onValueChange;
-
-- (QMapElement *)addPosition:(QSection *)section :(NSString *)title :(CLLocationCoordinate2D)coordinate;
+- (QEntryElement *)addMultiLineEntry:(QSection *)section :(NSString *)title :(NSString *)value :(NSString *)placeholder :(void (^)(QEntryElement *))onValueChange;
 
 - (QDateTimeInlineElement *)addDateTime:(QSection *)section :(UIDatePickerMode)mode :(NSString *)title :(NSDate *)date :(void (^)(QDateTimeElement *))onValueChange;
 

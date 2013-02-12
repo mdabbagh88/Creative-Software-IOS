@@ -19,6 +19,8 @@
 
 - (NSString *)add:(NSObject *)first :(NSObject *)second :(NSObject *)third :(NSObject *)fourth :(NSObject *)fifth :(NSObject *)sixth;
 
+-(NSString *)add:(NSObject *)first :(NSObject *)second :(NSObject *)third :(NSObject *)fourth :(NSObject *)fifth :(NSObject *)sixth :(NSObject *)seventh;
+
 + (NSString *)from:(NSObject *)value;
 
 + (NSString *)fromInt:(int)value;
@@ -34,6 +36,8 @@
 - (BOOL)empty;
 
 - (NSString *)trim;
+
+-(BOOL)equals:(NSString *)aString;
 
 - (BOOL)contains:(NSString *)string;
 

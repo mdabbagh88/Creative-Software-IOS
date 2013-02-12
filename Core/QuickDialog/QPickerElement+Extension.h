@@ -4,9 +4,11 @@
 
 
 #import <Foundation/Foundation.h>
+#import "QPickerElement.h"
 
 @interface QPickerElement (Extension)
 
 - (id)selectedItem;
 
+-(uint)selectedIndex;
 @end

@@ -1,13 +1,13 @@
 //
-//  Created by Rene Dohan on 10/21/12.
+// Created by inno on 1/31/13.
+//
+// To change the template use AppCode | Preferences | File Templates.
 //
 
-#import "LuberjackLogger.h"
-#import "DDTTYLogger.h"
-#import "DDASLLogger.h"
 
+#import "LumberjackFormatter.h"
 
-@implementation LuberjackLogger {
+@implementation LumberjackFormatter {
     NSDateFormatter *threadUnsafeDateFormatter;
 }
 
@@ -39,15 +39,7 @@
     }
 
     NSString *dateAndTime = [threadUnsafeDateFormatter stringFromDate:(logMessage->timestamp)];
-    return [NSString stringWithFormat:@"%@ %@ %@ %@ %i = %@\n",dateAndTime, logLevel, logMessage.fileName,
+    return [NSString stringWithFormat:@"%@ %@ %@ %@ %i = %@\n", dateAndTime, logLevel, logMessage.fileName,
                                       logMessage.methodName, logMessage->lineNumber, logMessage->logMsg];
 }
-
-- (void)initDefaults {
-    DDASLLogger.sharedInstance.logFormatter = self;
-    DDTTYLogger.sharedInstance.logFormatter = self;
-    [DDLog addLogger:DDASLLogger.sharedInstance];
-    [DDLog addLogger:DDTTYLogger.sharedInstance];
-}
-
 @end

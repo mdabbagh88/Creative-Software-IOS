@@ -6,11 +6,11 @@
 
 
 #import "SelectImageView.h"
-#import "UIDevice+Extension.h"
 #import "UIControl+Extension.h"
 
 @implementation SelectImageView {
     UIPopoverController *popover;
+    UIPopoverController *_popover;
 }
 
 - (id)initWith:(UIViewController *)controller {
@@ -22,11 +22,11 @@
     return self;
 }
 
--(UIButton *)fromGallery{
+- (UIButton *)fromGallery {
     return [self getView:2];
 }
 
--(UIButton *)fromCamera{
+- (UIButton *)fromCamera {
     return [self getView:1];
 }
 
@@ -40,13 +40,7 @@
         picker.delegate = self;
         picker.allowsEditing = YES;
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        if (UIDevice.ipad) {
-            popover = [[UIPopoverController alloc] initWithContentViewController:picker];
-            popover.delegate = self;
-            [popover presentPopoverFromRect:sender.frame inView:self permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-        } else {
-            [_controller presentModalViewController:picker animated:YES];
-        }
+        _popover = [_controller presentModalInPopoverIfPossible:sender.frame :picker];
     } else {
         [self showMessage:@"Library not available"];
     }
@@ -73,7 +67,8 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)data {
-    if (UIDevice.iphone) [self.controller dismissModalViewControllerAnimated:YES];
+    if (_popover) [_popover dismissPopoverAnimated:YES];
+    else [self.controller dismissModalViewControllerAnimated:YES];
     if (picker.allowsEditing == YES) _selectedImage = [data objectForKey:UIImagePickerControllerEditedImage];
     else _selectedImage = [data objectForKey:UIImagePickerControllerOriginalImage];
 //    [self.statusImage setImage:[[data get:UIImagePickerControllerOriginalImage] scaleAndRotateFromCamera:640]];

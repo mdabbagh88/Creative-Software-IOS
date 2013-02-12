@@ -20,7 +20,6 @@
 #import "QDateTimeInlineElement.h"
 #import "QuickDialogController.h"
 #import "QuickDialog.h"
-#import "WalkController.h"
 
 
 @interface QDateTimeElement ()

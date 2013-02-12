@@ -5,7 +5,7 @@
 
 @implementation NSArray (Extension)
 
-- (id)objectAtIndexedSubscript:(NSInteger)index {
+- (id)objectAtIndexedSubscript:(NSUInteger)index {
     return [self at:index];
 }
 

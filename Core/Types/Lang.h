@@ -20,4 +20,12 @@ void run(void (^block)());
 
 void runWith(void (^block)(id), id value);
 
+void doLater(void (^block)(void), NSTimeInterval delay);
+
+void invoke(void (^block)(void));
+
+void doLaterWith(void (^block)(id), id value, NSTimeInterval delay);
+
+void invokeWith(void (^block)(id), id value);
+
 @end

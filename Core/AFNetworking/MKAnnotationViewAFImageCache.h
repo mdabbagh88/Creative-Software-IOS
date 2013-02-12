@@ -5,7 +5,7 @@
 
 #import "MKAnnotationView+AFNetworking.h"
 
-@interface AFImageCache : NSCache
+@interface MKAnnotationViewAFImageCache : NSCache
 - (UIImage *)cachedImageForRequest:(NSURLRequest *)request;
 
 - (void)cacheImage:(UIImage *)image

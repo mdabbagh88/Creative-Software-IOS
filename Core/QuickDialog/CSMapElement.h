@@ -6,6 +6,7 @@
 
 
 #import <Foundation/Foundation.h>
+#import "QMapElement.h"
 
 @class QMapViewController;
 @class CSMapViewController;

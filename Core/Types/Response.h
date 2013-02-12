@@ -2,28 +2,27 @@
 //  Created by Rene Dohan on 11/2/12.
 //
 
-
-@class LoginData;
+@protocol RequestProtocol;
 
 @interface Response : NSObject
 
-@property(copy, nonatomic) void (^onSuccess) (id value);
-@property(copy, nonatomic) void (^onFailed) (NSString *message);
-@property(copy, nonatomic) void (^onDone) (void);
-
-@property(nonatomic, strong) Response *wrapped;
+@property(copy, nonatomic) void (^onSuccess)(id);
+@property(copy, nonatomic) void (^onFailed)(Response <RequestProtocol> *);
+@property(copy, nonatomic) void (^onDone)(void);
 
 - (void)success:(id)data;
 
-- (void)failed:(NSString *)message;
+- (void)failed:(Response *)response;
 
 - (void)cancel;
 
 @property(nonatomic, readonly) BOOL canceled;
 
+@property(nonatomic, copy) NSString *message;
+
 - (Response *)failIfFail:(Response *)request;
 
-- (Response*)connect:(Response *)response;
+- (Response *)connect:(Response *)response;
 
-- (Response*)successIfSuccesss:(Response *)response;
+- (Response *)successIfSuccess:(Response *)response;
 @end

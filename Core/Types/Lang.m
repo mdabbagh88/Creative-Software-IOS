@@ -3,12 +3,37 @@
 
 @implementation Lang
 
-void run (void (^block) ()) {
-		if (block)block();
+void run(void (^block)()) {
+    if (block)block();
 }
 
-void runWith (void (^block) (id), id value) {
-		if (block)block(value);
+void runWith(void (^block)(id), id value) {
+    if (block)block(value);
+}
+
+void doLater(void (^block)(void), NSTimeInterval delay) {
+    dispatch_queue_t currentQueue = dispatch_get_current_queue();
+    dispatch_queue_t mainQueue = dispatch_get_main_queue();
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC* delay),
+            currentQueue == mainQueue ? currentQueue : mainQueue, block);
+}
+
+void doLaterWith(void (^block)(id), id value, NSTimeInterval delay) {
+    doLater(^{
+        runWith(block, value);
+    }, delay);
+}
+
+void invoke(void (^block)(void)) {
+    dispatch_queue_t currentQueue = dispatch_get_current_queue();
+    dispatch_queue_t mainQueue = dispatch_get_main_queue();
+    dispatch_after(0.0f, currentQueue == mainQueue ? currentQueue : mainQueue, block);
+}
+
+void invokeWith(void (^block)(id), id value) {
+    invoke(^{
+        runWith(block, value);
+    });
 }
 
 @end

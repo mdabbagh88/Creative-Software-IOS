@@ -11,6 +11,8 @@
 
 }
 
+-(Response *)addAll:(NSArray *)responses;
+
 - (Response *)add:(Response *)response;
 
 @end

@@ -14,7 +14,11 @@ static float const CS_FADE_TIME = 0.5;
 
 @interface UIView (Extension)
 
+- (void)resizeAutoResizingViewsFonts :(float)multiply;
+
 + (UIView *)findFirstResponder:(UIView *)view;
+
++ (UIViewAnimationOptions)animationOptionsWithCurve:(UIViewAnimationCurve)curve;
 
 - (UIView *)firstResponder;
 
@@ -30,7 +34,7 @@ static float const CS_FADE_TIME = 0.5;
 
 - (void)fadeOut:(NSTimeInterval)time;
 
-- (void)fadeOut:(NSTimeInterval)time:(void (^)())method;
+- (void)fadeOut:(NSTimeInterval)time :(void (^)())method;
 
 - (void)fadeOut;
 
@@ -47,9 +51,9 @@ static float const CS_FADE_TIME = 0.5;
 @property float height;
 @property float width;
 @property float top;
-@property float abstop;
+@property float absTop;
 @property float bottom;
-@property(readonly) float absbottom;
+@property(readonly) float absBottom;
 @property float left;
 @property float right;
 
@@ -61,11 +65,11 @@ static float const CS_FADE_TIME = 0.5;
 
 - (void)showMessage :(NSString *)string;
 
-- (Response *)showResponse:(Response *)request;
+- (Response *)showResponse:(Response *)response;
 
-- (Response *)showProgress:(Response *)request;
+- (Response *)showProgress:(Response *)response;
 
-- (Response *)showFailed:(Response *)request;
+- (Response *)showFailed:(Response *)response;
 
 //Layout
 - (UIView *)addSubviewUnder:(UIView *)view;

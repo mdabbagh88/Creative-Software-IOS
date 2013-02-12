@@ -12,4 +12,5 @@
 
 @property(readonly) UIViewController *popped;
 
+@property (nonatomic,strong, readonly)CSNavigationController *instance;
 @end

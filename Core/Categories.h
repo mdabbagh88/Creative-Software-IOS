@@ -7,3 +7,8 @@
 #import "UIViewController+Extension.h"
 #import "UIImageView+Extension.h"
 #import "NSIndexPath+Extension.h"
+#import "UIDevice+Extension.h"
+#import "UIImageView+AFExtension.h"
+#import "UIScrollView+Extension.h"
+#import "NSString+Extensions.h"
+#import "UIPickerView+Extension.h"

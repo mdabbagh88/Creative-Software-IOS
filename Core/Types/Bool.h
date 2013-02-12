@@ -8,7 +8,7 @@
 
 @interface Bool : NSNumber
 
-+ (Bool *)new:(BOOL)value;
++ (Bool *)newBool:(BOOL)value;
 
 - (BOOL)value;
 

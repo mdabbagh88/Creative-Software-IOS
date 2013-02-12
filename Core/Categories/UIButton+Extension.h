@@ -8,5 +8,7 @@
 #import <Foundation/Foundation.h>
 
 @interface UIButton (Extension)
--(void)stretchableBackgroundImageWithLeftCapWidth:(NSInteger)leftCapWidth topCapHeight:(NSInteger)topCapHeight;
+- (void)stretchableBackgroundImageWithLeftCapWidth:(NSInteger)leftCapWidth topCapHeight:(NSInteger)topCapHeight;
+
+@property(nonatomic, copy) NSString * text;
 @end

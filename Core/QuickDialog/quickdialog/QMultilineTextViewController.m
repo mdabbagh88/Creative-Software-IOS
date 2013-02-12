@@ -45,7 +45,7 @@
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
     self.view.backgroundColor = [UIColor clearColor];
     _textView.width = self.view.width;
-    if (self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent) {
+    if (self.navigationController.navigationBar.barStyle == UIBarStyleBlackTranslucent) {
         float barHeight = self.navigationController.navigationBar.height;
         _textView.top = barHeight;
         _textView.height = self.view.height - barHeight;
@@ -93,13 +93,15 @@
     [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
     [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEndFrame];
 
-    [UIView animateWithDuration:animationDuration delay:0 options:animationCurve
+    [UIView animateWithDuration:animationDuration delay:0 options:[UIView animationOptionsWithCurve:animationCurve]
                      animations:^{
                          CGRect keyboardFrame = [self.view convertRect:keyboardEndFrame toView:nil];
                          _textView.contentInset = UIEdgeInsetsMake(0.0, 0.0, up ? keyboardFrame.size.height : 0, 0.0);
                      }
                      completion:NULL];
 }
+
+
 
 - (void)setResizeWhenKeyboardPresented:(BOOL)observesKeyboard {
     if (observesKeyboard != _resizeWhenKeyboardPresented) {

@@ -16,5 +16,9 @@
     self.image = [self.image resizableImageWithCapInsets:insets];
 }
 
+- (void)stretchableImageWithLeftCapWidth:(NSInteger)leftCapWidth topCapHeight:(NSInteger)topCapHeight {
+    self.image = [self.image stretchableImageWithLeftCapWidth:leftCapWidth topCapHeight:topCapHeight];
+}
+
 
 @end

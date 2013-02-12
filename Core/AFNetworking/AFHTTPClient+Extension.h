@@ -8,8 +8,8 @@
 
 @interface AFHTTPClient (Extension)
 
-- (void)postPath:(NSString *)path:(NSDictionary *)arguments:(NSDictionary *)parameters
-		:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-		:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+- (void)postPath:(NSString *)path :(NSDictionary *)arguments :(NSDictionary *)parameters
+        :(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+        :(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 @end

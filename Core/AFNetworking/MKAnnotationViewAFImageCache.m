@@ -5,14 +5,14 @@
 //
 
 
-#import "AFImageCache.h"
+#import "MKAnnotationViewAFImageCache.h"
 
 static inline NSString *AFImageCacheKeyFromURLRequest(NSURLRequest *request) {
     return [[request URL] absoluteString];
 }
 
 
-@implementation AFImageCache
+@implementation MKAnnotationViewAFImageCache
 
 - (UIImage *)cachedImageForRequest:(NSURLRequest *)request {
     switch ([request cachePolicy]) {

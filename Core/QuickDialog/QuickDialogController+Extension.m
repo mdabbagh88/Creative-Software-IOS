@@ -4,8 +4,6 @@
 
 
 #import "QuickDialogController+Extension.h"
-#import "CSQButtonElement.h"
-
 
 @implementation QuickDialogController (Extension)
 
@@ -21,8 +19,6 @@
     return [self initializeEntry:section onValueChange:onValueChange entry:entry];
 }
 
-
-
 - (QEntryElement *)initializeEntry:(QSection *)section onValueChange:(void (^)(QEntryElement *))onValueChange entry:(QEntryElement *)entry {
     [section addElement:entry];
     entry.keyboardType = UIKeyboardTypeNamePhonePad;
@@ -34,15 +30,9 @@
     return entry;
 }
 
-- (QEntryElement *)addMultilineEntry:(QSection *)section :(NSString *)title :(NSString *)value :(NSString *)placeholder :(void (^)(QEntryElement *))onValueChange {
+- (QEntryElement *)addMultiLineEntry:(QSection *)section :(NSString *)title :(NSString *)value :(NSString *)placeholder :(void (^)(QEntryElement *))onValueChange {
     QEntryElement *entry = [[QMultilineElement alloc] initWithTitle:title Value:value Placeholder:placeholder];
     return [self initializeEntry:section onValueChange:onValueChange entry:entry];
-}
-
-- (QMapElement *)addPosition:(QSection *)section :(NSString *)title :(CLLocationCoordinate2D)coordinate {
-    QMapElement *element = [[QMapElement alloc] initWithTitle:title coordinate:coordinate];
-    [section addElement:element];
-    return element;
 }
 
 - (QDateTimeInlineElement *)addDateTime:(QSection *)section:(UIDatePickerMode)mode :(NSString *)title :(NSDate *)date :(void (^)(QDateTimeElement *))onValueChange {
@@ -54,6 +44,10 @@
         runWith(onValueChange, _element);
     };
     return element;
+}
+
+- (QPickerElement *)addSingleItemPicker:(QSection *)section :(NSString *)title :(NSArray *)items :(NSString *)value :(void (^)(QPickerElement *))onChange {
+    return [self addPicker:section :title :items :value :onChange];
 }
 
 - (QPickerElement *)addPicker:(QSection *)section :(NSString *)title :(NSArray *)items :(NSString *)value :(void (^)(QPickerElement *))onChange {
