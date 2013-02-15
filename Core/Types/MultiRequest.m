@@ -4,35 +4,34 @@
 
 
 #import "MultiRequest.h"
-#import "NSObject+Extension.h"
 
 
 @implementation MultiRequest {
-		Response *_addedRequest;
+    Response *_addedRequest;
 }
 
 - (Response *)add:(Response *)request {
-		_addedRequest = request;
-		[self failIfFail:request];
-		return request;
+    _addedRequest = request;
+    [self failIfFail:request];
+    return request;
 }
 
 - (void)cancel {
-		[super cancel];
-		[_addedRequest cancel];
+    [super cancel];
+    [_addedRequest cancel];
 }
 
 - (Response *)addLast:(Response *)request {
-		[self add:request].onSuccess = ^(id id) {
-				[self success:id];
-		};
-		return request;
+    [self add:request].onSuccess = ^(id id) {
+        [self success:id];
+    };
+    return request;
 }
 
 - (void)finish {
-		[self doLater:^{
-				[self success:nil];
-		}];
+    invoke(^{
+        [self success:nil];
+    });
 }
 
 @end

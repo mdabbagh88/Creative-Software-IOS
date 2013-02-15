@@ -4,8 +4,8 @@
 
 
 #import "Selector.h"
-#import "Lang.h"
 
+#pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 @implementation Selector {
 
@@ -19,10 +19,12 @@
     return this;
 }
 
-- (void)run {
+- (id)run {
     if ([self.object respondsToSelector:self.selector])
-        [self.object performSelector:self.selector];
-    else error(@"Object expected to contain selector");
-
+        return [self.object performSelector:self.selector];
+    error(@"Object expected to contain selector");
+    return nil;
 }
+
 @end
+#pragma clang diagnostic pop

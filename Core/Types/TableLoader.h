@@ -4,13 +4,16 @@
 
 
 #import <Foundation/Foundation.h>
-#import "EGORefreshTableHeaderView.h"
+#import "PullToRefreshView.h"
 
-@interface TableLoader : NSObject <EGORefreshTableHeaderDelegate> {
+@class PullToRefreshView;
+@class CSPullToRefreshView;
+
+@interface TableLoader : NSObject <PullToRefreshViewDelegate> {
 
 }
 
-@property(nonatomic, strong) EGORefreshTableHeaderView *refreshHeaderView;
+@property(nonatomic, strong, readonly) CSPullToRefreshView *refreshHeaderView;
 
 @property(nonatomic, strong, readonly) UITableView *table;
 
@@ -30,17 +33,13 @@
 
 - (void)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 
--(void)updateEmpty;
-
-- (void)scrollViewDidScroll:(UIScrollView *)view;
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)view willDecelerate:(BOOL)decelerate;
+- (void)updateEmpty;
 
 - (void)viewWillAppear;
 
 - (void)addItem:(id)dog;
 
--(void)insertItem:(id)item :(int)index;
+- (void)insertItem:(id)item :(int)index;
 
--(void)removeItem:(id)item;
+- (void)removeItem:(id)item;
 @end

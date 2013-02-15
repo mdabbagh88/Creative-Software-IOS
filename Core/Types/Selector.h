@@ -11,7 +11,7 @@
 
 @property(nonatomic, strong) NSObject *object;
 
-- (void)run;
+- (id)run;
 
 + (Selector *)new:(SEL)selector :(NSObject *)object;
 

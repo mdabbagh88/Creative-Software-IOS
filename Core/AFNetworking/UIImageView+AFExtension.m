@@ -5,7 +5,6 @@
 //
 
 
-#import "UIImageView+AFExtension.h"
 #import "UIImageView+AFNetworking.h"
 
 
@@ -16,13 +15,19 @@
 }
 
 - (void)setImageWithURL:(NSURL *)url
+       placeholderImage:(UIImage *)placeholderImage {
+    [self setImageWithURL:url placeholderImage:placeholderImage success:nil];
+}
+
+- (void)setImageWithURL:(NSURL *)url
        placeholderImage:(UIImage *)placeholderImage
-{
+                success:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image))success {
+    if (!url)return;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPShouldHandleCookies:YES];
     [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
 
-    [self setImageWithURLRequest:request placeholderImage:placeholderImage success:nil failure:nil];
+    [self setImageWithURLRequest:request placeholderImage:placeholderImage success:success failure:nil];
 }
 
 @end

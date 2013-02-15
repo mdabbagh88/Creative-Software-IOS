@@ -5,6 +5,7 @@
 
 #import "TableLoader.h"
 #import "Response.h"
+#import "CSPullToRefreshView.h"
 
 @implementation TableLoader {
     UIView *_loadNextIndicator;
@@ -19,29 +20,24 @@
     _loadNextIndicator = loadNextIndicator;
     _loadNextIndicator.hidden = YES;
     _data = data;
-    return self;
-}
-
-- (void)setRefreshHeaderView:(EGORefreshTableHeaderView *)refreshHeaderView {
-    _refreshHeaderView = refreshHeaderView;
+    _refreshHeaderView = [[CSPullToRefreshView alloc] initWithScrollView:_table];
     _refreshHeaderView.delegate = self;
+    [_table addSubview:_refreshHeaderView];
+    return self;
 }
 
 - (void)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self shouldLoadNext:indexPath]) [self loadNext];
 }
 
+
 - (void)loadNext {
     [_loadNextIndicator fadeIn];
     _loading = YES;
-    self.onLoadNext().onDone = ^{
+    _onLoadNext().onDone = ^{
         [self onDone];
         [_loadNextIndicator fadeOut];
     };
-}
-
-- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView *)view {
-    return _loading;
 }
 
 - (BOOL)shouldLoadNext:(NSIndexPath *)indexPath {
@@ -49,7 +45,7 @@
     return !_noNext && indexPath.row > _data.count - 5;
 }
 
-- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView *)view {
+- (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view {
     [self reload];
 }
 
@@ -66,7 +62,8 @@
 - (void)onDone {
     _loading = NO;
     [self updateEmpty];
-    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:_table];
+    [_refreshHeaderView refreshLastUpdatedDate];
+    [_refreshHeaderView finishedLoading];
 }
 
 - (void)updateEmpty {
@@ -80,14 +77,6 @@
             _table.backgroundColor = [UIColor clearColor];
             [_table setHidden:NO];
         }];
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)view {
-    [_refreshHeaderView egoRefreshScrollViewDidScroll:view];
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)view willDecelerate:(BOOL)decelerate {
-    [_refreshHeaderView egoRefreshScrollViewDidEndDragging:view];
 }
 
 - (void)onReloadSuccess:(NSArray *)array {
@@ -112,7 +101,7 @@
 }
 
 - (void)insertItem:(id)item :(int)index {
-    [_data insertObject:item atIndex:index];
+    [_data insertObject:item atIndex:(uint) index];
     [_table reloadData];
     [self updateEmpty];
 }

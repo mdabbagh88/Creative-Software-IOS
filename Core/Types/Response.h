@@ -25,4 +25,6 @@
 - (Response *)connect:(Response *)response;
 
 - (Response *)successIfSuccess:(Response *)response;
+
+- (void)failedWithMessage:(NSString *)string;
 @end
