@@ -15,5 +15,5 @@
 @interface CSMapElement : QMapElement
 
 
-
+- (QMapElement *)addTo:(QSection *)section :(NSString *)title :(CLLocationCoordinate2D)coordinate;
 @end

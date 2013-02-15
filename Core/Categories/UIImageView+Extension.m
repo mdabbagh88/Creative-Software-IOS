@@ -8,10 +8,6 @@
 
 @implementation UIImageView (Extension)
 
-- (void)setImageURL:(NSURL *)url {
-    [self setImageWithURL:url placeholderImage:self.image];
-}
-
 - (void)resizableImageWithCapInsets:(UIEdgeInsets)insets {
     self.image = [self.image resizableImageWithCapInsets:insets];
 }

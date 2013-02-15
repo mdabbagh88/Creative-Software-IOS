@@ -72,4 +72,9 @@
     [self successIfSuccess:response];
     return response;
 }
+
+- (void)failedWithMessage:(NSString *)message {
+    self.message = message;
+    [self failed:self];
+}
 @end

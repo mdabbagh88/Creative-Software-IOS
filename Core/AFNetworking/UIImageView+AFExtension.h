@@ -13,4 +13,5 @@
 
 - (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholderImage;
 
+- (void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholderImage success:(void (^)(NSURLRequest *, NSHTTPURLResponse *, UIImage *))success;
 @end
