@@ -12,6 +12,8 @@
 
 - (UIViewController *)createUI;
 
+- (CSQButtonElement *)addImageButton:(QSection *)section :(NSString *)title :(int)height :(UIImage *)image :(NSURL *)placeholder :(void (^)(UITableViewCell *, CSQButtonElement *))onSelected;
+
 - (QEntryElement *)addEntry:(QSection *)section :(NSString *)title :(NSString *)value :(NSString *)placeholder :(void (^)(QEntryElement *))onChange;
 
 - (QEntryElement *)addMultiLineEntry:(QSection *)section :(NSString *)title :(NSString *)value :(NSString *)placeholder :(void (^)(QEntryElement *))onValueChange;

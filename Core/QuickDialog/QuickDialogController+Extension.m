@@ -4,6 +4,7 @@
 
 
 #import "QuickDialogController+Extension.h"
+#import "CSImageButton.h"
 
 @implementation QuickDialogController (Extension)
 
@@ -12,6 +13,19 @@
     self.root.grouped = YES;
     self.resizeWhenKeyboardPresented = YES;
     return self;
+}
+
+- (CSQButtonElement*)addImageButton:(QSection *)section :(NSString *)title :(int)height :(UIImage *)image:(NSURL *)placeholder:(void (^)(UITableViewCell *, CSQButtonElement *))onSelected {
+    CSImageButton *imageButton = (CSImageButton *) [[CSImageButton alloc] initWithTitle:title];
+    imageButton.labelingPolicy = QLabelingPolicyTrimValue;
+    imageButton.height = height;
+    imageButton.image = image;
+    imageButton.imageURL = placeholder;
+    imageButton.onCellSelected = ^(UITableViewCell *cell, CSQButtonElement *element) {
+        if (onSelected)onSelected(cell, element);
+    };
+    [section addElement:imageButton];
+    return imageButton;
 }
 
 - (QEntryElement *)addEntry:(QSection *)section :(NSString *)title :(NSString *)value :(NSString *)placeholder :(void (^)(QEntryElement *))onValueChange {
