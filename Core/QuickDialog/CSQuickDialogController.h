@@ -6,6 +6,6 @@
 #import <Foundation/Foundation.h>
 #import "QuickDialogController.h"
 
-@interface CSQuickDialogController : QuickDialogController
+@interface CSQuickDialogController : QuickDialogController<QuickDialogStyleProvider>
 
 @end

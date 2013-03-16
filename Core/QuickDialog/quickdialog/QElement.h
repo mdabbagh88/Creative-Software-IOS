@@ -21,27 +21,26 @@
 @interface QElement : NSObject {
 
 @protected
-		__unsafe_unretained QSection *_parentSection;
-		NSString *_key;
-		NSString *_bind;
+    __unsafe_unretained QSection *_parentSection;
+    NSString *_key;
+    NSString *_bind;
+	
+	CGFloat _height;
+    BOOL _hidden;
 
-		CGFloat _height;
-		BOOL _hidden;
-
-		void (^_onSelected) (QElement *);
-
-		NSString *_controllerAction;
+    void (^_onSelected)(void);
+    NSString * _controllerAction;
 }
 
-@property(nonatomic, assign, getter=isEnabled) BOOL enabled;
+@property (nonatomic, assign, getter=isEnabled) BOOL enabled;
 
-@property(nonatomic, copy) void (^onSelected) (QElement *);
+@property(nonatomic, copy) void (^onSelected)(void);
 @property(nonatomic, retain) NSString *controllerAction;
 @property(nonatomic, retain) NSString *controllerAccessoryAction;
 
 @property(nonatomic) CGFloat height;
-@property(nonatomic) BOOL hidden;
-@property(nonatomic, readonly) NSUInteger visibleIndex;
+@property(nonatomic) BOOL    hidden;
+@property(nonatomic,readonly) NSUInteger visibleIndex;
 
 @property(nonatomic, assign) QSection *parentSection;
 
@@ -49,15 +48,15 @@
 @property(nonatomic, retain) id object;
 @property(nonatomic, retain) NSString *bind;
 
-@property(nonatomic) QLabelingPolicy labelingPolicy;
+@property (nonatomic) QLabelingPolicy labelingPolicy;
 
 - (QElement *)initWithKey:(NSString *)key;
 
-- (NSIndexPath *)getIndexPath;
+- (NSIndexPath*) getIndexPath;
 
 - (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller;
 
-- (QTableViewCell *)getOrCreateEmptyCell:(QuickDialogTableView *)tableView;
+-(QTableViewCell *)getOrCreateEmptyCell:(QuickDialogTableView *)tableView;
 
 - (void)handleElementSelected:(QuickDialogController *)controller;
 

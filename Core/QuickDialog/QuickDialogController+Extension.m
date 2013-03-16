@@ -4,7 +4,7 @@
 
 
 #import "QuickDialogController+Extension.h"
-#import "CSImageButton.h"
+#import "CSImageElement.h"
 
 @implementation QuickDialogController (Extension)
 
@@ -15,20 +15,13 @@
     return self;
 }
 
-- (CSQButtonElement*)addImageButton:(QSection *)section :(NSString *)title :(int)height :(UIImage *)image:(NSURL *)placeholder:(void (^)(UITableViewCell *, CSQButtonElement *))onSelected {
-    CSImageButton *imageButton = (CSImageButton *) [[CSImageButton alloc] initWithTitle:title];
-    imageButton.labelingPolicy = QLabelingPolicyTrimValue;
-    imageButton.height = height;
-    imageButton.image = image;
-    imageButton.imageURL = placeholder;
-    imageButton.onCellSelected = ^(UITableViewCell *cell, CSQButtonElement *element) {
-        if (onSelected)onSelected(cell, element);
-    };
-    [section addElement:imageButton];
-    return imageButton;
+- (CSImageElement *)addImage:(QSection *)section :(NSString *)title :(int)height :(NSURL *)url:(void (^)(QImageElement *))onValueChange {
+    CSImageElement *element = [CSImageElement.alloc initWithTitle:title url:url];
+    element.height = height;
+    return (CSImageElement *) [self initializeEntry:section onValueChange:(void (^)(QEntryElement *)) onValueChange entry:element];
 }
 
-- (QEntryElement *)addEntry:(QSection *)section :(NSString *)title :(NSString *)value :(NSString *)placeholder :(void (^)(QEntryElement *))onValueChange {
+- (QEntryElement *)addLine:(QSection *)section :(NSString *)title :(NSString *)value :(NSString *)placeholder :(void (^)(QEntryElement *))onValueChange {
     QEntryElement *entry = [[QEntryElement alloc] initWithTitle:title Value:value Placeholder:placeholder];
     return [self initializeEntry:section onValueChange:onValueChange entry:entry];
 }
@@ -44,7 +37,7 @@
     return entry;
 }
 
-- (QEntryElement *)addMultiLineEntry:(QSection *)section :(NSString *)title :(NSString *)value :(NSString *)placeholder :(void (^)(QEntryElement *))onValueChange {
+- (QEntryElement *)addMultiLine:(QSection *)section :(NSString *)title :(NSString *)value :(NSString *)placeholder :(void (^)(QEntryElement *))onValueChange {
     QEntryElement *entry = [[QMultilineElement alloc] initWithTitle:title Value:value Placeholder:placeholder];
     return [self initializeEntry:section onValueChange:onValueChange entry:entry];
 }
@@ -60,9 +53,6 @@
     return element;
 }
 
-- (QPickerElement *)addSingleItemPicker:(QSection *)section :(NSString *)title :(NSArray *)items :(NSString *)value :(void (^)(QPickerElement *))onChange {
-    return [self addPicker:section :title :items :value :onChange];
-}
 
 - (QPickerElement *)addPicker:(QSection *)section :(NSString *)title :(NSArray *)items :(NSString *)value :(void (^)(QPickerElement *))onChange {
     QPickerElement *picker = [[QPickerElement new] initWithTitle:title items:items value:value];

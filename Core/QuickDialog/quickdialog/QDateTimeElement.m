@@ -196,7 +196,6 @@
         [components setMinute:[timeComponents minute]];
         [components setSecond:[timeComponents second]];
         self.dateValue = [[NSCalendar currentCalendar] dateFromComponents:components];
-        info(@"");
     };
 
     [newController.quickDialogTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];

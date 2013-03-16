@@ -140,13 +140,13 @@
     _keyboardVisible = up;
     NSDictionary* userInfo = [aNotification userInfo];
     NSTimeInterval animationDuration;
-    UIViewAnimationCurve animationCurve;
+    UIViewAnimationOptions animationCurve;
     CGRect keyboardEndFrame;
     [[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
     [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
     [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEndFrame];
 
-    [UIView animateWithDuration:animationDuration delay:0 options:[UIView animationOptionsWithCurve:animationCurve]
+    [UIView animateWithDuration:animationDuration delay:0 options:animationCurve
         animations:^{
             CGRect keyboardFrame = [self.view convertRect:keyboardEndFrame toView:nil];
             const UIEdgeInsets oldInset = self.quickDialogTableView.contentInset;

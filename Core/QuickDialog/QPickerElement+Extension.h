@@ -10,5 +10,6 @@
 
 - (id)selectedItem;
 
--(uint)selectedIndex;
+- (uint)selectedIndex;
+
 @end

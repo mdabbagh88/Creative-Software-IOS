@@ -35,7 +35,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 - (void)hideUsingAnimation:(BOOL)animated;
 - (void)showUsingAnimation:(BOOL)animated;
 - (void)done;
-- (void)updateIndicators;
+
 - (void)handleGraceTimer:(NSTimer *)theTimer;
 - (void)handleMinShowTimer:(NSTimer *)theTimer;
 - (void)setTransformForCurrentOrientation:(BOOL)animated;
@@ -168,6 +168,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		self.graceTime = 0.0f;
 		self.minShowTime = 0.0f;
 		self.removeFromSuperViewOnHide = NO;
+        self.indicatorStyle = UIActivityIndicatorViewStyleGray;
 		self.minSize = CGSizeZero;
 		self.square = NO;
 		self.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin 
@@ -458,7 +459,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		// Update to indeterminate indicator
 		[indicator removeFromSuperview];
 		self.indicator = MB_AUTORELEASE([[UIActivityIndicatorView alloc]
-										 initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge]);
+										 initWithActivityIndicatorStyle:_indicatorStyle]);
 		[(UIActivityIndicatorView *)indicator startAnimating];
 		[self addSubview:indicator];
 	}

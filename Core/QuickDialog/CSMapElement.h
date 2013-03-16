@@ -10,10 +10,12 @@
 
 @class QMapViewController;
 @class CSMapViewController;
+@class MKAnnotationView;
 
 
 @interface CSMapElement : QMapElement
 
+@property (nonatomic,copy)void (^onAnnotationDragEnd)(MKAnnotationView *);
 
 - (QMapElement *)addTo:(QSection *)section :(NSString *)title :(CLLocationCoordinate2D)coordinate;
 @end

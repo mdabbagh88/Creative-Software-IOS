@@ -42,6 +42,8 @@ static float const CS_FADE_TIME = 0.5;
 
 - (void)setVisible:(BOOL)visible;
 
+- (void)setFadeVisible:(BOOL)visible;
+
 - (BOOL)visible;
 
 - (UIViewController *)controller;

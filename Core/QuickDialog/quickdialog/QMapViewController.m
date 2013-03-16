@@ -28,7 +28,7 @@
 - (QMapViewController *)initWithCoordinate:(CLLocationCoordinate2D)coordinate {
 
     self = [super init];
-    if (self != nil) {
+    if (self != nil){
         _coordinate = coordinate;
         _mapView = [[MKMapView alloc] init];
         _mapView.delegate = self;
@@ -39,6 +39,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
     _mapView.region = MKCoordinateRegionMake(_coordinate, MKCoordinateSpanMake(0.05, 0.05));
     _mapView.zoomEnabled = YES;
     [_mapView regionThatFits:_mapView.region];
@@ -53,11 +55,9 @@
     MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"reuse"];
     pin.animatesDrop = YES;
     pin.canShowCallout = NO;
-    pin.draggable = YES;
     pin.pinColor = MKPinAnnotationColorGreen;
     return pin;
 }
-
 
 
 @end

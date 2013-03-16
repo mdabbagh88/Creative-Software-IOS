@@ -2,7 +2,7 @@
 #import "QuickDialogController.h"
 
 @class QRootElement;
-@interface QuickDialogController (Navigation)
+@interface QuickDialogController(Navigation)
 
 - (void)displayViewController:(UIViewController *)newController;
 

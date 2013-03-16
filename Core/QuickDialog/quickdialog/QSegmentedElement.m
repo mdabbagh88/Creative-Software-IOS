@@ -49,7 +49,7 @@
 
 /*
  
-- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(QuickDialogController+Extension *)controller {
+- (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller {
     _controller = controller;
     QTableViewCell *cell = [[QTableViewCell alloc] init];
     cell.backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];

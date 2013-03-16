@@ -67,16 +67,18 @@
 }
 
 - (void)updateEmpty {
-    _emptyLabel.visible = _data.empty;
+    _emptyLabel.fadeVisible = _data.empty;
     if (_data.count) {
+        if (_table.visible)return;
         _table.backgroundColor = [UIColor whiteColor];
         [_table fadeIn];
-    }
-    else
+    } else {
+        if (_table.hidden)return;
         [_table fadeOut:0.5 :^{
             _table.backgroundColor = [UIColor clearColor];
             [_table setHidden:NO];
         }];
+    }
 }
 
 - (void)onReloadSuccess:(NSArray *)array {
@@ -87,6 +89,7 @@
 - (void)onLoadSuccess:(NSArray *)array {
     _noNext = array.count == 0;
     [_table reloadData];
+    [self updateEmpty];
 }
 
 - (void)viewWillAppear {
@@ -108,6 +111,12 @@
 
 - (void)removeItem:(id)item {
     [_data removeObject:item];
+    [_table reloadData];
+    [self updateEmpty];
+}
+
+- (void)removeItemAtIndex:(NSUInteger)index {
+    [_data removeObjectAtIndex:index];
     [_table reloadData];
     [self updateEmpty];
 }

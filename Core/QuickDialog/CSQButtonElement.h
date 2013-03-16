@@ -10,6 +10,8 @@
 
 
 @interface CSQButtonElement : QButtonElement
+
 @property (nonatomic,copy)void (^onCellSelected)(UITableViewCell *,CSQButtonElement *);
 
++ (CSQButtonElement*)createWithTitle:(QSection *)section :(NSString *)title :(void (^)(UITableViewCell *, CSQButtonElement *))onSelected;
 @end

@@ -13,14 +13,11 @@
 //
 
 #import "QuickDialogTableView.h"
-#import "QuickDialog.h"
-#import "QuickDialogEntryElementDelegate.h"
-
 
 @class QRootElement;
 @class QuickDialogTableView;
 
-@interface QuickDialogController : UIViewController <UIPopoverControllerDelegate, QuickDialogEntryElementDelegate> {
+@interface QuickDialogController : UIViewController <UIPopoverControllerDelegate> {
 
 @private
     QRootElement *_root;

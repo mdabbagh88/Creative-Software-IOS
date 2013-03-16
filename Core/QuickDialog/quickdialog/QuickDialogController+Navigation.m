@@ -2,12 +2,15 @@
 #import "QRootBuilder.h"
 #import "QuickDialog.h"
 
-@implementation QuickDialogController (Navigation)
+@implementation QuickDialogController(Navigation)
 
 
 
 - (void)displayViewController:(UIViewController *)newController {
-    if (self.navigationController != nil ){
+    if ([newController isKindOfClass:[UINavigationController class]]) {
+        [self presentModalViewController:newController animated:YES];
+    }
+    else if (self.navigationController != nil){
         [self.navigationController pushViewController:newController animated:YES];
     } else {
         [self presentModalViewController:[[UINavigationController alloc] initWithRootViewController:newController] animated:YES];

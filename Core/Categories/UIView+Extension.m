@@ -100,6 +100,11 @@
     self.hidden = !visible;
 }
 
+- (void)setFadeVisible:(BOOL)visible {
+    if (visible) [self fadeIn];
+    else [self fadeOut];
+}
+
 - (UIViewController *)controller {
     return (UIViewController *) [self traverseResponderChainForUIViewController];
 }
@@ -231,7 +236,12 @@
 
 - (MBProgressHUD *)showProgress {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
-    hud.margin = 17;
+    hud.color = [UIColor clearColor];
+    hud.dimBackground = YES;
+    hud.square = YES;
+    hud.opacity = 1;
+    hud.margin = 0;
+    [hud updateIndicators];
     return hud;
 }
 

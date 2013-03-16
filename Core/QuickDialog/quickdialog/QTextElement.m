@@ -12,7 +12,8 @@
 // permissions and limitations under the License.
 //
 
-#import "NSString+Extensions.h"
+#import <CoreGraphics/CoreGraphics.h>
+#import "QTextElement.h"
 
 @implementation QTextElement
 
@@ -22,7 +23,7 @@
 
 
 - (QTextElement *)init {
-    self = [super init];
+   self = [super init];
     _font = [UIFont systemFontOfSize:14];
     _color = [UIColor blackColor];
     return self;
@@ -36,7 +37,7 @@
 
 - (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"QuickformText"]];
-    if (cell == nil) {
+    if (cell == nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"QuickformText"];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -48,29 +49,29 @@
     cell.detailTextLabel.font = _font;
     cell.detailTextLabel.textColor = _color;
     cell.detailTextLabel.text = _text;
-
+    
     return cell;
 }
 
 
 - (CGFloat)getRowHeightForTableView:(QuickDialogTableView *)tableView {
 
-    if (_text == nil || _text.empty) {
+    if (_text==nil || [_text isEqual: @""]){
         return [super getRowHeightForTableView:tableView];
     }
-    CGSize constraint = CGSizeMake(tableView.frame.size.width - (tableView.root.grouped ? 40.f : 20.f), 20000);
-    CGSize size = [_text sizeWithFont:_font constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
-    CGFloat predictedHeight = size.height + 20.0f;
-    if (self.title != nil)
-        predictedHeight += 30;
-    return (_height >= predictedHeight) ? _height : predictedHeight;
+    CGSize constraint = CGSizeMake(tableView.frame.size.width-(tableView.root.grouped ? 40.f : 20.f), 20000);
+    CGSize  size= [_text sizeWithFont:_font constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
+	CGFloat predictedHeight = size.height + 20.0f;
+    if (self.title!=nil)
+        predictedHeight+=30;
+	return (_height >= predictedHeight) ? _height : predictedHeight;
 }
 
 - (void)fetchValueIntoObject:(id)obj {
-    if (_key == nil)
-        return;
-
-    [obj setValue:_text forKey:_key];
+	if (_key==nil)
+		return;
+	
+	[obj setValue:_text forKey:_key];
 }
 
 @end

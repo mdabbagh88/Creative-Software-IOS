@@ -267,6 +267,8 @@ typedef void (^MBProgressHUDCompletionBlock)();
 - (void)showAnimated:(BOOL)animated whileExecutingBlock:(dispatch_block_t)block onQueue:(dispatch_queue_t)queue
 		  completionBlock:(MBProgressHUDCompletionBlock)completion;
 
+- (void)updateIndicators;
+
 /**
  * A block that gets called after the HUD was completely hidden.
  */
@@ -406,6 +408,7 @@ typedef void (^MBProgressHUDCompletionBlock)();
  */
 @property (assign, getter = isSquare) BOOL square;
 
+@property(nonatomic) UIActivityIndicatorViewStyle indicatorStyle;
 @end
 
 

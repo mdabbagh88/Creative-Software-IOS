@@ -17,12 +17,14 @@
 #import "QTableViewCell.h"
 
 
+
 @class QEntryElement;
 @class QuickDialogTableView;
 @class QTextField;
+@class QImageElement;
 
 
-@interface QEntryTableViewCell : QTableViewCell <UITextFieldDelegate> {
+@interface QEntryTableViewCell : QTableViewCell<UITextFieldDelegate> {
 
     QEntryElement *_entryElement;
     QTextField *_textField;

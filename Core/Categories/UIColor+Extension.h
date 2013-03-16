@@ -9,6 +9,6 @@
 
 + (UIColor *)colorWithRGBA:(CGFloat)red :(CGFloat)green :(CGFloat)blue :(CGFloat)alpha;
 
-+ (UIColor *)colorWithHexString:(NSString *)hex;
++ (UIColor *)colorWithHex:(NSString *)hex;
 
 @end

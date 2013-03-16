@@ -29,6 +29,8 @@
 
 + (NSString *)fromDbl:(double)value;
 
++ (NSString *)stringWithFile:(NSString *)path;
+
 - (NSString *)clearLast:(NSInteger)count;
 
 - (BOOL)set;

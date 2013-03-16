@@ -12,7 +12,7 @@
 		return [UIColor colorWithRed:(red / 255.0) green:(green / 255.0) blue:(blue / 255.0) alpha:alpha];
 }
 
-+ (UIColor *)colorWithHexString:(NSString *)hex {
++ (UIColor *)colorWithHex:(NSString *)hex {
 		NSString *cString = [[hex stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
 
 		// String should be 6 or 8 characters

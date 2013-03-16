@@ -5,6 +5,7 @@
 //
 
 
+#import <MapKit/MapKit.h>
 #import "CSMapElement.h"
 #import "QMapViewController.h"
 #import "CSMapViewController.h"

@@ -8,15 +8,15 @@
 
 @class CSQButtonElement;
 
-@interface QuickDialogController (Extension)
+@interface QuickDialogController (Extension)<QuickDialogEntryElementDelegate>
 
 - (UIViewController *)createUI;
 
-- (CSQButtonElement *)addImageButton:(QSection *)section :(NSString *)title :(int)height :(UIImage *)image :(NSURL *)placeholder :(void (^)(UITableViewCell *, CSQButtonElement *))onSelected;
+- (CSQButtonElement *)addImage:(QSection *)section :(NSString *)title :(int)height :(NSURL *)url :(void (^)(QImageElement *))onValueChange;
 
-- (QEntryElement *)addEntry:(QSection *)section :(NSString *)title :(NSString *)value :(NSString *)placeholder :(void (^)(QEntryElement *))onChange;
+- (QEntryElement *)addLine:(QSection *)section :(NSString *)title :(NSString *)value :(NSString *)placeholder :(void (^)(QEntryElement *))onChange;
 
-- (QEntryElement *)addMultiLineEntry:(QSection *)section :(NSString *)title :(NSString *)value :(NSString *)placeholder :(void (^)(QEntryElement *))onValueChange;
+- (QEntryElement *)addMultiLine:(QSection *)section :(NSString *)title :(NSString *)value :(NSString *)placeholder :(void (^)(QEntryElement *))onValueChange;
 
 - (QDateTimeInlineElement *)addDateTime:(QSection *)section :(UIDatePickerMode)mode :(NSString *)title :(NSDate *)date :(void (^)(QDateTimeElement *))onValueChange;
 

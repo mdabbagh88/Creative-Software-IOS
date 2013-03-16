@@ -81,7 +81,7 @@
 
 - (void)handleElementSelected:(QuickDialogController *)controller {
     if (_onSelected!= nil)
-          _onSelected(self);
+          _onSelected();
 
     if (self.controllerAction!=NULL && !controller.quickDialogTableView.editing){
         SEL selector = NSSelectorFromString(self.controllerAction);

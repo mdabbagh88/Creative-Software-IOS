@@ -80,4 +80,8 @@
     return [self isEqualToString:aString];
 }
 
++(NSString *)stringWithFile:(NSString *)path {
+    return [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+}
+
 @end

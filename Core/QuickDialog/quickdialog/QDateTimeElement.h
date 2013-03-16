@@ -17,8 +17,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class WalkController;
-
 
 @interface QDateTimeElement : QRootElement {
     NSDate * _dateValue;
@@ -33,8 +31,6 @@
 @property (assign) NSInteger minuteInterval;
 
 @property (assign) UIDatePickerMode mode;
-
-@property(nonatomic, unsafe_unretained) id<QuickDialogEntryElementDelegate> delegate;
 
 - (QDateTimeElement *)init;
 

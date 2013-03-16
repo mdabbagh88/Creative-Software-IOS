@@ -17,8 +17,6 @@
 
 #import "QRootElement.h"
 
-@class MKAnnotationView;
-
 
 @interface QMapElement : QRootElement {
 
@@ -27,8 +25,6 @@
 }
 
 @property(nonatomic) CLLocationCoordinate2D coordinate;
-
-@property (nonatomic,copy)void (^onAnnotationDragEnd)(MKAnnotationView *);
 
 - (QMapElement *)initWithTitle:(NSString *)string coordinate:(CLLocationCoordinate2D)param;
 

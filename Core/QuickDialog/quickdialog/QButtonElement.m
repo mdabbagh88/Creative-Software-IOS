@@ -12,7 +12,7 @@
 // permissions and limitations under the License.
 //
 
-#import "UIImageView+AFNetworking.h"
+#import "QButtonElement.h"
 
 @implementation QButtonElement
 
@@ -34,11 +34,10 @@
 
 - (UITableViewCell *)getCellForTableView:(QuickDialogTableView *)tableView controller:(QuickDialogController *)controller {
     QTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QuickformButtonElement"];
-    if (cell == nil) {
-        cell = [[QTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"QuickformButtonElement"];
+    if (cell == nil){
+        cell= [[QTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"QuickformButtonElement"];
     }
     [cell applyAppearanceForElement:self];
-    [cell.imageView setImageWithURL:self.imageURL placeholderImage:_image];
     cell.textLabel.text = _title;
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     cell.textLabel.font = self.appearance.labelFont;

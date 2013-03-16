@@ -42,4 +42,6 @@
 - (void)insertItem:(id)item :(int)index;
 
 - (void)removeItem:(id)item;
+
+- (void)removeItemAtIndex:(NSUInteger)i;
 @end

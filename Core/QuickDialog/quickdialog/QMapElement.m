@@ -13,7 +13,6 @@
 //
 
 
-#import <MapKit/MapKit.h>
 #import "QMapViewController.h"
 #import "QMapElement.h"
 #import "QuickDialog.h"

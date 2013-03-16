@@ -9,6 +9,8 @@
 
 - (void)scrollToTop;
 
+- (id)dequeueOrCreateCell:(Class)class;
+
 - (id)dequeueReusableCell:(NSString *)identifier;
 
 - (void)hideEmptyCellSplitterBySettingEmptyFooter;
