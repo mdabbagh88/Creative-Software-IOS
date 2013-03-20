@@ -275,6 +275,7 @@
 }
 
 - (Response *)showProgress:(Response *)response {
+    if (!response)return nil;
     MBProgressHUD *hud = [self showProgress];
     [self showFailed:response].onDone = ^{
         [hud hide:YES];

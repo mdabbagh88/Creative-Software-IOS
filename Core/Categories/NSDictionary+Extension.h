@@ -19,6 +19,8 @@
 
 - (id)get:(NSString *)key;
 
+- (BOOL)contains:(NSString *)key;
+
 - (id)first;
 
 - (id)last;
