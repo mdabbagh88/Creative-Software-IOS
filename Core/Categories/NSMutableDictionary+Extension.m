@@ -13,6 +13,7 @@
 }
 
 - (void)put:(id)key :(id)value {
+    if(!value) value = [NSNull null];
     [self setObject:value forKey:key];
 }
 
