@@ -22,8 +22,8 @@
     [controller displayViewController:mapController];
 }
 
-- (QMapElement *)addTo:(QSection *)section :(NSString *)title :(CLLocationCoordinate2D)coordinate {
-    QMapElement *element = [[QMapElement alloc] initWithTitle:title coordinate:coordinate];
+- (CSMapElement *)addTo:(QSection *)section :(NSString *)title :(CLLocationCoordinate2D)coordinate {
+    CSMapElement *element = (CSMapElement *) [CSMapElement.alloc initWithTitle:title coordinate:coordinate];
     [section addElement:element];
     return element;
 }

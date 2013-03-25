@@ -17,5 +17,5 @@
 
 @property (nonatomic,copy)void (^onAnnotationDragEnd)(MKAnnotationView *);
 
-- (QMapElement *)addTo:(QSection *)section :(NSString *)title :(CLLocationCoordinate2D)coordinate;
+- (CSMapElement *)addTo:(QSection *)section :(NSString *)title :(CLLocationCoordinate2D)coordinate;
 @end
