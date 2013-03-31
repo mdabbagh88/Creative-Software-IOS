@@ -5,12 +5,15 @@
 
 #import <Foundation/Foundation.h>
 #import "QuickDialogController.h"
+#import "CSImageElement.h"
 
 @class CSQButtonElement;
 
 @interface QuickDialogController (Extension)<QuickDialogEntryElementDelegate>
 
 - (UIViewController *)createUI;
+
+- (CSImageElement *)addImage:(QSection *)section :(NSString *)title :(int)height :(NSURL *)url :(UIImage *)placeholder :(void (^)(QImageElement *))onValueChange;
 
 - (CSQButtonElement *)addImage:(QSection *)section :(NSString *)title :(int)height :(NSURL *)url :(void (^)(QImageElement *))onValueChange;
 

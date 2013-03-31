@@ -49,11 +49,12 @@
     [request setHTTPShouldHandleCookies:YES];
     [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
     [[AFImageRequestOperation imageRequestOperationWithRequest:request imageProcessingBlock:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-        [self setBackgroundImage:image forState:UIControlStateNormal];
+        if (image) [self setBackgroundImage:image forState:UIControlStateNormal];
         [self hideProgress];
     }                                                  failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
         [self hideProgress];
     }] start];
 }
+
 
 @end

@@ -15,6 +15,13 @@
     return self;
 }
 
+- (CSImageElement *)addImage:(QSection *)section :(NSString *)title :(int)height :(NSURL *)url:(UIImage *)placeholder:(void (^)(QImageElement *))onValueChange {
+    CSImageElement *element = [CSImageElement.alloc initWithTitle:title url:url];
+    element.height = height;
+    element.imageValue = placeholder;
+    return (CSImageElement *) [self initializeEntry:section onValueChange:(void (^)(QEntryElement *)) onValueChange entry:element];
+}
+
 - (CSImageElement *)addImage:(QSection *)section :(NSString *)title :(int)height :(NSURL *)url:(void (^)(QImageElement *))onValueChange {
     CSImageElement *element = [CSImageElement.alloc initWithTitle:title url:url];
     element.height = height;
