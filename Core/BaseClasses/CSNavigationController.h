@@ -10,7 +10,7 @@
 
 }
 
-@property(readonly) UIViewController *popped;
+@property(readonly) UIViewController *lastPoped;
 
 @property (nonatomic,strong, readonly)CSNavigationController *instance;
 @end

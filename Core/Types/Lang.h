@@ -13,6 +13,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 #define infoEmpty()    DDLogInfo(@"")
 #define L(key) NSLocalizedString(key, nil)
 static int const MINUTE = 60;
+static int const HOUR = MINUTE * 60;
+static int const DAY = HOUR * 24;
 
 @interface Lang : NSObject
 
