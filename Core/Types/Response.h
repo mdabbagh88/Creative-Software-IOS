@@ -27,4 +27,11 @@
 - (Response *)successIfSuccess:(Response *)response;
 
 - (void)failedWithMessage:(NSString *)string;
+
+- (Response *)addOnSuccess:(void (^)(id))onSuccess;
+
+
+- (Response *)addOnDone:(void (^)())block;
+
+- (Response *)addOnFailed:(void (^)(Response <RequestProtocol> *))block;
 @end
