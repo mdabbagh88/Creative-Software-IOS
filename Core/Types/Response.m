@@ -77,4 +77,20 @@
     self.message = message;
     [self failed:self];
 }
+
+- (Response *)addOnSuccess:(void (^)(id))onSuccess {
+    [_onSuccessEvent add:onSuccess];
+    return self;
+}
+
+- (Response *)addOnDone:(void (^)())block {
+    [_onDoneEvent add:block];
+    return self;
+}
+
+- (Response *)addOnFailed:(void (^)(Response <RequestProtocol> *))block {
+    [_onFailedEvent add:block];
+    return self;
+}
+
 @end
