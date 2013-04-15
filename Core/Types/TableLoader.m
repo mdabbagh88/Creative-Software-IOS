@@ -16,7 +16,7 @@
 
 - (TableLoader *)from:(UITableView *)table :(UIView *)loadNextIndicator :(NSMutableArray *)data {
     _table = table;
-    _table.visible = NO;
+    _table.visible = YES;
     _loadNextIndicator = loadNextIndicator;
     _loadNextIndicator.hidden = YES;
     _data = data;
@@ -50,6 +50,7 @@
 }
 
 - (void)reload {
+    self.emptyLabel.visible = NO;
     _noNext = NO;
     _loading = YES;
     Response *response = self.onReload();
@@ -57,6 +58,11 @@
     response.onDone = ^{
         [self onDone];
     };
+}
+
+- (void)setEmptyLabel:(UIView *)emptyLabel {
+    _emptyLabel = emptyLabel;
+    _emptyLabel.visible = NO;
 }
 
 - (void)onDone {
@@ -68,17 +74,7 @@
 
 - (void)updateEmpty {
     _emptyLabel.fadeVisible = _data.empty;
-    if (_data.count) {
-        if (_table.visible)return;
-        _table.backgroundColor = [UIColor whiteColor];
-        [_table fadeIn];
-    } else {
-        if (_table.hidden)return;
-        [_table fadeOut:0.5 :^{
-            _table.backgroundColor = [UIColor clearColor];
-            [_table setHidden:NO];
-        }];
-    }
+    _emptyLabel.userInteractionEnabled = NO;
 }
 
 - (void)onReloadSuccess:(NSArray *)array {

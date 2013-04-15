@@ -5,6 +5,7 @@
 
 #import "QuickDialogController+Extension.h"
 #import "CSImageElement.h"
+#import "CSPickerElement.h"
 
 @implementation QuickDialogController (Extension)
 
@@ -62,7 +63,7 @@
 
 
 - (QPickerElement *)addPicker:(QSection *)section :(NSString *)title :(NSArray *)items :(NSString *)value :(void (^)(QPickerElement *))onChange {
-    QPickerElement *picker = [[QPickerElement new] initWithTitle:title items:items value:value];
+    QPickerElement *picker = [[CSPickerElement new] initWithTitle:title items:items value:value];
     picker.delegate = self;
     picker.onValueChanged = ^(QRootElement *element) {
         runWith(onChange, element);

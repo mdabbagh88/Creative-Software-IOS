@@ -12,6 +12,7 @@ void runWith(void (^block)(id), id value) {
 }
 
 void doLater(void (^block)(void), NSTimeInterval delay) {
+    if (!block)return;
     dispatch_queue_t currentQueue = dispatch_get_current_queue();
     dispatch_queue_t mainQueue = dispatch_get_main_queue();
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC* delay),
@@ -19,18 +20,21 @@ void doLater(void (^block)(void), NSTimeInterval delay) {
 }
 
 void doLaterWith(void (^block)(id), id value, NSTimeInterval delay) {
+    if (!block)return;
     doLater(^{
         runWith(block, value);
     }, delay);
 }
 
 void invoke(void (^block)(void)) {
+    if (!block)return;
     dispatch_queue_t currentQueue = dispatch_get_current_queue();
     dispatch_queue_t mainQueue = dispatch_get_main_queue();
     dispatch_after(0.0f, currentQueue == mainQueue ? currentQueue : mainQueue, block);
 }
 
 void invokeWith(void (^block)(id), id value) {
+    if (!block)return;
     invoke(^{
         runWith(block, value);
     });

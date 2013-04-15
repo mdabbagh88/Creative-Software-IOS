@@ -21,7 +21,7 @@
 
 @property(nonatomic, copy) Response *(^onLoadNext)();
 
-@property(nonatomic, strong) UILabel *emptyLabel;
+@property(nonatomic, strong) UIView *emptyLabel;
 
 - (TableLoader *)from:(UITableView *)table:(UIView *)loadNextIndicator :(NSMutableArray *)data;
 
