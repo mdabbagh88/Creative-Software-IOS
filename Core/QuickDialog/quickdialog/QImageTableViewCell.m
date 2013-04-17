@@ -39,7 +39,6 @@ static NSString *kDetailImageValueObservanceContext = @"imageValue";
 
 - (void)createSubviews {
     _imageViewButton = [[UIButton alloc] init];
-    _imageViewButton.contentMode = UIViewContentModeScaleAspectFill;
     _imageViewButton.layer.cornerRadius = 7.2f;
     _imageViewButton.layer.masksToBounds = YES;
     _imageViewButton.contentMode = UIViewContentModeScaleAspectFill;
