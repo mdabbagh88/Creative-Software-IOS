@@ -10,6 +10,8 @@
 @interface UIButton (Extension)
 - (void)stretchableBackgroundImageWithLeftCapWidth:(NSInteger)leftCapWidth topCapHeight:(NSInteger)topCapHeight;
 
+- (void)setTitleColor:(UIColor *)color;
+
 - (void)setImageWithURL:(NSURL *)url;
 
 - (void)setBackgroundImageWithURL:(NSURL *)url;

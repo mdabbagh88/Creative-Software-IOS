@@ -18,6 +18,13 @@
     [self setBackgroundImage:[[self backgroundImageForState:UIControlStateHighlighted] stretchableImageWithLeftCapWidth:leftCapWidth topCapHeight:topCapHeight] forState:UIControlStateHighlighted];
 }
 
+- (void)setTitleColor:(UIColor *)color {
+    [self setTitleColor:color forState:UIControlStateNormal];
+    [self setTitleColor:color forState:UIControlStateHighlighted];
+    [self setTitleColor:color forState:UIControlStateDisabled];
+    [self setTitleColor:color forState:UIControlStateSelected];
+}
+
 - (void)setText:(NSString *)text {
     [self setTitle:text forState:UIControlStateNormal];
 }
