@@ -6,6 +6,7 @@
 #import "QuickDialogController+Extension.h"
 #import "CSImageElement.h"
 #import "CSPickerElement.h"
+#import "UIImage+Extension.h"
 
 @implementation QuickDialogController (Extension)
 
@@ -16,10 +17,10 @@
     return self;
 }
 
-- (CSImageElement *)addImage:(QSection *)section :(NSString *)title :(int)height :(NSURL *)url:(UIImage *)placeholder:(void (^)(QImageElement *))onValueChange {
+- (CSImageElement *)addImage:(QSection *)section :(NSString *)title :(float)height :(NSURL *)url:(UIImage *)placeholder:(void (^)(QImageElement *))onValueChange {
     CSImageElement *element = [CSImageElement.alloc initWithTitle:title url:url];
     element.height = height;
-    element.imageValue = placeholder;
+    element.imageValue = [placeholder scaleToHeight:height];
     return (CSImageElement *) [self initializeEntry:section onValueChange:(void (^)(QEntryElement *)) onValueChange entry:element];
 }
 
