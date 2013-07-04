@@ -20,6 +20,10 @@ static int const DAY = HOUR * 24;
 
 void run(void (^block)());
 
+id nilToNULL(id object);
+
+id nilToString(id object);
+
 void runWith(void (^block)(id), id value);
 
 void doLater(void (^block)(void), NSTimeInterval delay);

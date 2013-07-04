@@ -23,15 +23,18 @@
 
 @property(nonatomic, strong) UIView *emptyLabel;
 
+@property(nonatomic, strong) NSMutableArray *data;
+
+
 - (TableLoader *)from:(UITableView *)table:(UIView *)loadNextIndicator :(NSMutableArray *)data;
 
 - (void)onReloadSuccess:(NSArray *)array;
 
 - (void)onLoadSuccess:(NSArray *)array;
 
-- (void)reload;
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
 
-- (void)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)reload;
 
 - (void)updateEmpty;
 

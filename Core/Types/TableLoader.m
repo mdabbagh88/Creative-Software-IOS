@@ -9,7 +9,6 @@
 
 @implementation TableLoader {
     UIView *_loadNextIndicator;
-    NSMutableArray *_data;
     BOOL _noNext;
     BOOL _loading;
 }
@@ -26,14 +25,10 @@
     return self;
 }
 
-- (void)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self shouldLoadNext:indexPath]) [self loadNext];
-}
-
-
 - (void)loadNext {
-    [_loadNextIndicator fadeIn];
+    if (_loading)return;
     _loading = YES;
+    [_loadNextIndicator fadeIn];
     _onLoadNext().onDone = ^{
         [self onDone];
         [_loadNextIndicator fadeOut];
@@ -42,7 +37,13 @@
 
 - (BOOL)shouldLoadNext:(NSIndexPath *)indexPath {
     if (_loading)return NO;
-    return !_noNext && indexPath.row > _data.count - 5;
+    return !_noNext && indexPath.row >= _data.count - 5;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    infoInt(indexPath.row);
+    infoInt(_data.count);
+    if ([self shouldLoadNext:indexPath]) [self loadNext];
 }
 
 - (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view {
@@ -79,13 +80,22 @@
 
 - (void)onReloadSuccess:(NSArray *)array {
     [_data replaceFromArray:array];
-    [self onLoadSuccess:array];
+    _noNext = array.count == 0;
+    [_table reloadData];
 }
 
 - (void)onLoadSuccess:(NSArray *)array {
-    _noNext = array.count == 0;
-    [_table reloadData];
     [self updateEmpty];
+    _noNext = array.count == 0;
+    if (_noNext)return;
+
+    NSMutableArray *indexPaths = NSMutableArray.new;
+    for (int i = 0; i < array.count; i++) [indexPaths addObject:[NSIndexPath indexPathForRow:i + _data.count inSection:0]];
+
+    [_data addObjectsFromArray:array];
+    [_table beginUpdates];
+    [_table insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+    [_table endUpdates];
 }
 
 - (void)viewWillAppear {

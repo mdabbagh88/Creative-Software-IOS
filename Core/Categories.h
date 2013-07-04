@@ -12,3 +12,4 @@
 #import "NSString+Extensions.h"
 #import "UIImageView+WebCache.h"
 #import "UIPickerView+Extension.h"
+#import "NSLocale+Extension.h"

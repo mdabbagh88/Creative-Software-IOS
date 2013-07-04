@@ -9,4 +9,5 @@
 
 - (void)selectRow:(int)row;
 
+- (UILabel *)createCenteredLabel:(NSString *)text height:(int)height;
 @end

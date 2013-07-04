@@ -43,10 +43,9 @@
                         imageProcessingBlock:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                 [self setImage:image forState:UIControlStateNormal];
                 [self hideProgress];
-            }
-                                     failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                         [self hideProgress];
-                                     }];
+            }                        failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                [self hideProgress];
+            }];
     [operation start];
 }
 

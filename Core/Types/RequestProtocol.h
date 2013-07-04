@@ -9,8 +9,15 @@
 
 @protocol RequestProtocol <NSObject>
 
-@property(nonatomic, copy) NSString *url;
+@property(nonatomic, retain) NSString *url;
 @property(nonatomic, readonly) NSDictionary *params;
-@property(nonatomic,copy) NSString *content;
+@property(nonatomic, readonly) NSString *content;
+@property(nonatomic, readonly) NSDictionary *post;
+@property(nonatomic, readonly) NSString *uploadFile;
+@property(nonatomic, readonly) NSString *uploadName;
+@property(nonatomic, readonly) NSString *uploadMIME;
+@property(nonatomic, readonly) NSData *uploadData;
+
+
 
 @end

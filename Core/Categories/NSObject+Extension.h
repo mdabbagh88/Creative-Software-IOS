@@ -22,6 +22,8 @@
 
 - (void)removeNotificationObserver;
 
+- (id)invoke:(__unused NSString *)methodName;
+
 + (NSString *)className;
 
 @end

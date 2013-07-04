@@ -5,13 +5,33 @@
 
 @implementation NSString (Extensions)
 
+static NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+
++ (NSString *)generateRandomStringOfLength:(int)len {
+    NSMutableString *randomString = [NSMutableString stringWithCapacity:(NSUInteger) len];
+    for (int i = 0; i < len; i++) {
+        [randomString appendFormat:@"%C", [letters characterAtIndex:arc4random() % [letters length]]];
+    }
+    return randomString;
+}
 
 - (NSString *)clearLast:(NSInteger)count {
+    if (count > self.length)return self;
     return [self substringToIndex:self.length - count];
+}
+
+- (NSString *)replaceLast:(NSString *)string :(NSString *)replacement {
+    return [self stringByReplacingCharactersInRange:[self rangeOfString:string options:NSBackwardsSearch] withString:replacement];
 }
 
 - (NSString *)replace:(NSString *)string :(NSString *)replacement {
     return [self stringByReplacingOccurrencesOfString:string withString:replacement];
+}
+
+- (NSString *)substringTo:(NSUInteger)to {
+    if (to > self.length)return self;
+    return [self substringToIndex:to];
 }
 
 - (NSString *)add:(NSObject *)first {
@@ -80,7 +100,7 @@
     return [self isEqualToString:aString];
 }
 
-+(NSString *)stringWithFile:(NSString *)path {
++ (NSString *)stringWithFile:(NSString *)path {
     return [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
 }
 

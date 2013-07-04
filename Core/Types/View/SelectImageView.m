@@ -40,7 +40,7 @@
         picker.delegate = self;
         picker.allowsEditing = YES;
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        _popover = [_controller presentModalInPopoverIfPossible:sender.frame :picker];
+        _popover = [_controller presentModalInPopoverIfPossible:sender :picker];
     } else {
         [self showMessage:@"Library not available"];
     }

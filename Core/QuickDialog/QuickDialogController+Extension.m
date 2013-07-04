@@ -24,7 +24,7 @@
     return (CSImageElement *) [self initializeEntry:section onValueChange:(void (^)(QEntryElement *)) onValueChange entry:element];
 }
 
-- (CSImageElement *)addImage:(QSection *)section :(NSString *)title :(int)height :(NSURL *)url:(void (^)(QImageElement *))onValueChange {
+- (CSImageElement *)addImage:(QSection *)section :(NSString *)title :(float)height :(NSURL *)url:(void (^)(QImageElement *))onValueChange {
     CSImageElement *element = [CSImageElement.alloc initWithTitle:title url:url];
     element.height = height;
     return (CSImageElement *) [self initializeEntry:section onValueChange:(void (^)(QEntryElement *)) onValueChange entry:element];

@@ -7,6 +7,8 @@
 
 @interface NSString (Extensions)
 
+- (NSString *)substringTo:(NSUInteger)to;
+
 - (NSString *)add:(NSObject *)first;
 
 - (NSString *)add:(NSObject *)first :(NSObject *)second;
@@ -31,7 +33,11 @@
 
 + (NSString *)stringWithFile:(NSString *)path;
 
++ (NSString *)generateRandomStringOfLength:(int)len;
+
 - (NSString *)clearLast:(NSInteger)count;
+
+- (NSString *)replaceLast:(NSString *)string :(NSString *)replacement;
 
 - (BOOL)set;
 
