@@ -6,8 +6,12 @@
 #import <Foundation/Foundation.h>
 #import "QuickDialogController.h"
 #import "CSImageElement.h"
+#import "QuickDialogEntryElementDelegate.h"
 
 @class CSQButtonElement;
+@class QDateTimeInlineElement;
+@class QDateTimeElement;
+@class QPickerElement;
 
 @interface QuickDialogController (Extension)<QuickDialogEntryElementDelegate>
 

@@ -13,6 +13,8 @@
 //
 
 #import "QTableViewCell.h"
+#import "QElement.h"
+
 @implementation QTableViewCell
 
 @synthesize labelingPolicy = _labelingPolicy;

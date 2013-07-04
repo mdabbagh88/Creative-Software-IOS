@@ -8,6 +8,8 @@
 
 @interface Work : NSObject
 
+@property(nonatomic) int count;
+
 - (void)start;
 
 - (void)stop;

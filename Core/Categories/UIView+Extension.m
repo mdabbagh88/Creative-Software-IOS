@@ -3,7 +3,6 @@
 //
 
 
-#import "Response.h"
 #import "MBProgressHUD.h"
 
 
@@ -121,10 +120,10 @@
 }
 
 - (void)fadeIn:(NSTimeInterval)time {
-    [self setHidden:NO];
-    [self setAlpha:0.0];
+    self.hidden = NO;
+    self.alpha = 0.0;
     [UIView animateWithDuration:time animations:^{
-        [self setAlpha:1.0];
+        self.alpha = 1.0;
     }];
 }
 
@@ -184,6 +183,10 @@
 
 - (float)height {
     return self.bounds.size.height;
+}
+
+- (CGSize)size {
+    return self.frame.size;
 }
 
 - (float)top {
@@ -263,6 +266,14 @@
     [((MBProgressHUD *) tapped.view) hide:YES];
 }
 
+- (void)show {
+    self.visible = YES;
+}
+
+- (void)hide {
+    self.visible = NO;
+}
+
 - (Response *)showResponse:(Response *)response {
     return [self showFailed:[self showProgress:response]];
 }
@@ -277,7 +288,7 @@
 - (Response *)showProgress:(Response *)response {
     if (!response)return nil;
     MBProgressHUD *hud = [self showProgress];
-    [self showFailed:response].onDone = ^{
+    response.onDone = ^{
         [hud hide:YES];
     };
     return response;

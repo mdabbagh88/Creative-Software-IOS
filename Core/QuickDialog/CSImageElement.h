@@ -6,6 +6,7 @@
 
 
 #import <Foundation/Foundation.h>
+#import "QImageElement.h"
 
 
 @interface CSImageElement : QImageElement

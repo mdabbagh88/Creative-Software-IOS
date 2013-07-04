@@ -59,6 +59,8 @@ static float const CS_FADE_TIME = 0.5;
 @property float left;
 @property float right;
 
+- (CGSize)size;
+
 - (void)clearSubViews;
 
 - (MBProgressHUD *)showProgress;
@@ -66,6 +68,10 @@ static float const CS_FADE_TIME = 0.5;
 - (void)hideProgress;
 
 - (void)showMessage :(NSString *)string;
+
+- (void)show;
+
+- (void)hide;
 
 - (Response *)showResponse:(Response *)response;
 

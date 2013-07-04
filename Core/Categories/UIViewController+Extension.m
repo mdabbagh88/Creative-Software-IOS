@@ -10,8 +10,12 @@
     return [self showResponse:request :NO];
 }
 
+- (BOOL)isControllerActive {
+    return self.navigationController.last == self;
+}
+
 - (Response *)showResponse:(Response *)response :(BOOL)reportFailure {
-    return [self.view showResponse:response];
+    return [self showFailed:[self showProgress:response]];
 }
 
 - (Response *)showFailed:(Response *)request {

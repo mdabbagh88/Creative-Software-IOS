@@ -15,6 +15,7 @@
 #import "QBindingEvaluator.h"
 #import "QRadioElement.h"
 #import "QuickDialog.h"
+#import "QEntryTableViewCell.h"
 
 @implementation QRadioElement {
     QSection *_internalRadioItemsSection;

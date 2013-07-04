@@ -10,6 +10,7 @@
 #import "QMapViewController.h"
 #import "CSMapViewController.h"
 #import "QuickDialogController.h"
+#import "QuickDialogController+Navigation.h"
 
 
 @implementation CSMapElement {

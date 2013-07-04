@@ -13,8 +13,8 @@
 }
 
 - (void)setTextColor:(UIColor *)color {
-    lastUpdatedLabel.textColor = color;
-    statusLabel.textColor = color;
+    self.lastUpdatedLabel.textColor = color;
+    self.statusLabel.textColor = color;
 }
 
 @end

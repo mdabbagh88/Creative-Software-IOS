@@ -20,6 +20,8 @@
 
 @property(nonatomic, copy) NSString *message;
 
+@property(nonatomic, readonly) BOOL failed;
+
 - (Response *)failIfFail:(Response *)request;
 
 - (Response *)connect:(Response *)response;
@@ -29,7 +31,6 @@
 - (void)failedWithMessage:(NSString *)string;
 
 - (Response *)addOnSuccess:(void (^)(id))onSuccess;
-
 
 - (Response *)addOnDone:(void (^)())block;
 

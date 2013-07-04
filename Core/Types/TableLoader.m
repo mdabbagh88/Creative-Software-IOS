@@ -46,6 +46,7 @@
 }
 
 - (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view {
+    info(@"");
     [self reload];
 }
 

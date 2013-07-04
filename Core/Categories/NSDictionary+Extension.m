@@ -42,9 +42,9 @@
     return [self at:index];
 }
 
-//- (id)objectForKeyedSubscript:(NSString *)key {
-//    return [self objectForKey:key];
-//}
+- (id)objectForKeyedSubscript:(NSString *)key {
+    return [self objectForKey:key];
+}
 
 - (id)get:(NSString *)key {
     return [self objectForKey:key];
