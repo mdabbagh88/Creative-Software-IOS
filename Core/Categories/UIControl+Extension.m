@@ -10,7 +10,8 @@
 @implementation UIControl (Extension)
 
 - (void)addTouchDown:(id)target:(SEL)action {
-    [self addTarget:target action:action forControlEvents:UIControlEventTouchDown];
+    [self addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    [self addTarget:target action:action forControlEvents:UIControlEventTouchUpOutside];
 }
 
 - (void)addEffectTouchDown:(id)target:(SEL)action {

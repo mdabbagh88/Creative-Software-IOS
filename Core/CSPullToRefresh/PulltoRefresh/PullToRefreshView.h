@@ -42,16 +42,16 @@ typedef enum {
 
 @interface PullToRefreshView : UIView {
 	PullToRefreshViewState state;
-    
-	UILabel *lastUpdatedLabel;
-	UILabel *statusLabel;
-	CALayer *arrowImage;
+
+    CALayer *arrowImage;
 	UIActivityIndicatorView *activityView;
 }
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, weak) id<PullToRefreshViewDelegate> delegate;
 @property (nonatomic, assign, getter = isEnabled) BOOL enabled;
+@property(nonatomic, strong) UILabel *lastUpdatedLabel;
+@property(nonatomic, strong) UILabel *statusLabel;
 
 - (void)refreshLastUpdatedDate;
 - (void)finishedLoading;

@@ -4,7 +4,6 @@
 
 
 
-#import "Response.h"
 #import "ArgEvent.h"
 #import "Event.h"
 #import "RequestProtocol.h"
@@ -33,6 +32,8 @@
 
 - (void)failed:(Response <RequestProtocol> *)response {
     if (_canceled)return;
+    if (self.failed)return;
+    _failed = YES;
     [_onFailedEvent run:response];
     [_onDoneEvent run];
 }

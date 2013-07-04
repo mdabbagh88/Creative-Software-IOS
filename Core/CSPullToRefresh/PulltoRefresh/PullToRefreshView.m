@@ -71,25 +71,25 @@
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         self.backgroundColor = [UIColor colorWithRed:226.0 / 255.0 green:231.0 / 255.0 blue:237.0 / 255.0 alpha:1.0];
 
-        lastUpdatedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 30.0f, self.frame.size.width, 20.0f)];
-        lastUpdatedLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        lastUpdatedLabel.font = [UIFont systemFontOfSize:9.0f];
-        lastUpdatedLabel.textColor = TEXT_COLOR;
-        lastUpdatedLabel.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
-        lastUpdatedLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
-        lastUpdatedLabel.backgroundColor = [UIColor clearColor];
-        lastUpdatedLabel.textAlignment = UITextAlignmentCenter;
-        [self addSubview:lastUpdatedLabel];
+        self.lastUpdatedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 30.0f, self.frame.size.width, 20.0f)];
+        self.lastUpdatedLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        self.lastUpdatedLabel.font = [UIFont systemFontOfSize:9.0f];
+        self.lastUpdatedLabel.textColor = TEXT_COLOR;
+        self.lastUpdatedLabel.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
+        self.lastUpdatedLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
+        self.lastUpdatedLabel.backgroundColor = [UIColor clearColor];
+        self.lastUpdatedLabel.textAlignment = UITextAlignmentCenter;
+        [self addSubview:self.lastUpdatedLabel];
 
-        statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 48.0f, self.frame.size.width, 20.0f)];
-        statusLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        statusLabel.font = [UIFont boldSystemFontOfSize:13.0f];
-        statusLabel.textColor = TEXT_COLOR;
-        statusLabel.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
-        statusLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
-        statusLabel.backgroundColor = [UIColor clearColor];
-        statusLabel.textAlignment = UITextAlignmentCenter;
-        [self addSubview:statusLabel];
+        self.statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 48.0f, self.frame.size.width, 20.0f)];
+        self.statusLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        self.statusLabel.font = [UIFont boldSystemFontOfSize:13.0f];
+        self.statusLabel.textColor = TEXT_COLOR;
+        self.statusLabel.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
+        self.statusLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
+        self.statusLabel.backgroundColor = [UIColor clearColor];
+        self.statusLabel.textAlignment = UITextAlignmentCenter;
+        [self addSubview:self.statusLabel];
 
         arrowImage = [[CALayer alloc] init];
         arrowImage.frame = CGRectMake(10.0f, frame.size.height - 60.0f, 24.0f, 52.0f);
@@ -140,7 +140,7 @@
     [formatter setLocale:[NSLocale currentLocale]];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterMediumStyle];
-    lastUpdatedLabel.text = [NSString stringWithFormat:@"Last Updated: %@", [formatter stringFromDate:date]];
+    self.lastUpdatedLabel.text = [NSString stringWithFormat:@"Last Updated: %@", [formatter stringFromDate:date]];
 }
 
 - (void) setState:(PullToRefreshViewState)state_ {
@@ -148,14 +148,14 @@
 
     switch (state) {
         case PullToRefreshViewStateReady:
-            statusLabel.text = @"Release to refresh...";
+            self.statusLabel.text = @"Release to refresh...";
             [self showActivity:NO animated:NO];
             [self setImageFlipped:YES];
             scrollView.contentInset = UIEdgeInsetsZero;
             break;
 
         case PullToRefreshViewStateNormal:
-            statusLabel.text = @"Pull down to refresh...";
+            self.statusLabel.text = @"Pull down to refresh...";
             [self showActivity:NO animated:NO];
             [self setImageFlipped:NO];
             [self refreshLastUpdatedDate];
@@ -163,7 +163,7 @@
             break;
 
         case PullToRefreshViewStateLoading:
-            statusLabel.text = @"Loading...";
+            self.statusLabel.text = @"Loading...";
             [self showActivity:YES animated:YES];
             [self setImageFlipped:NO];
             scrollView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);

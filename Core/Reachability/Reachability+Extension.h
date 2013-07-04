@@ -8,8 +8,6 @@
 
 @interface Reachability (Extension)
 
-- (void)setOnReachable:(NetworkReachable)block;
-
 + (BOOL)isReachable:(NSString *)URL;
 
 @end

@@ -3,11 +3,12 @@
 //
 
 #import "Work.h"
-#import "DoLaterProcess.h"
 
 @implementation Work {
     BOOL stop;
+
     void (^_method)();
+
     double _delay;
     NSTimer *_timer;
 }
@@ -18,7 +19,10 @@
 }
 
 - (void)run {
-    if (!stop) run(_method);
+    if (!stop) {
+        _count++;
+        run(_method);
+    }
 }
 
 - (Work *)with:(void (^)())method :(double)delay {
@@ -30,11 +34,16 @@
 - (void)start {
     if (stop) {
         stop = NO;
-        _timer =  [NSTimer scheduledTimerWithTimeInterval:_delay target:self selector:@selector(run) userInfo:nil repeats:YES];
+        _count = 0;
+        _timer = [NSTimer scheduledTimerWithTimeInterval:_delay target:self selector:@selector(run) userInfo:nil repeats:YES];
+    } else {
+        _count = 0;
     }
 }
 
 - (void)stop {
+    if (stop)return;
+
     stop = YES;
     [_timer invalidate];
     _timer = nil;

@@ -7,6 +7,9 @@
 #import "CSImageElement.h"
 #import "CSPickerElement.h"
 #import "UIImage+Extension.h"
+#import "QDateTimeInlineElement.h"
+#import "QDateTimeElement.h"
+#import "QPickerElement.h"
 
 @implementation QuickDialogController (Extension)
 

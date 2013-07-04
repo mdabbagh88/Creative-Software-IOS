@@ -6,6 +6,13 @@
 //  Copyright (c) 2012 Quickfire Software. All rights reserved.
 //
 
+#import "QSection.h"
+#import "QRadioElement.h"
+#import "QColorPickerElement.h"
+#import "QEntryTableViewCell.h"
+#import "QTextField.h"
+#import "UIColor+ColorUtilities.h"
+
 @implementation QColorPickerElement {
     QSection *_internalRadioItemsSection;
 }
