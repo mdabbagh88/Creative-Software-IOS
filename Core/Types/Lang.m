@@ -7,6 +7,16 @@ void run(void (^block)()) {
     if (block)block();
 }
 
+id nilToNULL(id object) {
+    if (object == nil)return [NSNull null];
+    return object;
+}
+
+id nilToString(id object) {
+    if (object == nil)return @"";
+    return object;
+}
+
 void runWith(void (^block)(id), id value) {
     if (block)block(value);
 }

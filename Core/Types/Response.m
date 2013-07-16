@@ -7,9 +7,9 @@
 #import "ArgEvent.h"
 #import "Event.h"
 #import "RequestProtocol.h"
+#import "Response.h"
 
 @implementation Response {
-    BOOL _canceled;
     ArgEvent *_onFailedEvent;
     ArgEvent *_onSuccessEvent;
     Event *_onDoneEvent;
@@ -26,16 +26,29 @@
 
 - (void)success:(id)data {
     if (_canceled)return;
+    [self onSuccessEvent:data];
+    [self onDoneEvent];
+}
+
+- (void)onSuccessEvent:(id)data {
+    _success = YES;
     [_onSuccessEvent run:data];
+}
+
+- (void)onDoneEvent {
+    _done = YES;
     [_onDoneEvent run];
 }
 
 - (void)failed:(Response <RequestProtocol> *)response {
     if (_canceled)return;
-    if (self.failed)return;
+    [self onFailedEvent:response];
+    [self onDoneEvent];
+}
+
+- (void)onFailedEvent:(Response <RequestProtocol> *)response {
     _failed = YES;
     [_onFailedEvent run:response];
-    [_onDoneEvent run];
 }
 
 - (void)cancel {
@@ -92,6 +105,14 @@
 - (Response *)addOnFailed:(void (^)(Response <RequestProtocol> *))block {
     [_onFailedEvent add:block];
     return self;
+}
+
+- (void)reset {
+    _message = nil;
+    _done = false;
+    _success = false;
+    _failed = false;
+    _canceled = false;
 }
 
 @end

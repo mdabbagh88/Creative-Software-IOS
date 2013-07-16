@@ -9,33 +9,39 @@
 @implementation NSObject (Extension)
 
 - (DoLaterProcess *)doLater:(void (^)())method {
-		return [[DoLaterProcess new] from:method :0.1];
+    return [[DoLaterProcess new] from:method :0.1];
 }
 
 - (DoLaterProcess *)doLater:(void (^)())method :(double)delay {
-		return [[DoLaterProcess new] from:method :delay];
+    return [[DoLaterProcess new] from:method :delay];
 }
 
 - (Work *)schedule:(void (^)())method :(double)delay {
-		return [[Work new] with:method :delay];
+    return [[Work new] with:method :delay];
 }
 
 - (void)addNotificationCenterObserver:(SEL)sel name:(NSString *)name {
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:sel name:name object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:sel name:name object:nil];
 }
 
 - (void)addNotificationCenterObserver:(SEL)sel name:(NSString *)name for:(id)object {
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:sel name:name object:object];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:sel name:name object:object];
 }
 
 - (void)removeNotificationObserver {
-		[[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 + (NSString *)className {
-		return self.class.description;
+    return [self.class description];
 }
 
-
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+- (id)invoke:(NSString *)methodName {
+    SEL selector = @selector(methodName);
+    return ([self respondsToSelector:selector]) ? ([self performSelector:selector]) : nil;
+}
+#pragma clang diagnostic pop
 
 @end

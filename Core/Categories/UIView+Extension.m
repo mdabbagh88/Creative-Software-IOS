@@ -4,6 +4,7 @@
 
 
 #import "MBProgressHUD.h"
+#import "Response.h"
 
 
 @implementation UIView (Extension)
@@ -241,8 +242,8 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
     hud.color = [UIColor clearColor];
     hud.dimBackground = YES;
-    hud.square = YES;
-    hud.opacity = 1;
+    hud.square = NO;
+    hud.opacity = 0.8;
     hud.margin = 0;
     [hud updateIndicators];
     return hud;

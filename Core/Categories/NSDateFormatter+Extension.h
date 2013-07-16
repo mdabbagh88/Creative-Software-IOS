@@ -9,6 +9,13 @@
 
 + (NSString *)format:(NSDate *)date :(NSString *)format;
 
++ (NSString *)format:(NSDate *)date;
+
++ (NSDate *)load:(NSString *)date;
+
 + (NSDateFormatter *)create:(NSString *)format;
 
++ (NSDateFormatter *)create;
+
+- (NSString *)now;
 @end

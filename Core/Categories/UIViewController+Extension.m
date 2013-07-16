@@ -6,6 +6,10 @@
 
 @implementation UIViewController (Extension)
 
+- (NSString *)controllerName {
+    return [[self.class description] replaceLast:@"Controller" :@""];
+}
+
 - (Response *)showResponse:(Response *)request {
     return [self showResponse:request :NO];
 }
@@ -30,11 +34,12 @@
     [self.view showMessage:string];
 }
 
-- (UIPopoverController *)presentInPopoverIfPossible:(CGRect)rectangle :(UIViewController *)controller :(id <UIPopoverControllerDelegate>)delegate {
+
+- (UIPopoverController *)presentInPopoverIfPossible:(UIView *)view :(UIViewController *)controller :(id <UIPopoverControllerDelegate>)delegate {
     if (UIDevice.ipad) {
         UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:controller];
         popover.delegate = delegate;
-        [popover presentPopoverFromRect:rectangle inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        [popover presentPopoverFromRect:view.bounds inView:view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
         return popover;
     } else {
         [self.navigationController pushViewController:controller];
@@ -42,11 +47,11 @@
     }
 }
 
-- (UIPopoverController *)presentModalInPopoverIfPossible:(CGRect)rectangle :(UIViewController *)controller :(id <UIPopoverControllerDelegate>)delegate {
+- (UIPopoverController *)presentModalInPopoverIfPossible:(UIView *)view :(UIViewController *)controller :(id <UIPopoverControllerDelegate>)delegate {
     if (UIDevice .ipad) {
         UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:controller];
         popover.delegate = delegate;
-        [popover presentPopoverFromRect:rectangle inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        [popover presentPopoverFromRect:view.bounds inView:view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
         return popover;
     } else {
         [self presentModalViewController:controller animated:YES];
@@ -54,12 +59,12 @@
     }
 }
 
-- (UIPopoverController *)presentModalInPopoverIfPossible:(CGRect)rectangle :(UIViewController *)controller {
-    return [self presentModalInPopoverIfPossible:rectangle :controller :nil];
+- (UIPopoverController *)presentModalInPopoverIfPossible:(UIView *)view:(UIViewController *)controller {
+    return [self presentModalInPopoverIfPossible:view :controller :nil];
 }
 
-- (UIPopoverController *)presentInPopoverIfPossible:(CGRect)rectangle :(UIViewController *)controller {
-    return [self presentInPopoverIfPossible:rectangle :controller :nil];
+- (UIPopoverController *)presentInPopoverIfPossible:(UIView *)view:(UIViewController *)controller {
+    return [self presentInPopoverIfPossible:view :controller :nil];
 }
 
 + (id)create {

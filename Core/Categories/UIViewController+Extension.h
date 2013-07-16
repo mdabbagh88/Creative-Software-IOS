@@ -7,13 +7,15 @@
 
 @interface UIViewController (Extension) <UITextFieldDelegate>
 
--(UIPopoverController *)presentModalInPopoverIfPossible:(CGRect)rectangle :(UIViewController *)controller;
+-(UIPopoverController *)presentModalInPopoverIfPossible:(UIView*)view :(UIViewController *)controller;
 
-- (UIPopoverController *)presentInPopoverIfPossible:(CGRect)rectangle :(UIViewController *)controller;
+- (UIPopoverController *)presentInPopoverIfPossible:(UIView*)view :(UIViewController *)controller;
 
 + (id)create;
 
 + (id)create:(NSString *)nib;
+
+- (NSString *)controllerName;
 
 - (Response *)showResponse:(Response *)request;
 
@@ -27,7 +29,7 @@
 
 - (void)showMessage :(NSString *)string;
 
-- (UIPopoverController *)presentInPopoverIfPossible:(CGRect)rectangle :(UIViewController *)controller :(id <UIPopoverControllerDelegate>)delegate;
+- (UIPopoverController *)presentInPopoverIfPossible:(UIView*)view :(UIViewController *)controller :(id <UIPopoverControllerDelegate>)delegate;
 
--(UIPopoverController *)presentModalInPopoverIfPossible:(CGRect)rectangle :(UIViewController *)controller :(id<UIPopoverControllerDelegate>)delegate;
+-(UIPopoverController *)presentModalInPopoverIfPossible:(UIView*)view :(UIViewController *)controller :(id<UIPopoverControllerDelegate>)delegate;
 @end
