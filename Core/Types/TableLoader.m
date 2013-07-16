@@ -15,7 +15,6 @@
 
 - (TableLoader *)from:(UITableView *)table :(UIView *)loadNextIndicator :(NSMutableArray *)data {
     _table = table;
-    _table.visible = YES;
     _loadNextIndicator = loadNextIndicator;
     _loadNextIndicator.hidden = YES;
     _data = data;
@@ -41,13 +40,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    infoInt(indexPath.row);
-    infoInt(_data.count);
     if ([self shouldLoadNext:indexPath]) [self loadNext];
 }
 
 - (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view {
-    info(@"");
     [self reload];
 }
 
@@ -72,6 +68,7 @@
     [self updateEmpty];
     [_refreshHeaderView refreshLastUpdatedDate];
     [_refreshHeaderView finishedLoading];
+    [_table fadeIn];
 }
 
 - (void)updateEmpty {

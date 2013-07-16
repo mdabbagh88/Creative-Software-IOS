@@ -18,7 +18,7 @@
     _button1Action = [onSubmit copy];
     self.alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:okTitle, nil];
     [self.alert show];
-    self.visible = YES;
+    _visible = YES;
     return self;
 }
 
@@ -48,7 +48,7 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    self.visible = NO;
+    _visible = NO;
 }
 
 - (CSAlertView *)show:(NSString *)title :(NSString *)message :(NSString *)button1 :(void (^)())button1Action :(NSString *)button2 :(void (^)())button2Action {
@@ -56,12 +56,12 @@
     _button2Action = [button2Action copy];
     self.alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:nil otherButtonTitles:button1, button2, nil];
     [self.alert show];
-    self.visible = YES;
+    _visible = YES;
     return self;
 }
 
 - (void)hide {
-    self.visible = NO;
+    _visible = NO;
     [self.alert dismissWithClickedButtonIndex:-1 animated:YES];
 }
 

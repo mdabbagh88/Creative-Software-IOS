@@ -15,7 +15,7 @@
     if ((self = [super init])) {
         threadUnsafeDateFormatter = [[NSDateFormatter alloc] init];
         [threadUnsafeDateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-        [threadUnsafeDateFormatter setDateFormat:@"yyyy/MM/dd HH:mm:ss:SSS"];
+        [threadUnsafeDateFormatter setDateFormat:@"HH:mm:ss:SSS"];
     }
     return self;
 }
@@ -39,7 +39,7 @@
     }
 
     NSString *dateAndTime = [threadUnsafeDateFormatter stringFromDate:(logMessage->timestamp)];
-    return [NSString stringWithFormat:@"%@ %@ %@ %@ %i = %@\n", dateAndTime, logLevel, logMessage.fileName,
+    return [NSString stringWithFormat:@"%@ %@ %@ %@ %i = %@", dateAndTime, logLevel, logMessage.fileName,
                                       logMessage.methodName, logMessage->lineNumber, logMessage->logMsg];
 }
 @end

@@ -12,9 +12,7 @@
 
 - (void)setTitleColor:(UIColor *)color;
 
-- (void)setImageWithURL:(NSURL *)url;
-
-- (void)setBackgroundImageWithURL:(NSURL *)url;
-
 @property(nonatomic, copy) NSString * text;
+
+- (void)setImage:(UIImage *)image;
 @end

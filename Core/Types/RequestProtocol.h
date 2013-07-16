@@ -9,7 +9,7 @@
 
 @protocol RequestProtocol <NSObject>
 
-@property(nonatomic, retain) NSString *url;
+@property(nonatomic, readonly) NSString *url;
 @property(nonatomic, readonly) NSDictionary *params;
 @property(nonatomic, readonly) NSString *content;
 @property(nonatomic, readonly) NSDictionary *post;

@@ -10,4 +10,5 @@
 
 + (BOOL)isReachable:(NSString *)URL;
 
+- (void)setOnReachable:(NetworkReachable)onReachable;
 @end

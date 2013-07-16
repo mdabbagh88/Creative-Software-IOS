@@ -1,3 +1,4 @@
+#import "Lang.h"
 #import "NSDictionary+Extension.h"
 #import "NSArray+Extension.h"
 #import "NSMutableArray+Extension.h"
@@ -10,6 +11,6 @@
 #import "UIDevice+Extension.h"
 #import "UIScrollView+Extension.h"
 #import "NSString+Extensions.h"
-#import "UIImageView+WebCache.h"
 #import "UIPickerView+Extension.h"
 #import "NSLocale+Extension.h"
+#import "NSUserDefaults+Extension.h"

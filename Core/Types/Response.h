@@ -22,6 +22,10 @@
 
 @property(nonatomic, readonly) BOOL failed;
 
+@property(nonatomic) BOOL done;
+
+@property(nonatomic) BOOL success;
+
 - (Response *)failIfFail:(Response *)request;
 
 - (Response *)connect:(Response *)response;
@@ -35,4 +39,6 @@
 - (Response *)addOnDone:(void (^)())block;
 
 - (Response *)addOnFailed:(void (^)(Response <RequestProtocol> *))block;
+
+- (void)reset;
 @end
