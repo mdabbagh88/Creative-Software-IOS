@@ -34,9 +34,9 @@ static char imageFetchOperationKey;
                                 duration:isInCache ? kFromCacheAnimationDuration : kFreshLoadAnimationDuration
                                 options:UIViewAnimationOptionTransitionCrossDissolve | UIViewAnimationOptionAllowUserInteraction
                                 animations:^{
-                                    onImage(fetchedImage);
+                                    runWith(onImage, fetchedImage);
                                 } completion:nil];
-                    } else onImage(fetchedImage);
+                    } else runWith(onImage, fetchedImage);
                 } errorHandler:^(MKNetworkOperation *completedOperation, NSError *_error) {
                     error(_error);
                 }];

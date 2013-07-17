@@ -35,7 +35,9 @@ static NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXY
 }
 
 - (NSString *)add:(NSObject *)first {
-    if (first) return [self stringByAppendingString:first.description];
+    if (!first)return self;
+    NSString *description = first.description;
+    if (description) return [self stringByAppendingString:description];
     return self;
 }
 

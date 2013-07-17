@@ -15,9 +15,7 @@ static NSString *_format = @"yyyy-MM-dd HH:mm:ssSSSSSS";
 }
 
 + (NSString *)format:(NSDate *)date {
-    NSDateFormatter *formatter = NSDateFormatter.new;
-    formatter.dateStyle = NSDateFormatterFullStyle;
-    return [formatter stringFromDate:date];
+    return [NSDateFormatter.create stringFromDate:date];
 }
 
 + (NSDate *)load:(NSString *)date {
@@ -36,7 +34,7 @@ static NSString *_format = @"yyyy-MM-dd HH:mm:ssSSSSSS";
     return [NSDateFormatter create:_format];
 }
 
--(NSString *)now{
+- (NSString *)now {
     return [self stringFromDate:NSDate.date];
 }
 

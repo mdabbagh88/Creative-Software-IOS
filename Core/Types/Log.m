@@ -21,7 +21,7 @@ static NSDateFormatter *_format;
 
 + (void)addLogLine:(NSString *)value {
     _log = [self.log add:_format.now :@" " :value :@"\n"];
-    if (_log.length > 20000)[_log substringTo:10000];
+    if (_log.length > 10000)[_log substringTo:5000];
 }
 
 + (NSString *)log {
