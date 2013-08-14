@@ -23,10 +23,6 @@
     return [NSNumber numberWithInt:(celsius.intValue * 1.8 + 32)];
 }
 
-+ (NSNumber *)fromLocaleToCelsius:(NSNumber *)localeTemperature {
-    return (NSLocale.isMetric) ? localeTemperature : ([NSLocale toCelsius:localeTemperature]);
-}
-
 + (NSNumber *)fromCelsiusToLocale:(NSNumber *)celsius {
     return (NSLocale.isMetric) ? celsius : ([NSLocale toFahrenheit:celsius]);
 }

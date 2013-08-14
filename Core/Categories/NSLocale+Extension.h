@@ -15,8 +15,6 @@
 
 + (NSNumber *)toFahrenheit:(NSNumber *)celsius;
 
-+ (NSNumber *)fromLocaleToCelsius:(NSNumber *)localeTemperature;
-
 + (NSNumber *)fromCelsiusToLocale:(NSNumber *)celsius;
 
 + (NSNumber *)fromFahrenheitToLocale:(NSNumber *)fahrenheit;
