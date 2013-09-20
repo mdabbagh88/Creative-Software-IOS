@@ -55,9 +55,8 @@
 }
 
 - (QDateTimeInlineElement *)addDateTime:(QSection *)section:(UIDatePickerMode)mode :(NSString *)title :(NSDate *)date :(void (^)(QDateTimeElement *))onValueChange {
-    QDateTimeInlineElement *element = [[QDateTimeInlineElement alloc] initWithTitle:title date:date];
+    QDateTimeInlineElement *element = [[QDateTimeInlineElement alloc] initWithTitle:title date:date andMode:mode];
     [section addElement:element];
-    element.mode = mode;
     element.delegate = self;
     element.onValueChanged = ^(QRootElement *_element) {
         runWith(onValueChange, _element);

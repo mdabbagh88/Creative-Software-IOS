@@ -1,0 +1,12 @@
+[submodule "CocoaLumberjack"]
+	path = CocoaLumberjack
+	url = https://github.com/robbiehanson/CocoaLumberjack.git
+[submodule "QuickDialog"]
+	path = QuickDialog
+	url = https://github.com/escoz/QuickDialog.git
+[submodule "iOS-MagnifyingGlass"]
+	path = iOS-MagnifyingGlass
+	url = https://github.com/acoomans/iOS-MagnifyingGlass.git
+[submodule "PullToRefresh"]
+	path = PullToRefresh
+	url = https://github.com/sonnyparlin/PullToRefresh.git
