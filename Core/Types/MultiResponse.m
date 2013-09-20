@@ -3,10 +3,10 @@
 //
 
 
-#import "MultiRequest.h"
+#import "MultiResponse.h"
 
 
-@implementation MultiRequest {
+@implementation MultiResponse {
     Response *_addedRequest;
 }
 

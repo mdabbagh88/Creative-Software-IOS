@@ -12,8 +12,7 @@
 // permissions and limitations under the License.
 //
 
-
-#import "QuickDialog.h"
+#import "UIViewController+Base.h"
 
 @interface QMultilineTextViewController ()
 
@@ -55,6 +54,7 @@
     _viewOnScreen = YES;
     [_textView becomeFirstResponder];
     [super viewWillAppear:animated];
+    [self onViewWillAppear];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

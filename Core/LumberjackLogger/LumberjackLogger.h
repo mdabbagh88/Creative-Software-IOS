@@ -6,6 +6,13 @@
 #import <Foundation/Foundation.h>
 #import "DDLog.h"
 
+@class DDFileLogger;
+
 @interface LumberjackLogger : NSObject
+
 + (void)initDefaults;
+
++ (NSString *)memorySafeLogPart;
+
++ (NSString *)logPath;
 @end

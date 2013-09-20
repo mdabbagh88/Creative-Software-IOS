@@ -107,6 +107,11 @@
     return self;
 }
 
+- (Response *)reload:(BOOL)reload {
+    _reload = reload;
+    return self;
+}
+
 - (void)reset {
     _message = nil;
     _done = false;

@@ -7,9 +7,7 @@
 #import "Response.h"
 
 
-@interface MultiRequest : Response {
-
-}
+@interface MultiResponse : Response
 
 @property(nonatomic, readonly) Response *addedRequest;
 
