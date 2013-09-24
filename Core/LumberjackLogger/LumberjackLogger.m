@@ -37,7 +37,7 @@ static DDFileLogger *_fileLogger;
 }
 
 + (NSString *)logPath {
-    [DDTTYLogger.sharedInstance flush];
+    [DDLog flushLog];
     return _fileLogger.logFileManager.sortedLogFilePaths[0];
 }
 

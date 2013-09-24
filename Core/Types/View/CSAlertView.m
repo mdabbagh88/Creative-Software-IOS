@@ -15,6 +15,7 @@
 }
 
 - (CSAlertView *)show:(NSString *)title :(NSString *)message :(NSString *)cancelTitle :(NSString *)okTitle:(void (^)())onSubmit {
+    if(_visible) [self hide];
     _button1Action = [onSubmit copy];
     self.alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:okTitle, nil];
     [self.alert show];

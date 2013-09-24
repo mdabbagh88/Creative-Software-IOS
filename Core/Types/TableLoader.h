@@ -8,6 +8,7 @@
 
 @class PullToRefreshView;
 @class CSPullToRefreshView;
+@class Response;
 
 @interface TableLoader : NSObject <PullToRefreshViewDelegate> {
 
@@ -34,7 +35,7 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
 
-- (void)reload;
+- (Response *)reload;
 
 - (void)updateEmpty;
 

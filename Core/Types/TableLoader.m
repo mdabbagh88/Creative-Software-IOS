@@ -44,10 +44,10 @@
 }
 
 - (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view {
-    [self reload];
+    [[self reload] reload:YES];
 }
 
-- (void)reload {
+- (Response *)reload {
     self.emptyLabel.visible = NO;
     _noNext = NO;
     _loading = YES;
@@ -56,6 +56,7 @@
     response.onDone = ^{
         [self onDone];
     };
+    return response;
 }
 
 - (void)setEmptyLabel:(UIView *)emptyLabel {
