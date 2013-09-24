@@ -10,3 +10,6 @@
 [submodule "PullToRefresh"]
 	path = PullToRefresh
 	url = https://github.com/sonnyparlin/PullToRefresh.git
+[submodule "AFNetworking"]
+	path = AFNetworking
+	url = https://github.com/AFNetworking/AFNetworking.git
