@@ -7,9 +7,11 @@
 
 @interface UIDevice (Extension)
 
-+ (BOOL)orientationPortraite;
++ (BOOL)orientationPortrait;
 
-+ (BOOL)iphone;
++ (BOOL)iPhone;
 
-+(BOOL)ipad;
++(BOOL)iPad;
+
++ (float)systemVersion;
 @end

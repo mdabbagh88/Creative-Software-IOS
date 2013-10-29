@@ -14,7 +14,7 @@
 @implementation QuickDialogController (Extension)
 
 - (UIViewController *)createUI {
-    self.root = [QRootElement new];
+    self.root = QRootElement.new;
     self.root.grouped = YES;
     self.resizeWhenKeyboardPresented = YES;
     return self;

@@ -76,6 +76,16 @@
     if (self.hidden) [self fadeIn:CS_FADE_TIME];
 }
 
+- (void)fadeBackgroundColorTo:(UIColor *)color {
+    if([self.backgroundColor isEqual:color])return;
+    CABasicAnimation *fade = [CABasicAnimation animationWithKeyPath:@"backgroundColor"];
+    fade.fromValue = (id) self.backgroundColor.CGColor;
+    fade.toValue = (id) color.CGColor;
+    [fade setDuration:CS_FADE_TIME];
+    [self.layer addAnimation:fade forKey:@"fadeAnimation"];
+    self.backgroundColor = color;
+}
+
 - (void)fadeOut {
     if (!self.hidden) [self fadeOut:CS_FADE_TIME];
 }

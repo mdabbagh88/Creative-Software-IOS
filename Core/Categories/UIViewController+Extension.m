@@ -36,7 +36,7 @@
 
 
 - (UIPopoverController *)presentInPopoverIfPossible:(UIView *)view :(UIViewController *)controller :(id <UIPopoverControllerDelegate>)delegate {
-    if (UIDevice.ipad) {
+    if (UIDevice.iPad) {
         UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:controller];
         popover.delegate = delegate;
         [popover presentPopoverFromRect:view.bounds inView:view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
@@ -48,7 +48,7 @@
 }
 
 - (UIPopoverController *)presentModalInPopoverIfPossible:(UIView *)view :(UIViewController *)controller :(id <UIPopoverControllerDelegate>)delegate {
-    if (UIDevice .ipad) {
+    if (UIDevice .iPad) {
         UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:controller];
         popover.delegate = delegate;
         [popover presentPopoverFromRect:view.bounds inView:view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];

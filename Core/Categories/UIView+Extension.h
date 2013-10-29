@@ -32,6 +32,8 @@ static float const CS_FADE_TIME = 0.5;
 
 - (void)fadeIn;
 
+- (void)fadeBackgroundColorTo:(UIColor *)color;
+
 - (void)fadeOut:(NSTimeInterval)time;
 
 - (void)fadeOut:(NSTimeInterval)time :(void (^)())method;

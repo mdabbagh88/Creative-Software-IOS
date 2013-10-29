@@ -29,7 +29,7 @@ static DDFileLogger *_fileLogger;
 }
 
 + (NSString *)memorySafeLogPart {
-    [DDTTYLogger.sharedInstance flush];
+    [DDLog flushLog];
     NSData *data = [NSData dataWithContentsOfFile:self.logPath
                                          atOffset:[NSFileManager fileLength:self.logPath] - DISPLAY_LENGTH
                                          withSize:DISPLAY_LENGTH];

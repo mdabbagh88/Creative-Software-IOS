@@ -40,13 +40,13 @@
     [_onDoneEvent run];
 }
 
-- (void)failed:(Response <RequestProtocol> *)response {
+- (void)failed:(Response *)response {
     if (_canceled)return;
     [self onFailedEvent:response];
     [self onDoneEvent];
 }
 
-- (void)onFailedEvent:(Response <RequestProtocol> *)response {
+- (void)onFailedEvent:(Response *)response {
     _failed = YES;
     [_onFailedEvent run:response];
 }
