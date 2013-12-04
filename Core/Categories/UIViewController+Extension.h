@@ -19,8 +19,6 @@
 
 - (Response *)showResponse:(Response *)request;
 
-- (BOOL)isControllerActive;
-
 - (Response *)showFailed:(Response *)request;
 
 - (Response *)showProgress:(Response *)request;

@@ -14,13 +14,21 @@
     void (^_button2Action)();
 }
 
-- (CSAlertView *)show:(NSString *)title :(NSString *)message :(NSString *)cancelTitle :(NSString *)okTitle:(void (^)())onSubmit {
-    if(_visible) [self hide];
+- (CSAlertView *)create:(NSString *)title :(NSString *)message :(NSString *)cancelTitle :(NSString *)okTitle :(void (^)())onSubmit {
+    if (_visible) [self hide];
     _button1Action = [onSubmit copy];
     self.alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:okTitle, nil];
+    return self;
+}
+
+- (CSAlertView *)show {
     [self.alert show];
     _visible = YES;
     return self;
+}
+
+- (CSAlertView *)show:(NSString *)title :(NSString *)message :(NSString *)cancelTitle :(NSString *)okTitle :(void (^)())onSubmit {
+    return [[self create:title :message :cancelTitle :okTitle :onSubmit] show];
 }
 
 - (CSAlertView *)show:(NSString *)title :(NSString *)message :(NSString *)okTitle {

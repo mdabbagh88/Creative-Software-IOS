@@ -70,7 +70,7 @@ static NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXY
 }
 
 + (NSString *)fromInt:(int)value {
-    return [NSString stringWithFormat:@"%i", value];
+    return [NSString stringWithFormat:@"%d", value];
 }
 
 + (NSString *)fromDbl:(double)value {

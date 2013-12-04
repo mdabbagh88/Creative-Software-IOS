@@ -13,7 +13,7 @@
     [self resizeAutoResizingViewsFonts:self :multiply];
 }
 
-- (void)resizeAutoResizingViewsFonts:(UIView *)view:(float)multiply {
+- (void)resizeAutoResizingViewsFonts:(UIView *)view :(float)multiply {
     for (id subview in view.subviews) {
         if ([subview isKindOfClass:UIView.class]) {
             [self resizeAutoResizingViewsFonts:((UIView *) subview) :multiply];
@@ -68,8 +68,8 @@
 
 + (id)create {
     NSString *className = NSStringFromClass([self class]);
-    NSString *viewName = [className stringByReplacingOccurrencesOfString:@"View" withString:@""];
-    return [self create:viewName];
+    return [self create:[className stringByReplacingCharactersInRange:[className rangeOfString:@"View" options:NSBackwardsSearch]
+                                                           withString:@""]];
 }
 
 - (void)fadeIn {
@@ -77,7 +77,7 @@
 }
 
 - (void)fadeBackgroundColorTo:(UIColor *)color {
-    if([self.backgroundColor isEqual:color])return;
+    if ([self.backgroundColor isEqual:color])return;
     CABasicAnimation *fade = [CABasicAnimation animationWithKeyPath:@"backgroundColor"];
     fade.fromValue = (id) self.backgroundColor.CGColor;
     fade.toValue = (id) color.CGColor;
@@ -263,7 +263,7 @@
     [MBProgressHUD hideHUDForView:self animated:YES];
 }
 
-- (void)showMessage :(NSString *)string {
+- (void)showMessage:(NSString *)string {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
             initWithTarget:self action:@selector(onShowMessageTap:)];

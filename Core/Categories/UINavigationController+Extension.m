@@ -15,7 +15,7 @@
     [self pushViewController:controller animated:YES];
 }
 
-- (void)pushViewController:(UIViewController *)controller:(NSUInteger)index {
+- (void)pushViewController:(UIViewController *)controller :(NSUInteger)index {
     NSArray *range = [self.viewControllers subarrayWithRange:NSMakeRange(0, index - 1)];
     NSMutableArray *array = [NSMutableArray arrayWithArray:range];
     [array addObject:controller];
@@ -49,6 +49,18 @@
     }
     [self pushViewController:newcontroller];
 }
+
+- (void)pushViewControllerAfter:(UIViewController *)newcontroller :(Class)after {
+    int index = 0;
+    for (UIViewController *controller in self.viewControllers) {
+        index++;
+        if ([controller isKindOfClass:after]) {
+            [self pushViewController:newcontroller :index + 1];
+            return;
+        }
+    }
+}
+
 
 - (void)replaceLast:(UIViewController *)controller {
     [self popViewControllerAnimated:NO];

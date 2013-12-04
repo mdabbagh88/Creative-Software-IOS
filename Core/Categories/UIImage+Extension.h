@@ -7,6 +7,8 @@
 
 @interface UIImage (Extension)
 
++ (UIImage *)imageWithColor:(UIColor *)color;
+
 - (UIImage *)scaleAndRotateFromCamera:(int)maxResolution;
 
 -(UIImage *)scaleToWidth:(float)width;

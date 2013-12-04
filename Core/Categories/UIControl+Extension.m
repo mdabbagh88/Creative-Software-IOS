@@ -9,22 +9,12 @@
 
 @implementation UIControl (Extension)
 
-- (void)addTouchDown:(id)target:(SEL)action {
+- (void)addTouchUp:(id)target:(SEL)action {
     [self addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-    [self addTarget:target action:action forControlEvents:UIControlEventTouchUpOutside];
-}
-
-- (void)addEffectTouchDown:(id)target:(SEL)action {
-    [self addTarget:target action:action forControlEvents:UIControlEventTouchDown];
-    [self addTouchEffect];
 }
 
 - (void)addTouchEffect {
-    [self addTouchDown:self :@selector(onTouchEffect)];
-}
-
-- (void)addTouchEffect:(UIColor *)color {
-    [self addTouchDown:self :@selector(onTouchEffect)];
+    [self addTouchUp:self :@selector(onTouchEffect)];
 }
 
 - (void)onTouchEffect {

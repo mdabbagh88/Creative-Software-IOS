@@ -7,7 +7,7 @@
 #import "Response.h"
 
 
-@interface ConcurrentMultiRequest : Response {
+@interface ConcurrentMultiResponse : Response {
 
 }
 

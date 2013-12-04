@@ -4,10 +4,10 @@
 
 
 #import "Response.h"
-#import "ConcurrentMultiRequest.h"
+#import "ConcurrentMultiResponse.h"
 
 
-@implementation ConcurrentMultiRequest {
+@implementation ConcurrentMultiResponse {
     NSInteger _requestCount;
 }
 

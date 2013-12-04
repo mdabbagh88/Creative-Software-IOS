@@ -16,9 +16,9 @@
 - (id)initWith:(UIViewController *)controller {
     self.visible = false;
     self.controller = controller;
-    [self.fromCamera addTouchDown:self :@selector(onTakePictureTouch:)];
-    [self.fromGallery addTouchDown:self :@selector(onFromGalleryPhotoTouch:)];
-    [self addTouchDown:self :@selector(onBackgroundTouch)];
+    [self.fromCamera addTouchUp:self :@selector(onTakePictureTouch:)];
+    [self.fromGallery addTouchUp:self :@selector(onFromGalleryPhotoTouch:)];
+    [self addTouchUp:self :@selector(onBackgroundTouch)];
     return self;
 }
 

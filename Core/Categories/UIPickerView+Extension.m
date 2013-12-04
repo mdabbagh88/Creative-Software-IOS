@@ -10,10 +10,15 @@
 }
 
 - (UILabel *)createCenteredLabel:(NSString *)text height:(int)height {
+    UILabel *label = [self createCenteredLabelWithHeight:height];
+    label.text = text;
+    return label;
+}
+
+- (UILabel *)createCenteredLabelWithHeight:(int)height {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.width, height)];
     label.textAlignment = NSTextAlignmentCenter;
     label.backgroundColor = [UIColor clearColor];
-    label.text = text;
     return label;
 }
 

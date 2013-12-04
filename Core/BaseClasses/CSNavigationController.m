@@ -34,9 +34,9 @@
     return [super popToRootViewControllerAnimated:animated];
 }
 
-- (NSArray *)popToViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    _lastPoped = viewController;
-    return [super popToViewController:viewController animated:animated];
+- (NSArray *)popToViewController:(UIViewController *)controller animated:(BOOL)animated {
+    _lastPoped = controller;
+    return [super popToViewController:controller animated:animated];
 }
 
 @end

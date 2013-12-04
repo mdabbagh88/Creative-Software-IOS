@@ -18,6 +18,8 @@
 
 -(void)pushViewControllerAsFirstOfItsKind:(UIViewController *)newcontroller;
 
+- (void)pushViewControllerAfter:(UIViewController *)newcontroller :(Class)after;
+
 - (void)replaceLast:(UIViewController *)controller;
 
 - (UIViewController *)previous;
