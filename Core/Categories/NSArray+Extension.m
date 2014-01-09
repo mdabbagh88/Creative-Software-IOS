@@ -32,4 +32,8 @@
     return [self at:self.count - 1];
 }
 
+- (int)lastIndex {
+    return self.count - 1;
+}
+
 @end

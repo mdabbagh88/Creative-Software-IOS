@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UIButton (Extension)
+@interface UIButton (AFExtension)
 
 - (void)setImageWithURL:(NSURL *)url;
 

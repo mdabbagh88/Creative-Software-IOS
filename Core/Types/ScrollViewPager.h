@@ -10,7 +10,9 @@
 
 }
 
-- (ScrollViewPager *)from:(UIPageControl *)pageControl :(UIScrollView *)scrollView;
+- (ScrollViewPager *)with:(UIPageControl *)control :(UIScrollView *)scrollView;
+
+- (ScrollViewPager *)withScrollViewDelegate:(UIPageControl *)control :(UIScrollView *)scrollView;
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView;
 

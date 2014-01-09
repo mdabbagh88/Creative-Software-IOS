@@ -4,12 +4,7 @@
 
 
 #import "QuickDialogController+Extension.h"
-#import "CSImageElement.h"
 #import "CSPickerElement.h"
-#import "UIImage+Extension.h"
-#import "QDateTimeInlineElement.h"
-#import "QDateTimeElement.h"
-#import "QPickerElement.h"
 
 @implementation QuickDialogController (Extension)
 
@@ -20,14 +15,14 @@
     return self;
 }
 
-- (CSImageElement *)addImage:(QSection *)section :(NSString *)title :(float)height :(NSURL *)url:(UIImage *)placeholder:(void (^)(QImageElement *))onValueChange {
+- (CSImageElement *)addImage:(QSection *)section :(NSString *)title :(float)height :(NSURL *)url :(UIImage *)placeholder :(void (^)(QImageElement *))onValueChange {
     CSImageElement *element = [CSImageElement.alloc initWithTitle:title url:url];
     element.height = height;
     element.imageValue = [placeholder scaleToHeight:height];
     return (CSImageElement *) [self initializeEntry:section onValueChange:(void (^)(QEntryElement *)) onValueChange entry:element];
 }
 
-- (CSImageElement *)addImage:(QSection *)section :(NSString *)title :(float)height :(NSURL *)url:(void (^)(QImageElement *))onValueChange {
+- (CSImageElement *)addImage:(QSection *)section :(NSString *)title :(float)height :(NSURL *)url :(void (^)(QImageElement *))onValueChange {
     CSImageElement *element = [CSImageElement.alloc initWithTitle:title url:url];
     element.height = height;
     return (CSImageElement *) [self initializeEntry:section onValueChange:(void (^)(QEntryElement *)) onValueChange entry:element];
@@ -54,7 +49,16 @@
     return [self initializeEntry:section onValueChange:onValueChange entry:entry];
 }
 
-- (QDateTimeInlineElement *)addDateTime:(QSection *)section:(UIDatePickerMode)mode :(NSString *)title :(NSDate *)date :(void (^)(QDateTimeElement *))onValueChange {
+- (QBooleanElement *)addBoolean:(QSection *)section :(NSString *)title :(BOOL)value :(void (^)(QBooleanElement *))onValueChange {
+    QBooleanElement *element = [[QBooleanElement alloc] initWithTitle:title BoolValue:value];
+    [section addElement:element];
+    element.onValueChanged = ^(QRootElement *element) {
+        runWith(onValueChange, element);
+    };
+    return element;
+}
+
+- (QDateTimeInlineElement *)addDateTime:(QSection *)section :(UIDatePickerMode)mode :(NSString *)title :(NSDate *)date :(void (^)(QDateTimeElement *))onValueChange {
     QDateTimeInlineElement *element = [[QDateTimeInlineElement alloc] initWithTitle:title date:date andMode:mode];
     [section addElement:element];
     element.delegate = self;

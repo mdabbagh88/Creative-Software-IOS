@@ -5,7 +5,6 @@
 
 #import "AFHTTPClient+Extension.h"
 #import "AFNetworking.h"
-#import "NSString+Extensions.h"
 #import "NSURL+Extension.h"
 
 
@@ -15,4 +14,11 @@
     [self postPath:[path add:[NSURL createParamsString:arguments]] parameters:parameters success:success failure:failure];
 }
 
+- (BOOL)isReachable {
+    return self.networkReachabilityStatus != AFNetworkReachabilityStatusNotReachable;
+}
+
+- (BOOL)isNotReachable {
+    return self.networkReachabilityStatus == AFNetworkReachabilityStatusNotReachable;
+}
 @end

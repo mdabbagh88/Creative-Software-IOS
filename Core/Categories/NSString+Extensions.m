@@ -78,11 +78,15 @@ static NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXY
 }
 
 + (NSString *)fromBool:(BOOL)value {
-    return [NSString stringWithFormat:@" %s", value ? "true" : "false"];
+    return [NSString stringWithFormat:@"%s", value ? "YES" : "NO"];
 }
 
 - (BOOL)contains:(NSString *)string {
     return [self rangeOfString:string].location != NSNotFound;
+}
+
+- (BOOL)containsCaseInsensitive:(NSString *)string {
+    return [self rangeOfString:string options:NSCaseInsensitiveSearch].location != NSNotFound;
 }
 
 - (BOOL)set {

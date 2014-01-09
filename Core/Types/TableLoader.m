@@ -5,12 +5,12 @@
 
 #import "TableLoader.h"
 #import "Response.h"
-#import "CSPullToRefreshView.h"
 
 @implementation TableLoader {
     UIView *_loadNextIndicator;
     BOOL _noNext;
     BOOL _loading;
+    UIRefreshControl *_refreshControl;
 }
 
 - (TableLoader *)from:(UITableView *)table :(UIView *)loadNextIndicator :(NSMutableArray *)data {
@@ -18,9 +18,8 @@
     _loadNextIndicator = loadNextIndicator;
     _loadNextIndicator.hidden = YES;
     _data = data;
-    _refreshHeaderView = [[CSPullToRefreshView alloc] initWithScrollView:_table];
-    _refreshHeaderView.delegate = self;
-    [_table addSubview:_refreshHeaderView];
+    [_table addSubview:_refreshControl = UIRefreshControl.alloc.init];
+    [_refreshControl addTarget:self action:@selector(onRefreshControlInvoke) forControlEvents:UIControlEventValueChanged];
     return self;
 }
 
@@ -43,15 +42,21 @@
     if ([self shouldLoadNext:indexPath]) [self loadNext];
 }
 
-- (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view {
-    [[self reload] reload:YES];
+- (void)onRefreshControlInvoke {
+    if (self.onUserRefresh) {
+        if (self.onUserRefresh())[self load:YES];
+    } else [self load:YES];
 }
 
-- (Response *)reload {
+- (Response *)load {
+    return [self load:NO];
+}
+
+- (Response *)load:(BOOL)fromRefreshControl {
     self.emptyLabel.visible = NO;
     _noNext = NO;
     _loading = YES;
-    Response *response = self.onReload();
+    Response *response = self.onLoad(fromRefreshControl);
     if (_table.hidden) [_table.superview showProgress:response];
     response.onDone = ^{
         [self onDone];
@@ -67,8 +72,7 @@
 - (void)onDone {
     _loading = NO;
     [self updateEmpty];
-    [_refreshHeaderView refreshLastUpdatedDate];
-    [_refreshHeaderView finishedLoading];
+    [self cancelUserRefresh];
     [_table fadeIn];
 }
 
@@ -124,5 +128,9 @@
     [_data removeObjectAtIndex:index];
     [_table reloadData];
     [self updateEmpty];
+}
+
+- (void)cancelUserRefresh {
+    [_refreshControl endRefreshing];
 }
 @end

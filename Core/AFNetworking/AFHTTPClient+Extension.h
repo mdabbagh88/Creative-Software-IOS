@@ -12,4 +12,7 @@
         :(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
         :(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
+- (BOOL)isReachable;
+
+- (BOOL)isNotReachable;
 @end

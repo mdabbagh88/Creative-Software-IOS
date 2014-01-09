@@ -7,6 +7,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 #define infoDbl(double)    DDLogInfo(@"%f", double)
 #define infoBool(BOOL_VAL)    DDLogInfo(@"%s", BOOL_VAL ? "Yes" : "No")
 #define info(NSObject)    DDLogInfo(@"%@",NSObject)
+#define infof(frmt, ...)    DDLogInfo(frmt, __VA_ARGS__)
 #define infoEmpty()    DDLogInfo(@"")
 #define error(NSObject)    DDLogError(@"%@",NSObject)
 

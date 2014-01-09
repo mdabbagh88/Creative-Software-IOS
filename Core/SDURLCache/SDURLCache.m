@@ -425,8 +425,8 @@ static NSDateFormatter* CreateDateFormatter(NSString *format)
 {
     // iOS 5 implements disk caching. SDURLCache then disables itself at runtime if the current device OS
     // version is 5 or greater
-    NSArray *version = [[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."];
-    disabled = [[version objectAtIndex:0] intValue] >= 5;
+//    NSArray *version = [[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."];
+//    disabled = [[version objectAtIndex:0] intValue] >= 5;
 
     if (disabled)
     {
@@ -461,15 +461,15 @@ static NSDateFormatter* CreateDateFormatter(NSString *format)
 
     request = [SDURLCache canonicalRequestForRequest:request];
 
-    if (request.cachePolicy == NSURLRequestReloadIgnoringLocalCacheData
-        || request.cachePolicy == NSURLRequestReloadIgnoringLocalAndRemoteCacheData
-        || request.cachePolicy == NSURLRequestReloadIgnoringCacheData)
-    {
-        // When cache is ignored for read, it's a good idea not to store the result as well as this option
-        // have big chance to be used every times in the future for the same request.
-        // NOTE: This is a change regarding default URLCache behavior
-        return;
-    }
+//    if (request.cachePolicy == NSURLRequestReloadIgnoringLocalCacheData
+//        || request.cachePolicy == NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+//        || request.cachePolicy == NSURLRequestReloadIgnoringCacheData)
+//    {
+//        // When cache is ignored for read, it's a good idea not to store the result as well as this option
+//        // have big chance to be used every times in the future for the same request.
+//        // NOTE: This is a change regarding default URLCache behavior
+//        return;
+//    }
 
     [super storeCachedResponse:cachedResponse forRequest:request];
 

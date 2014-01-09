@@ -25,6 +25,8 @@
 
 - (QEntryElement *)addMultiLine:(QSection *)section :(NSString *)title :(NSString *)value :(NSString *)placeholder :(void (^)(QEntryElement *))onValueChange;
 
+- (QBooleanElement *)addBoolean:(QSection *)section :(NSString *)title :(BOOL)value :(void (^)(QBooleanElement *))onValueChange;
+
 - (QDateTimeInlineElement *)addDateTime:(QSection *)section :(UIDatePickerMode)mode :(NSString *)title :(NSDate *)date :(void (^)(QDateTimeElement *))onValueChange;
 
 - (QPickerElement *)addPicker:(QSection *)section :(NSString *)title :(NSArray *)items :(NSString *)value :(void (^)(QPickerElement *))onChange;

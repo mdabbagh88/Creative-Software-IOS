@@ -49,5 +49,7 @@
 
 - (BOOL)contains:(NSString *)string;
 
+- (BOOL)containsCaseInsensitive:(NSString *)string;
+
 - (NSString *)replace:(NSString *)string :(NSString *)replacement;
 @end

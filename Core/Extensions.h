@@ -16,3 +16,4 @@
 #import "NSUserDefaults+Extension.h"
 #import "UIButton+Extension.h"
 #import "UITableViewCell+Extension.h"
+#import "UIImage+Extension.h"

@@ -18,4 +18,5 @@
 
 - (id)last;
 
+- (int)lastIndex;
 @end

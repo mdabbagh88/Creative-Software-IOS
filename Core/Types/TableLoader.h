@@ -4,21 +4,14 @@
 
 
 #import <Foundation/Foundation.h>
-#import "PullToRefreshView.h"
 
-@class PullToRefreshView;
-@class CSPullToRefreshView;
 @class Response;
 
-@interface TableLoader : NSObject <PullToRefreshViewDelegate> {
-
-}
-
-@property(nonatomic, strong, readonly) CSPullToRefreshView *refreshHeaderView;
+@interface TableLoader : NSObject
 
 @property(nonatomic, strong, readonly) UITableView *table;
 
-@property(nonatomic, copy) Response *(^onReload)();
+@property(nonatomic, copy) Response *(^onLoad)(BOOL userRefresh);
 
 @property(nonatomic, copy) Response *(^onLoadNext)();
 
@@ -26,6 +19,7 @@
 
 @property(nonatomic, strong) NSMutableArray *data;
 
+@property(nonatomic, copy) BOOL (^onUserRefresh)();
 
 - (TableLoader *)from:(UITableView *)table:(UIView *)loadNextIndicator :(NSMutableArray *)data;
 
@@ -35,7 +29,7 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
 
-- (Response *)reload;
+- (Response *)load;
 
 - (void)updateEmpty;
 
@@ -48,4 +42,6 @@
 - (void)removeItem:(id)item;
 
 - (void)removeItemAtIndex:(NSUInteger)i;
+
+- (void)cancelUserRefresh;
 @end

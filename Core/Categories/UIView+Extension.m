@@ -305,4 +305,8 @@
     return response;
 }
 
+- (void)resizeByTop:(CGFloat)value {
+    self.height -= value - self.top;
+    self.top = value;
+}
 @end

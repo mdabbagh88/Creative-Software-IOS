@@ -10,7 +10,7 @@
 @class MBProgressHUD;
 @class Response;
 
-static float const CS_FADE_TIME = 0.5;
+static float const CS_FADE_TIME = 0.3;
 
 @interface UIView (Extension)
 
@@ -85,4 +85,6 @@ static float const CS_FADE_TIME = 0.5;
 - (UIView *)addSubviewUnder:(UIView *)view;
 
 - (UIView *)addSubviewRight:(UIView *)view;
+
+- (void)resizeByTop:(CGFloat)y;
 @end

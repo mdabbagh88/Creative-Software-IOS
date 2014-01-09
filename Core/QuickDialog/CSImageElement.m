@@ -8,7 +8,6 @@
 #import "CSImageElement.h"
 #import "QImageTableViewCell.h"
 #import "CSAlertView.h"
-#import "UIImage+Extension.h"
 
 @implementation CSImageElement {
     CSAlertView *_alert;

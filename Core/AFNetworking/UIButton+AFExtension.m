@@ -5,9 +5,9 @@
 //
 
 
-#import "UIButton+Extension.h"
+#import "AFImageRequestOperation.h"
 
-@implementation UIButton (Extension)
+@implementation UIButton (AFExtension)
 
 
 - (void)setImageWithURL:(NSURL *)url {
