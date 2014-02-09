@@ -58,6 +58,7 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     _visible = NO;
+    self.alert.delegate = nil; //fixing crash http://stackoverflow.com/questions/19001528/ios-7-bug-or-my-bug-in-uialertview
 }
 
 - (CSAlertView *)show:(NSString *)title :(NSString *)message :(NSString *)button1 :(void (^)())button1Action :(NSString *)button2 :(void (^)())button2Action {
